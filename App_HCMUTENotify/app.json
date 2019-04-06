@@ -1,0 +1,16 @@
+{
+  "name": "App_HCMUTENotify",
+  "displayName": "App_HCMUTENotify",
+  "expo": {
+    "name":"App_HCMUTENotify",
+    "displayName": "App_HCMUTENotify",
+    "icon":"../source/logodoan.png",
+    "description":"some description about our project",
+    "sdkVersion": "27.0.0",
+    "android":{
+         "package":"vn.edu.hcmute",
+          "versionCode":1 , 
+          "icon":"../source/logodoan.png"
+              }
+             }
+}

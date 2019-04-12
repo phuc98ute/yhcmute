@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   Image,
   TouchableWithoutFeedback,
@@ -18,10 +17,12 @@ import {
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import { AsyncStorage } from "react-native";
 import { Link } from "react-router-native";
-import { Icon } from "react-native-elements";
+// import { Icon } from "react-native-elements";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import jwtDecode from "jwt-decode";
 import Config from "react-native-config";
+import { ConfirmDialog } from 'react-native-simple-dialogs';
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 
 export default class Activity extends Component {
   static navigationOptions = {
@@ -52,7 +53,7 @@ export default class Activity extends Component {
         <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={styles.container}>
             <Image
-              source={require("../source/noimage.png")}
+              source={{url:item.image}}
               style={styles.photo}
             />
             <View style={styles.container_text}>
@@ -72,6 +73,7 @@ export default class Activity extends Component {
       </View>
     );
   };
+
 
   componentDidMount() {
     AsyncStorage.getItem('access_token', (err, result) => {
@@ -109,33 +111,93 @@ export default class Activity extends Component {
 
   render() {
     var { navigate } = this.props.navigation;
-    return this.state.isLoading ? (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="330066" animating />
-      </View>
-    ) : (
-      <View>
-        <View style={{ height: "93%" }}>
-          <FlatList
-            data={this.state.dataSource}
-            renderItem={this.renderItem}
-            keyExtractor={(item, index) => index.toString()}
-            //ItemSeparatorComponent={this.renderSeparator}
-          />
-        </View>
-        <View style={{ height: '9%', backgroundColor: '#3366CC', marginBottom: 1, flexDirection: "row", justifyContent: "space-evenly", paddingBottom: 5,borderRadius:30 }}>
-                    <TouchableOpacity onPress={() => this.props.navigation.push("Activity")}>
-                        <Icon type='Entypo' name="router" size={30} color="white" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.push("SignActivity")}>
-                        <Icon type='Entypo' name="phone" size={30} color="white" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.push("Second")}>
-                        <Icon type='Entypo' name="radio" size={30} color="white" />
-                    </TouchableOpacity>
+    return  (
+      this.state.isLoading
+            ?
+            <View style={{flex:1,justifyContent:"center",alignItems:'center'}}>
+                <ActivityIndicator size="large" color="330066" animating />
+            </View>
+            :
+                <Container>
+                    <Header>
+                        <Left>
+                            <Button
+                                transparent
+                                onPress={() => this.props.navigation.openDrawer()}>
+                                <Icon name="menu" />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title>Đã đăng kí ...</Title>
+                        </Body>
+                        <Right />
+                    </Header>
+                    {/* <Content padder style={{height:'100%'}}> */}
+                        <View>
+                            <View style={{ height: '93%' }}>
+                                <FlatList
+                                    data={this.state.dataSource}
+                                    renderItem={this.renderItem}
+                                    keyExtractor={(item, index) => index.toString()}
+                                //ItemSeparatorComponent={this.renderSeparator}
+                                />
+                                <ConfirmDialog
+                                    title={this.state.activytyName}
+                                    message={this.state.activityContent}
+                                    visible={this.state.dialogVisible}
+                                    onTouchOutside={() => this.setState({ dialogVisible: false })}
+                                    positiveButton={{
+                                        title: "Đăng kí",
+                                        onPress: () => {
+                                            try {
+                                                AsyncStorage.getItem('access_token', (err, result) => {
+                                                    console.log(result);
+                                                    if (result !== null) {
+                                                        var response = fetch(`${Config.API_URL}/api/v1/activities/registration/${this.state.activityId}`, {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                Accept: 'application/json',
+                                                                'Content-Type': 'application/json',
+                                                                'Authorization': 'Bearer ' + result,
+                                                            },
+                                                            body: JSON.stringify({
 
-          </View>
-      </View>
+                                                            }),
+                                                        })
+                                                            .then((response) => { return response.json() })
+                                                            .then(response => {
+                                                                let ari = (response.isSuccess)
+                                                                if (ari == 'true') {
+                                                                    ToastAndroid.show('Đã đăng kí thành công!', ToastAndroid.LONG);
+                                                                    this.setState({ dialogVisible: false })
+                                                                }
+                                                                if (ari == 'false') {
+                                                                    let message = response.errors.map((val, title) => {
+                                                                        ToastAndroid.show(val.message, ToastAndroid.LONG);
+                                                                        this.setState({ dialogVisible: false })
+                                                                    })
+                                                                }
+                                                            })
+                                                            .catch(err => { console.log('ERR', err), ToastAndroid.show('Lỗi đăng kí không thành công!', ToastAndroid.LONG) });
+                                                    }
+
+                                                })
+                                            } catch (error) {
+                                                // Error retrieving data
+                                            }
+
+                                        }
+                                    }}
+                                    negativeButton={{
+                                        title: "Hủy",
+                                        onPress: () => this.setState({ dialogVisible: false })
+                                    }}
+                                />
+                            </View>
+                            
+                        </View>
+                    {/* </Content> */}
+                </Container>
     );
   }
 }

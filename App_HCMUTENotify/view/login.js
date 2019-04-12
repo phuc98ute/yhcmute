@@ -23,7 +23,9 @@ import Main from "./main";
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 export default class Login extends Component {
   static navigationOptions = {
-    header: null
+    header: null,
+    drawerLockMode: 'locked-closed'
+    
   };
   componentWillMount() {
     //this.loadAPI();
@@ -71,7 +73,7 @@ export default class Login extends Component {
           console.log(AsyncStorage.getItem("access_token"));
           console.log("Sucess");
           
-          this.props.navigation.push("Activity");
+          this.props.navigation.navigate("Activity");
           
         }
       })
@@ -144,23 +146,24 @@ export default class Login extends Component {
                   // }>
                   onPress={this.handleClick}
                 >
-                  <Text style={styles.buttonText}>LOG IN</Text>
+                  <Text style={styles.buttonText}>Đăng nhập</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.buttonContainer}
-                  onPress={() => navigate("Second", {})}
+                  onPress={() => this.props.navigation.navigate("Signup", {})}
                 >
-                  <Text style={styles.buttonText}>SIGN UP</Text>
+                  <Text style={styles.buttonText}>Đăng kí</Text>
 
-                  <ProgressDialog
+                  
+                </TouchableOpacity>
+                <ProgressDialog
                     visible={this.state.showLoading}
-                    title="Loading"
+                    title="Đang kết nối đến server"
                     activityIndicatorColor="blue"
                     activityIndicatorSize="large"
                     animationType="slide"
-                    message="Please, wait..."
+                    message="Vui lòng chờ trong giây lát ..."
                   />
-                </TouchableOpacity>
               </View>
             </View>
           </TouchableWithoutFeedback>

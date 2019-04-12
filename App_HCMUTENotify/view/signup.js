@@ -12,31 +12,46 @@ export default class Signup extends Component{
         return (
             <View style={styles.inforContainer}>
                 <Text style={styles.title}>
-                Sign Up
+                Đăng kí tài khoản
                 </Text>
                 <TextInput style={styles.input}
-                placeholder="Enter your name"
+                placeholder="Nhập họ tên"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
-
+                underlineColorAndroid={'transparent'}
                 />
                 <TextInput style={styles.input}
-                placeholder="Enter your email"
+                placeholder="Nhập mã số sinh viên"
+                
+                placeholderTextColor='rgba(84, 110, 122,0.8)'
+                underlineColorAndroid={'transparent'}
+                />
+                <TextInput style={styles.input}
+                placeholder="Nhập email"
                 keyboardType="email-address"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
+                underlineColorAndroid={'transparent'}
                 />
                 <TextInput style={styles.input}
                 placeholder="Password"
                 //keyboardType="email-address"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
+                underlineColorAndroid={'transparent'}
+                secureTextEntry={true}
                 />
                 <TextInput style={styles.input}
                 placeholder="Cormfirm password"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
+                underlineColorAndroid={'transparent'}
+                secureTextEntry={true}
                 />
                 <ModalDropdown style={styles.doropDownModal} options={['Khoa CNTT','Khoa CLC','Khoa CKM']}/>
                 <TouchableOpacity style={styles.buttonContainer}
                 onPress={()=>{Alert.alert('Thông báo đăng kí thành công hay thất bại')}}>
                 <Text style={styles.buttonText}>Đăng kí</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer}
+                onPress={() => this.props.navigation.navigate("Login", {})}>
+                <Text style={styles.buttonText}>Quay lại</Text>
                 </TouchableOpacity>
                 
             </View>

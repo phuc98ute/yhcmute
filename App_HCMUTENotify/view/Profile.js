@@ -25,7 +25,7 @@ export default class Profile extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Tài khoảng</Title>
+                            <Title>Tài khoản</Title>
                         </Body>
                         <Right />
                     </Header>

@@ -21,6 +21,7 @@ import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
 import Main from "./main";
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 export default class Login extends Component {
   static navigationOptions = {
     header: null,
@@ -70,6 +71,8 @@ export default class Login extends Component {
         let token = accessToken.substr(tokenIndex);
         if (token) {
           AsyncStorage.setItem("access_token", token);
+          AsyncStorage.setItem("username",this.state.username);
+          AsyncStorage.setItem("pass",this.state.pwd);
           console.log(AsyncStorage.getItem("access_token"));
           console.log("Sucess");
           
@@ -139,15 +142,25 @@ export default class Login extends Component {
                   autoCorrect={false}
                   ref={"txtPassword"}
                 />
-                <TouchableOpacity
-                  style={styles.buttonContainer}
-                  // onPress={()=>
-                  //     navigate("Main",{})
-                  // }>
-                  onPress={this.handleClick}
-                >
-                  <Text style={styles.buttonText}>Đăng nhập</Text>
-                </TouchableOpacity>
+                <View style={{width:'100%',height:50,flex:1,flexDirection:'row',marginTop:5}}>
+                  <TouchableOpacity
+                    style={{width:'50%',height:44,backgroundColor:"#3366CC",borderRadius:10
+                  , textAlign: "center",paddingVertical:5}}
+                    // onPress={()=>
+                    //     navigate("Main",{})
+                    // }>
+                    onPress={this.handleClick}
+                  >
+                    <Text style={styles.buttonText}>Đăng nhập</Text>
+                  </TouchableOpacity>
+                  <GoogleSigninButton
+                    style={{ width: '50%', height: 48 }}
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
+                    onPress={this._signIn}
+                    disabled={this.state.isSigninInProgress} />
+                </View>
+                
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   onPress={() => this.props.navigation.navigate("Signup", {})}

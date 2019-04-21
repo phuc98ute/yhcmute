@@ -36,10 +36,12 @@ export default class Activity extends Component{
     }
 
     renderItem = ({ item }) => {
+        const { navigate } = this.props.navigation;
+                        
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
-                this.props.navigation.navigate("signingactivity"),{name:item.actName,content:item.actContent,id:item.id,image:item.image}}}
+                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.activityId });}}
                 
             >
             
@@ -53,7 +55,7 @@ export default class Activity extends Component{
                                 {item.actName}
                             </Text>
                             <Text style={styles.description}>
-                                {item.actContent}
+                                {item.actContent.substring(1,100)}
                             </Text>
                         </View>
 
@@ -111,7 +113,8 @@ export default class Activity extends Component{
             </View>
             :
                 <Container >
-                    <Header style={{backgroundColor:"#3366CC"}}>
+                    <View style={{height:'7%'}}>
+                    <Header>
                         <Left>
                             <Button
                                 transparent
@@ -120,10 +123,12 @@ export default class Activity extends Component{
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Đang diễn ra ...</Title>
+                            <Title>Hoạt động đang diễn ra</Title>
                         </Body>
-                        <Right />
+                        
                     </Header>
+                    </View>
+                    
                     {/* <Content padder style={{height:'100%'}}> */}
                         <View>
                             <View style={{ height: '93%' }}>
@@ -133,7 +138,7 @@ export default class Activity extends Component{
                                     keyExtractor={(item, index) => index.toString()}
                                 //ItemSeparatorComponent={this.renderSeparator}
                                 />
-                                <ConfirmDialog
+                                {/* <ConfirmDialog
                                     title={this.state.activytyName}
                                     message={this.state.activityContent}
                                     visible={this.state.dialogVisible}
@@ -184,7 +189,7 @@ export default class Activity extends Component{
                                         title: "Hủy",
                                         onPress: () => this.setState({ dialogVisible: false })
                                     }}
-                                />
+                                /> */}
                             </View>
                            
                         </View>

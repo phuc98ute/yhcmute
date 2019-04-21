@@ -12,7 +12,7 @@ import {
   KeyboardAvoidingView,
   FlatList,
   ActivityIndicator,
-  ToastAndroid
+  ToastAndroid,BackHandler
 } from "react-native";
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import { AsyncStorage } from "react-native";
@@ -74,7 +74,12 @@ export default class Activity extends Component {
     );
   };
 
-
+  componentWillMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+ } 
+ componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+}
   componentDidMount() {
     AsyncStorage.getItem('access_token', (err, result) => {
         //console.log(result);
@@ -128,9 +133,9 @@ export default class Activity extends Component {
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Đã đăng kí ...</Title>
+                            <Title>Hoạt động đã đăng kí</Title>
                         </Body>
-                        <Right />
+                        
                     </Header>
                     {/* <Content padder style={{height:'100%'}}> */}
                         <View>

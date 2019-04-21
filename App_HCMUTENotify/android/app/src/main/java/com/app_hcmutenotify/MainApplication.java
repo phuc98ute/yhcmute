@@ -3,6 +3,7 @@ package com.app_hcmutenotify;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.wix.interactable.Interactable;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGoogleSigninPackage(),
             new Interactable(),
             new RNFirebasePackage(),
             new RNFirebaseMessagingPackage(),

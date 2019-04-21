@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-google-signin')
     compile project(':react-native-interactable')
     compile project(':react-native-firebase')
     implementation project(':react-native-firebase')

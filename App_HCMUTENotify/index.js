@@ -55,7 +55,7 @@ import signingactivity from './view/signingactivity';
 // )
 const HomeScreenRouter = createDrawerNavigator(
     {
-      Login: { screen: signingactivity},
+      Login: { screen: Login},
       Activity: { screen: Activity},
       SignActivity: { screen: SignActivity },
       Profile:{screen: Profile},

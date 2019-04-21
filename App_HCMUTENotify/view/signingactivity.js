@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions} from 'react-native'
+TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler,AsyncStorage} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 
@@ -9,12 +9,31 @@ export default class signingactivity extends Component{
         title:'Đăng kí thông tin tài khoản',
         headerMode:'screen'
     };
+    constructor(props) {
+        super(props)
+        this.state={
+            actName: this.props.navigation.state.params.actName,
+            actContent:this.props.navigation.state.params.actContent,
+            activityImage:this.props.navigation.state.params.activityImage,
+            activityId:this.props.navigation.state.params.activityId,
+        };
+    }
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+     } 
+     componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+    _signActivity=()=>
+    {
+        this.props.navigation.navigate("Activity")
+    }
     render (){
         const screenHeight = Dimensions.get('window').height;
         return (
             
             <Container >
-                    <Header style={{backgroundColor:"#3366CC"}}>
+                    <Header>
                         <Left>
                             <Button
                                 transparent
@@ -23,43 +42,34 @@ export default class signingactivity extends Component{
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Đăng kí chương trình</Title>
+                            <Title>Đăng kí hoạt động</Title>
                         </Body>
-                        <Right />
+                        
                     </Header>
                 <View>
-                    <View style={styles.cover}></View>
+                    <View style={styles.cover}>
+                        <Image style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
+                    </View>
+                   
                     {/* <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} /> */}
                     <View style={{ height: '61%' }}>
                         <ScrollView>
-                            <Text style={styles.name}>Masetering IT 2019</Text>
+                            <Text style={styles.name}>{this.state.actName}</Text>
                             <Text style={styles.info}>Khoa Công nghệ Thông tin/ Cấp trường</Text>
-                            <Text style={styles.description}>Chiếc Macbook Air được mình sử dụng trong bài test này là phiên bản trang bị 16 GB RAM và có bộ nhớ trong 512 GB. Máy được trang bị viên pin 50,3 Wh và theo công bố của Apple, viên pin này đủ cho nó có thể lướt web không dây trong 12 tiếng và đạt 13 tiếng xem phim liên tục thông qua iTunes. Có thể vì điều kiện dùng khác, nên số liệu mà mình thu được sau những bài test không được như những gì mà nhà sản xuất nói.
-    
-    Kết quả kiểm tra chứng minh bạn có thể sử dụng Macbook Air 2018 để làm việc văn phòng (lướt web, gõ văn bản và dùng một xíu Photoshop) cỡ 6 tiếng, xem phim online hơn 6 tiếng, trong khi thời gian mà bạn có thể dùng máy để chỉnh ảnh qua PTS là khoảng hơn 5 tiếng rưỡi một chút. Dưới đây sẽ là những thông tin chi tiết hơn về quy trình đánh giá pin và một số dữ liệu cụ thể về thời gian sử dụng pin của Macbook Air 2018, mời các bạn theo dõi.
-    
-    Một số lưu ý về thông số của máy trong quá trình test:
-    
-    * Độ sáng màn hình luôn duy trì mức 100%, độ sáng bàn phím 100%
-    * Môi trường thử nghiệm: ngoài trời và phòng máy lạnh, nhiệt độ dao động từ 27℃ - 31℃
-    * Các phần mềm sử dụng trong quá trình thử nghiệm: Safari, Evernote và Photoshop
-    
-    Quy trình thử nghiệm:
-    
-    Sạc đầy pin cho máy, tiến hành lướt làm việc (Gõ văn bản + Lướt Web + PTS nhẹ) cho đến khi hết pin và tương tự như vậy đối với các tác vụ khác.
-    
-Thời gian làm việc văn phòng - 6 tiếng </Text>
+                            <Text style={styles.description}>{this.state.actContent}</Text>
 
                         </ScrollView>
                     </View>
                     <View style={{flex:1,flexDirection: 'row'}}>
                         <TouchableOpacity
                             style={styles.buttonContainer}
+                            onPress={this._signActivity}
                         >
                             <Text style={styles.buttonText}>Đăng kí ngay</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.buttonContainer}
+                            onPress={()=>this.props.navigation.navigate("Activity")}
                         >
                             <Text style={styles.buttonText}>Trở lại</Text>
                         </TouchableOpacity>
@@ -102,7 +112,7 @@ const styles= StyleSheet.create({
         marginTop:10,
         backgroundColor:'#3366CC',
         paddingVertical:5,
-        width:'48%',
+        width:'20%',
         margin:5
         
     },
@@ -120,8 +130,8 @@ const styles= StyleSheet.create({
         fontSize:25
     },
     cover:{
-        backgroundColor: "#00BFFF",
-        height:200,
+        //backgroundColor: "#00BFFF",
+        height:'20%',
         borderRadius:10,
         margin:10,
       },
@@ -154,4 +164,7 @@ const styles= StyleSheet.create({
         marginTop:10,
         textAlign: 'center'
       },
+      photocover:{
+          height:'100%',
+      }
 })

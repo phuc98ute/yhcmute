@@ -3,16 +3,64 @@ import {
   StyleSheet,
   View,
   Image,
-  TouchableOpacity,Dimensions,ScrollView
+  TouchableOpacity,Dimensions,ScrollView,AsyncStorage
 } from 'react-native';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import Config from 'react-native-config';
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
 const RemainingWidth = Screen.width - SideMenuWidth
 
+
+
 export default class Profile extends Component {
 
+  constructor() {
+    super()
+    this.state={
+        fullName:"",
+        studentCode:"",
+        phone:"",
+        email:"",
+        image:"",
+    }
+}
+
+  componentDidMount()
+  {
+    console.log("Da vao DidMount")
+    AsyncStorage.getItem('access_token', (err, result) => {
+      if (result != null) {
+        console.log(result)
+        var Response = fetch(`${Config.API_URL}/api/v1/users/logged`,
+          {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + result,
+            },
+  
+          })
+          .then(Response => Response.json()
+          )
+          .then(ResponseJson =>  {console.log(ResponseJson.isSuccess)
+            {ResponseJson.isSuccess == "true" ? 
+            this.setState({fullName:ResponseJson.data.people.fullName,
+            studentCode:ResponseJson.data.people.studentCode,
+            phone:ResponseJson.data.people.phone,
+            email:ResponseJson.data.people.email,
+            image:ResponseJson.data.people.image,
+            })
+             : null}
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    });
+  }
   render() {
     return (
       
@@ -32,19 +80,22 @@ export default class Profile extends Component {
         </Header>
         <ScrollView style={{ height: Screen.height - 50 }}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
+          <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:this.state.image}} />
           <View style={styles.body}>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}>John Doe</Text>
-              <Text style={styles.info}>UX Designer / Mobile developer</Text>
-              <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
+              <Text style={styles.name}>{this.state.fullName}</Text>
+              <Text style={styles.info}>Mã số sinh viên: {this.state.studentCode}</Text>
+              <Text style={styles.info}>SĐT: {this.state.phone}</Text>
+              <Text style={styles.info}>Email: {this.state.email}</Text>
+              <Text style={styles.description}> Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia
+              Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia </Text>
 
-              <TouchableOpacity style={styles.buttonContainer}>
+              {/* <TouchableOpacity style={styles.buttonContainer}>
                 <Text>Opcion 1</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
                 <Text>Opcion 2</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         </ScrollView>

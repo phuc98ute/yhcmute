@@ -28,6 +28,16 @@ export default class Login extends Component {
     drawerLockMode: 'locked-closed'
     
   };
+  componentDidMount(){
+    AsyncStorage.getItem('access_token', (err, result) => {
+      if(result!=null){
+          console.log(result)
+          let decode = jwtDecode(result)
+          let current_time=new Date().getTime()/1000;
+          if(current_time < decode.exp){this.props.navigation.navigate("Activity",{})}
+        }})
+  
+  }
   componentWillMount() {
     //this.loadAPI();
     //const token = await AsyncStorage.getItem('token');
@@ -69,7 +79,7 @@ export default class Login extends Component {
         console.log("RES", res.headers.get("authorization"));
         let accessToken = res.headers.get("authorization");
         let decode = jwtDecode(accessToken);
-        //console.log(decode);
+        console.log(decode);
         const tokenIndex = accessToken.lastIndexOf(" ") + 1;
         let token = accessToken.substr(tokenIndex);
         if (token) {

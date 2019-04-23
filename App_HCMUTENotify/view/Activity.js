@@ -10,7 +10,7 @@ import {Link} from 'react-router-native';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
-import Config from 'react-native-config'
+import Config from 'react-native-config';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 
 const Screen = Dimensions.get('window')
@@ -45,21 +45,21 @@ export default class Activity extends Component{
                 
             >
             
-                <View style={{ flex: 1, flexDirection:'row'}} >
-                        
-                        <View style={styles.container}>
-                        
-                        <Image source={{uri:item.image}} style={styles.photo} />
+                <View style={{ flex: 1, flexDirection: 'row' }} >
+
+                    <View style={styles.container}>
+
+                        <Image source={{ uri: item.image }} style={styles.photo} />
                         <View style={styles.container_text}>
                             <Text style={styles.title}>
                                 {item.actName}
                             </Text>
                             <Text style={styles.description}>
-                                {item.actContent.substring(1,100)}
+                                {item.actContent.substring(1, 100)}
                             </Text>
                         </View>
 
-    </View>
+                    </View>
                 </View>
             </TouchableOpacity>
         )

@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry, Image, StatusBar } from "react-native";
+import { AppRegistry, Image, StatusBar,AsyncStorage } from "react-native";
 import {
   Button,
   Text,
@@ -47,7 +47,8 @@ export default class SideBar extends React.Component {
               return (
                 <ListItem
                   button
-                  onPress={() => this.props.navigation.navigate(data.component)}
+                  
+                  onPress={() =>{data.component!="Login" ? this.props.navigation.navigate(data.component):AsyncStorage.clear();this.props.navigation.navigate(data.component)} }
                 >
                   <Text>{data.title}</Text>
                 </ListItem>

@@ -50,7 +50,7 @@ export default class Activity extends Component {
           })
         }
       >
-        <View style={{ flex: 1, flexDirection: "row" }}>
+        {/* <View style={{ flex: 1, flexDirection: "row" }}>
           <View style={styles.container}>
             <Image
               source={{url:item.image}}
@@ -60,6 +60,20 @@ export default class Activity extends Component {
               <Text style={styles.title}>{item.actName}</Text>
               <Text style={styles.description}>{item.actContent}</Text>
             </View>
+          </View>
+        </View> */}
+        <View style={{ flex: 1, flexDirection: 'row' }} >
+          <View style={styles.container}>
+            <Image source={{ uri: item.image }} style={styles.photo} />
+            <View style={styles.container_text}>
+              <Text style={styles.title}>
+                {item.actName}
+              </Text>
+              <Text style={styles.description}>
+                {item.actContent.substring(1, 100)}
+              </Text>
+            </View>
+
           </View>
         </View>
       </TouchableOpacity>
@@ -123,7 +137,7 @@ export default class Activity extends Component {
                 <ActivityIndicator size="large" color="330066" animating />
             </View>
             :
-                <Container>
+                <Container >
                     <Header>
                         <Left>
                             <Button
@@ -152,51 +166,11 @@ export default class Activity extends Component {
                                     visible={this.state.dialogVisible}
                                     onTouchOutside={() => this.setState({ dialogVisible: false })}
                                     positiveButton={{
-                                        title: "Đăng kí",
-                                        onPress: () => {
-                                            try {
-                                                AsyncStorage.getItem('access_token', (err, result) => {
-                                                    console.log(result);
-                                                    if (result !== null) {
-                                                        var response = fetch(`${Config.API_URL}/api/v1/activities/registration/${this.state.activityId}`, {
-                                                            method: 'POST',
-                                                            headers: {
-                                                                Accept: 'application/json',
-                                                                'Content-Type': 'application/json',
-                                                                'Authorization': 'Bearer ' + result,
-                                                            },
-                                                            body: JSON.stringify({
-
-                                                            }),
-                                                        })
-                                                            .then((response) => { return response.json() })
-                                                            .then(response => {
-                                                                let ari = (response.isSuccess)
-                                                                if (ari == 'true') {
-                                                                    ToastAndroid.show('Đã đăng kí thành công!', ToastAndroid.LONG);
-                                                                    this.setState({ dialogVisible: false })
-                                                                }
-                                                                if (ari == 'false') {
-                                                                    let message = response.errors.map((val, title) => {
-                                                                        ToastAndroid.show(val.message, ToastAndroid.LONG);
-                                                                        this.setState({ dialogVisible: false })
-                                                                    })
-                                                                }
-                                                            })
-                                                            .catch(err => { console.log('ERR', err), ToastAndroid.show('Lỗi đăng kí không thành công!', ToastAndroid.LONG) });
-                                                    }
-
-                                                })
-                                            } catch (error) {
-                                                // Error retrieving data
-                                            }
-
+                                        title: "OK",
+                                        onPress: () => { this.setState({dialogVisible:false})
                                         }
-                                    }}
-                                    negativeButton={{
-                                        title: "Hủy",
-                                        onPress: () => this.setState({ dialogVisible: false })
-                                    }}
+                                      }}
+                                   
                                 />
                             </View>
                             

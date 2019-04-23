@@ -3,6 +3,8 @@ import {StyleSheet,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
 TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler,AsyncStorage} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import { ConfirmDialog } from 'react-native-simple-dialogs';
+import Config from 'react-native-config';
 
 export default class signingactivity extends Component{
     static navigationOptions={
@@ -16,6 +18,10 @@ export default class signingactivity extends Component{
             actContent:this.props.navigation.state.params.actContent,
             activityImage:this.props.navigation.state.params.activityImage,
             activityId:this.props.navigation.state.params.activityId,
+            dialogVisible:false,
+            message:"",
+            isTrue:false,
+
         };
     }
     componentWillMount() {
@@ -26,13 +32,12 @@ export default class signingactivity extends Component{
     }
     _signActivity=()=>
     {
+        this.setState({dialogVisible:true});
         const { activityId,actName } = this.state;
-        console.log(AsyncStorage.getItem('access_token'));
         AsyncStorage.getItem('access_token', (err, result) => {
-            console.log(result);
             if(result!=null){
                 console.log(result)
-            var Response=fetch(`https://yhcmute.herokuapp.com/api/v1/activities/registration/${activityId}`, 
+            var Response=fetch(`${Config.API_URL}/api/v1/activities/registration/${activityId}`, 
             {
             method: 'POST',
             headers: {
@@ -45,7 +50,10 @@ export default class signingactivity extends Component{
           .then(Response => Response.json()
           )
           .then(ResponseJson => {
-            console.log(ResponseJson.errors[0].message)
+            console.log(ResponseJson.isSuccess);
+            this.setState({isTrue:ResponseJson.isSuccess});
+            { this.state.isTrue=='false' ? this.setState({message:ResponseJson.errors[0].message}) : this.setState({message:"Đã đăng kí thành công, Xin cảm ơn!"}) };
+            
             })
           .catch(error => {
             console.log(error);
@@ -97,7 +105,7 @@ export default class signingactivity extends Component{
 
                         </ScrollView>
                     </View>
-                    <View style={{flex:1,flexDirection: 'row'}}>
+                    <View style={{flex:2,flexDirection: 'row',alignItems:'center'}}>
                         <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={this._signActivity}
@@ -111,6 +119,15 @@ export default class signingactivity extends Component{
                             <Text style={styles.buttonText}>Trở lại</Text>
                         </TouchableOpacity>
                     </View>
+                    <ConfirmDialog
+                                    title="Thông báo đăng kí"
+                                    message={this.state.message}
+                                    visible={this.state.dialogVisible}
+                                    onTouchOutside={() => this.setState({ dialogVisible: true })}
+                                    positiveButton={{
+                                        title: "Xác nhận", onPress:()=>{this.state.isTrue=='true' ? this.props.navigation.navigate("Activity", {}):this.setState({dialogVisible:false})}
+                                    }}
+                                />
                     
                 </View>
 
@@ -146,13 +163,11 @@ const styles= StyleSheet.create({
     },
     buttonContainer:{
         borderRadius:10,
-        marginTop:10,
         backgroundColor:'#3366CC',
         paddingVertical:5,
-        height:'100%',
+        height:50,
         flex:1,
-        margin:5
-        
+        marginHorizontal:5,
     },
     buttonText:{
         textAlign:'center',

@@ -1,77 +1,99 @@
 import React, {Component} from 'react'
 import {StyleSheet,Text,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage} from 'react-native'
+TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage,ScrollView} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
+
+const listKhoa=['CNTT', 'CKM', 'CLC'];
+const listLop=[];
 
 export default class Signup extends Component{
     static navigationOptions={
         title:'Đăng kí thông tin tài khoản',
         headerMode:'screen'
     };
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+            fullName: "",
+            email: "",
+            image: "",
+            phone: "",
+            studentCode: "",
+            aClassName: "",
+            faculytyName: "",
+            shortName: "",
+        }
+      }
     _signup = () => {
-        AsyncStorage.getItem('access_token', (err, result) => {
-            console.log(result);
-            if (result != null) {
-                console.log(result)
-                var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + result,
-                        },
-                        // body:{
-                        //     username:'phuc123',
-                        //     password:'123',
-                        //     people:{
-                        //         fullName:'vo hong phuc',
-                        //         email:'phucvoitspkt',
-                        //         phone:'111',
-                        //         studentCode:'16110423',
-                        //     }
-                        body:JSON.stringify( {
-                            'username':'phuc12345',
-                            'password':'123',
-                            'people':{
-                                        'fullName':'vo hong phuc',
-                                        'email':'phucvoitspkt',
-                                        'phone':'111',
-                                        'studentCode':'16110423',
-                                    }
-                         })
-                    })
-                    .then(Response => Response.json()
-                    )
-                    .then(ResponseJson => {
-                        console.log(ResponseJson)
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-        });
-    }
+        console.log(this.state.fullName)
+        // AsyncStorage.getItem('access_token', (err, result) => {
+        //     console.log(result);
+        //     if (result != null) {
+        //         console.log(result)
+        //         var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
+        //             {
+        //                 method: 'POST',
+        //                 headers: {
+        //                     Accept: 'application/json',
+        //                     'Content-Type': 'application/json',
+        //                     'Authorization': 'Bearer ' + result,
+        //                 },
+        //                 // body:{
+        //                 //     username:'phuc123',
+        //                 //     password:'123',
+        //                 //     people:{
+        //                 //         fullName:'vo hong phuc',
+        //                 //         email:'phucvoitspkt',
+        //                 //         phone:'111',
+        //                 //         studentCode:'16110423',
+        //                 //     }
+        //                 body:JSON.stringify( {
+        //                     "userDto": this.state
+        //                  })
+        //             })
+        //             .then(Response => Response.json()
+        //             )
+        //             .then(ResponseJson => {
+        //                 console.log(ResponseJson)
+        //             })
+        //             .catch(error => {
+        //                 console.log(error);
+        //             });
+        //     }
+        // });
+    };
+
     render (){
         return (
-            <View style={styles.inforContainer}>
+            <ScrollView style={styles.inforContainer}>
                 <Text style={styles.title}>
                 Đăng kí tài khoản
                 </Text>
                 <TextInput style={styles.input}
                 placeholder="Nhập họ tên"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
+                onChangeText={fullName => this.setState({fullName})}
                 underlineColorAndroid={'transparent'}
                 />
                 <TextInput style={styles.input}
                 placeholder="Nhập mã số sinh viên"
-                
+                onChangeText={studentCode => this.setState({studentCode})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
                 <TextInput style={styles.input}
                 placeholder="Nhập email"
                 keyboardType="email-address"
+                onChangeText={email=> this.setState({email})}
+                placeholderTextColor='rgba(84, 110, 122,0.8)'
+                underlineColorAndroid={'transparent'}
+                />
+                  <TextInput style={styles.input}
+                placeholder="Nhập số điện thoại"
+                
+                onChangeText={phone => this.setState({phone})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
@@ -80,6 +102,7 @@ export default class Signup extends Component{
                 //keyboardType="email-address"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
+                onChangeText={password => this.setState({password})}
                 secureTextEntry={true}
                 />
                 <TextInput style={styles.input}
@@ -88,7 +111,10 @@ export default class Signup extends Component{
                 underlineColorAndroid={'transparent'}
                 secureTextEntry={true}
                 />
-                <ModalDropdown style={styles.doropDownModal} options={['Khoa CNTT','Khoa CLC','Khoa CKM']}/>
+                <ModalDropdown style={styles.doropDownModal} options={listKhoa}/>
+
+                <ModalDropdown style={styles.doropDownModal} options={listLop}/>
+
                 <TouchableOpacity style={styles.buttonContainer}
                 onPress={this._signup}>
                 <Text style={styles.buttonText}>Đăng kí</Text>
@@ -98,7 +124,7 @@ export default class Signup extends Component{
                 <Text style={styles.buttonText}>Quay lại</Text>
                 </TouchableOpacity>
                 
-            </View>
+            </ScrollView>
         )
     }
 

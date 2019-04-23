@@ -12,16 +12,16 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ToastAndroid,
-  ActivityIndicator
+  Dimensions,
 } from "react-native";
-import { LoginScreen, SignupScreen } from "../screenName";
 import { AsyncStorage } from "react-native";
-import { createStackNavigator } from "react-navigation";
 import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
-import Main from "./main";
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
+const deviceWidth = Dimensions.get('window').width;
+
 export default class Login extends Component {
   static navigationOptions = {
     header: null,
@@ -43,7 +43,10 @@ export default class Login extends Component {
       showLoading: false
     };
   }
-
+  _signIn=()=>
+  {
+    
+  }
   handleClick = () => {
     this.setState({ showLoading: true });
     var { navigate } = this.props.navigation;
@@ -66,17 +69,17 @@ export default class Login extends Component {
         console.log("RES", res.headers.get("authorization"));
         let accessToken = res.headers.get("authorization");
         let decode = jwtDecode(accessToken);
-        console.log(decode);
+        //console.log(decode);
         const tokenIndex = accessToken.lastIndexOf(" ") + 1;
         let token = accessToken.substr(tokenIndex);
         if (token) {
+          console.log(token)
           AsyncStorage.setItem("access_token", token);
           AsyncStorage.setItem("username",this.state.username);
           AsyncStorage.setItem("pass",this.state.pwd);
           console.log(AsyncStorage.getItem("access_token"));
           console.log("Sucess");
-          
-          this.props.navigation.navigate("Activity");
+          this.props.navigation.navigate("Activity",{});
           
         }
       })
@@ -98,20 +101,20 @@ export default class Login extends Component {
             style={styles.container}
             onPress={Keyboard.dismiss}
           >
-            <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
+            <View style={{ backgroundColor: "#FFFFFF", flex: 1,flexDirection:'column' }}>
               <View
                 style={{
                   backgroundColor: "#FFFFFF",
-                  height: "15%",
-                  paddingTop: "2%"
+                  flex: 2,
+                  marginTop:'2%'
                 }}
               >
                 <Image
                   source={require("../source/banner.png")}
-                  style={{ height: "100%", width: "100%" }}
+                  style={{width: deviceWidth}}
                 />
               </View>
-              <View style={styles.logoContainer}>
+               <View style={styles.logoContainer}>
                 <Image
                   style={styles.logo}
                   source={require("../source/logodoan.png")}
@@ -122,61 +125,62 @@ export default class Login extends Component {
               </View>
 
               <View style={styles.inforContainer}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter username/email"
-                  placeholderTextColor="rgba(84, 110, 122,0.8)"
-                  keyboardType="email-address"
-                  returnKeyType="next"
-                  autoCorrect={false}
-                  onChangeText={username => this.setState({ username })}
-                  onSubmitEditing={() => this.refs.txtPassword.focus()}
-                />
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter password"
-                  placeholderTextColor="rgba(84, 110, 122,0.8)"
-                  onChangeText={pwd => this.setState({ pwd })}
-                  returnKeyType="go"
-                  secureTextEntry
-                  autoCorrect={false}
-                  ref={"txtPassword"}
-                />
-                <View style={{width:'100%',height:50,flex:1,flexDirection:'row',marginTop:5}}>
-                  <TouchableOpacity
-                    style={{width:'50%',height:44,backgroundColor:"#3366CC",borderRadius:10
-                  , textAlign: "center",paddingVertical:5}}
-                    // onPress={()=>
-                    //     navigate("Main",{})
-                    // }>
-                    onPress={this.handleClick}
-                  >
-                    <Text style={styles.buttonText}>Đăng nhập</Text>
-                  </TouchableOpacity>
-                  <GoogleSigninButton
-                    style={{ width: '50%', height: 48 }}
-                    size={GoogleSigninButton.Size.Wide}
-                    color={GoogleSigninButton.Color.Dark}
-                    onPress={this._signIn}
-                    disabled={this.state.isSigninInProgress} />
-                </View>
-                
-                <TouchableOpacity
-                  style={styles.buttonContainer}
-                  onPress={() => this.props.navigation.navigate("Signup", {})}
-                >
-                  <Text style={styles.buttonText}>Đăng kí</Text>
-
-                  
-                </TouchableOpacity>
-                <ProgressDialog
-                    visible={this.state.showLoading}
-                    title="Đang kết nối đến server"
-                    activityIndicatorColor="blue"
-                    activityIndicatorSize="large"
-                    animationType="slide"
-                    message="Vui lòng chờ trong giây lát ..."
+                <View style={{flex:2}}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter username/email"
+                    placeholderTextColor="rgba(84, 110, 122,0.8)"
+                    keyboardType="email-address"
+                    returnKeyType="next"
+                    autoCorrect={false}
+                    onChangeText={username => this.setState({ username })}
+                    onSubmitEditing={() => this.refs.txtPassword.focus()}
                   />
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter password"
+                    placeholderTextColor="rgba(84, 110, 122,0.8)"
+                    onChangeText={pwd => this.setState({ pwd })}
+                    returnKeyType="go"
+                    secureTextEntry
+                    autoCorrect={false}
+                    ref={"txtPassword"}
+                  />
+                </View>
+                <View style={{flex:2}}>
+                  <View style={{flexDirection: 'row', height: 50, padding:5 }}>
+                    <TouchableOpacity
+                      style={{
+                        flex: 1, backgroundColor: "#3366CC", borderRadius: 10
+                        , textAlign: "center", margin: 5, height: 50
+                      }}
+                      onPress={this.handleClick}
+                    >
+                      <Text style={styles.buttonText}>Đăng nhập</Text>
+                    </TouchableOpacity>
+                    <GoogleSigninButton
+                      style={{ flex: 1, margin: 5, height: 50 }}
+                      size={GoogleSigninButton.Size.Wide}
+                      color={GoogleSigninButton.Color.Dark}
+                      onPress={this._signIn}
+                      disabled={this.state.isSigninInProgress} />
+                  </View>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => this.props.navigation.navigate("Signup", {})}
+                  >
+                    <Text style={styles.buttonText}>Đăng kí</Text>
+                  </TouchableOpacity>
+                </View>
+                <ProgressDialog
+                  style={{borderRadius:10}}
+                  visible={this.state.showLoading}
+                  title="Đang kết nối đến server"
+                  activityIndicatorColor="blue"
+                  activityIndicatorSize="large"
+                  animationType="slide"
+                  message="Vui lòng chờ trong giây lát ..."
+                />
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -190,21 +194,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    //backgroundColor:'#FFFFFF',
-    backgroundColor: "red"
   },
   logoContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: "30%",
-    //flex: 1,
-    flexDirection: "column"
+     alignItems: "center",
+     justifyContent: "center",
+    // paddingTop: "30%",
+    flex: 5,
   },
   logo: {},
   banner: {
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
     marginTop: 10
   },
   title: {
@@ -215,31 +215,35 @@ const styles = StyleSheet.create({
     opacity: 0.9
   },
   inforContainer: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 250,
-    padding: 20
+    //position: "absolute",
+    //flex:4,
+    //padding: 20
     //backgroundColor:'red'
+    height:250,
   },
   input: {
-    marginTop: 20,
-    height: 40,
+    //flex:1,
+    width:'100%',
+    height:50,
     backgroundColor: "rgba(144, 164, 174  ,0.7)",
-    color: "#546E7A"
-    //paddingHorizontal:10,
+    color: "#546E7A",
+    margin:5,
+    borderRadius:20,
+    
   },
   buttonContainer: {
     borderRadius: 10,
-    marginTop: 10,
+    margin: 5,
     backgroundColor: "#3366CC",
-    paddingVertical: 5
+    //flex:1,
+    alignItems:"center",
+    height:50,
+    marginTop:20,
   },
   buttonText: {
     textAlign: "center",
     color: "#FFFFFF",
     fontWeight: "bold",
-    fontSize: 18
+    fontSize: 18,
   }
 });

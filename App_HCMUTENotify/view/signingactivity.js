@@ -26,14 +26,53 @@ export default class signingactivity extends Component{
     }
     _signActivity=()=>
     {
-        this.props.navigation.navigate("Activity")
-    }
+        const { activityId,actName } = this.state;
+        console.log(AsyncStorage.getItem('access_token'));
+        AsyncStorage.getItem('access_token', (err, result) => {
+            console.log(result);
+            if(result!=null){
+                console.log(result)
+            var Response=fetch(`https://yhcmute.herokuapp.com/api/v1/activities/registration/${activityId}`, 
+            {
+            method: 'POST',
+            headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization':'Bearer '+result,
+            },
+            
+        })
+          .then(Response => Response.json()
+          )
+          .then(ResponseJson => {
+            console.log(ResponseJson.errors[0].message)
+            })
+          .catch(error => {
+            console.log(error);
+          });
+        }
+    });
+}
+        // fetch(`https://yhcmute.herokuapp.com/api/v1/activities/registration/${activityId}`, {
+        //     method: "POST",
+        //     headers: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'authorization': "Bearer "+ AsyncStorage.getItem("access_token"),
+        //     }})
+        //     // }}).then((Response) => Response.json())
+        //     // .then((ResponseJson) => {
+        //     //    Console.log(ResponseJson)
+        //     // })
+        //     // .catch((error) => {
+        //     //     console.log(error)
+        //     // }  
     render (){
         const screenHeight = Dimensions.get('window').height;
         return (
             
-            <Container >
-                    <Header>
+            <Container style={{flex:1}} >
+                    <Header stlye={{flex:2}}>
                         <Left>
                             <Button
                                 transparent
@@ -46,13 +85,11 @@ export default class signingactivity extends Component{
                         </Body>
                         
                     </Header>
-                <View>
+                <View style={{flex:10}}>
                     <View style={styles.cover}>
                         <Image style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
                     </View>
-                   
-                    {/* <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} /> */}
-                    <View style={{ height: '61%' }}>
+                    <View style={{ flex:10 }}>
                         <ScrollView>
                             <Text style={styles.name}>{this.state.actName}</Text>
                             <Text style={styles.info}>Khoa Công nghệ Thông tin/ Cấp trường</Text>
@@ -112,7 +149,8 @@ const styles= StyleSheet.create({
         marginTop:10,
         backgroundColor:'#3366CC',
         paddingVertical:5,
-        width:'20%',
+        height:'100%',
+        flex:1,
         margin:5
         
     },
@@ -131,7 +169,7 @@ const styles= StyleSheet.create({
     },
     cover:{
         //backgroundColor: "#00BFFF",
-        height:'20%',
+        flex:4,
         borderRadius:10,
         margin:10,
       },

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet,Text,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView} from 'react-native'
+TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
 
 export default class Signup extends Component{
@@ -8,6 +8,50 @@ export default class Signup extends Component{
         title:'Đăng kí thông tin tài khoản',
         headerMode:'screen'
     };
+    _signup = () => {
+        AsyncStorage.getItem('access_token', (err, result) => {
+            console.log(result);
+            if (result != null) {
+                console.log(result)
+                var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + result,
+                        },
+                        // body:{
+                        //     username:'phuc123',
+                        //     password:'123',
+                        //     people:{
+                        //         fullName:'vo hong phuc',
+                        //         email:'phucvoitspkt',
+                        //         phone:'111',
+                        //         studentCode:'16110423',
+                        //     }
+                        body:JSON.stringify( {
+                            'username':'phuc12345',
+                            'password':'123',
+                            'people':{
+                                        'fullName':'vo hong phuc',
+                                        'email':'phucvoitspkt',
+                                        'phone':'111',
+                                        'studentCode':'16110423',
+                                    }
+                         })
+                    })
+                    .then(Response => Response.json()
+                    )
+                    .then(ResponseJson => {
+                        console.log(ResponseJson)
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+        });
+    }
     render (){
         return (
             <View style={styles.inforContainer}>
@@ -46,7 +90,7 @@ export default class Signup extends Component{
                 />
                 <ModalDropdown style={styles.doropDownModal} options={['Khoa CNTT','Khoa CLC','Khoa CKM']}/>
                 <TouchableOpacity style={styles.buttonContainer}
-                onPress={()=>{Alert.alert('Thông báo đăng kí thành công hay thất bại')}}>
+                onPress={this._signup}>
                 <Text style={styles.buttonText}>Đăng kí</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer}

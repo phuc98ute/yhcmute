@@ -37,11 +37,11 @@ export default class Activity extends Component{
 
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
-                        
+                 
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
-                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.activityId });}}
+                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id });}}
                 
             >
             
@@ -113,7 +113,6 @@ export default class Activity extends Component{
             </View>
             :
                 <Container >
-                    <View style={{height:'7%'}}>
                     <Header>
                         <Left>
                             <Button
@@ -127,7 +126,6 @@ export default class Activity extends Component{
                         </Body>
                         
                     </Header>
-                    </View>
                     
                     {/* <Content padder style={{height:'100%'}}> */}
                         <View>

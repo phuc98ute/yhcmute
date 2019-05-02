@@ -3,8 +3,10 @@ import {
   StyleSheet,
   View,
   Image,
-  TouchableOpacity,Dimensions,ScrollView,AsyncStorage
+  TouchableOpacity,Dimensions,ScrollView,AsyncStorage,FlatList
 } from 'react-native';
+import { ConfirmDialog } from 'react-native-simple-dialogs';
+import Moment from 'moment';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Config from 'react-native-config';
 
@@ -24,6 +26,8 @@ export default class Profile extends Component {
         phone:"",
         email:"",
         image:"",
+        dataSource: [],
+      isLoading: true
     }
 }
 
@@ -60,7 +64,84 @@ export default class Profile extends Component {
           });
       }
     });
+    AsyncStorage.getItem('access_token', (err, result) => {
+      console.log('Get data !');
+      console.log(result);
+      if (result != null) {
+        console.log(result)
+        //var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration`,
+        var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration?aStatus=PIP`,
+          {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + result,
+            },
+
+          })
+          .then(Response => Response.json()
+          )
+          .then(ResponseJson => {
+            console.log(ResponseJson)
+            this.setState({
+              dataSource: ResponseJson.data,
+              isLoading: false,
+
+            });
+            console.log(ResponseJson.data)
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    }
+    )
   }
+  renderItem = ({ item }) => {
+    Moment.locale('en');
+    return (
+      
+      <TouchableOpacity
+        style={{ flex: 1, flexDirection: "column", marginBottom: 3 }}
+        onPress={() =>
+          this.setState({
+            dialogVisible: true,
+            activytyName: item.actName,
+            activityContent: item.actContent,
+            activityId: item.id
+          })
+        }
+      >
+        {/* <View style={{ flex: 1, flexDirection: "row" }}>
+          <View style={styles.container}>
+            <Image
+              source={{url:item.image}}
+              style={styles.photo}
+            />
+            <View style={styles.container_text}>
+              <Text style={styles.title}>{item.actName}</Text>
+              <Text style={styles.description}>{item.actContent}</Text>
+            </View>
+          </View>
+        </View> */}
+        <View style={{ flex: 1, flexDirection: 'row' }} >
+          <View style={styles.container}>
+            <Image source={{ uri: item.image }} style={styles.photo} />
+            <View style={styles.container_text}>
+              <Text style={styles.title}>
+                {item.actName}
+              </Text>
+              <Text style={styles.description_activity}>
+                {Moment(item.startDate).format('MMMM Do, YYYY H:mma')}
+              </Text>
+            </View>
+
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   render() {
     return (
       
@@ -87,16 +168,31 @@ export default class Profile extends Component {
               <Text style={styles.info}>Mã số sinh viên: {this.state.studentCode}</Text>
               <Text style={styles.info}>SĐT: {this.state.phone}</Text>
               <Text style={styles.info}>Email: {this.state.email}</Text>
-              <Text style={styles.description}> Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia
-              Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia Hoạt động đã tham gia </Text>
-
-              {/* <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 1</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 2</Text>
-              </TouchableOpacity> */}
+              <Text style={styles.description}> Hoạt động đã tham gia </Text>
             </View>
+            <View style={{width:'100%'}}>
+                <View>
+                  <FlatList
+                    data={this.state.dataSource}
+                    renderItem={this.renderItem}
+                    keyExtractor={(item, index) => index.toString()}
+                  //ItemSeparatorComponent={this.renderSeparator}
+                  />
+                  <ConfirmDialog
+                    title={this.state.activytyName}
+                    message={this.state.activityContent}
+                    visible={this.state.dialogVisible}
+                    onTouchOutside={() => this.setState({ dialogVisible: false })}
+                    positiveButton={{
+                      title: "OK",
+                      onPress: () => {
+                        this.setState({ dialogVisible: false })
+                      }
+                    }}
+
+                  />
+                </View>
+              </View>
           </View>
         </ScrollView>
       </View>
@@ -161,4 +257,34 @@ const styles = StyleSheet.create({
     borderRadius:30,
     backgroundColor: "#00BFFF",
   },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    marginLeft:16,
+    marginRight:16,
+    marginTop: 8,
+    marginBottom: 8,
+    borderRadius: 5,
+    backgroundColor: '#FFF',
+    elevation: 2,
+},
+title: {
+    fontSize: 16,
+    color: '#000',
+},
+container_text: {
+    flex: 1,
+    flexDirection: 'column',
+    marginLeft: 12,
+    justifyContent: 'center',
+},
+description_activity: {
+    fontSize: 11,
+    fontStyle: 'italic',
+},
+photo: {
+    height: 50,
+    width: 50,
+},
 });

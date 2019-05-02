@@ -11,7 +11,7 @@ import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Config from 'react-native-config';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -32,7 +32,89 @@ export default class Activity extends Component{
             activityContent:'',
             activityId:'',
             activityImage:'',
+            activePage:1,
+            keyword:"",
         }
+    }
+
+    selectComponent = (activePage) => () => this.setState({activePage})
+
+    _renderComponent = () => {
+
+
+        if(this.state.activePage === 1)
+        {
+            fetch(`${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
+                .then((Response) => Response.json())
+                .then((ResponseJson) => {
+                    this.setState({
+                        dataSource: ResponseJson.data,
+                        isLoading: false
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                }) 
+          return (
+              <View>
+                  <View style={{ height: '93%' }}>
+                      <FlatList
+                          data={this.state.dataSource}
+                          renderItem={this.renderItem}
+                          keyExtractor={(item, index) => index.toString()}
+                      />
+                  </View>
+
+              </View>
+          )
+        }
+        if(this.state.activePage === 2) {
+            AsyncStorage.getItem('access_token', (err, result) => {
+                if (result != null) {
+                    var Response = fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`,
+                        {
+                            method: 'GET',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + result,
+                            },
+
+                        })
+                        .then(Response => Response.json()
+                        )
+                        .then(ResponseJson => {
+                            if(ResponseJson.isSuccess=="true")
+                            {
+                                this.setState({
+                                    dataSource: ResponseJson.data,
+                                    isLoading: false,
+    
+                                });
+                            }
+                            console.log(ResponseJson.data)
+                            
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            
+                        });
+                }
+            }
+            )
+            return (
+                <View>
+                    <View style={{ height: '93%' }}>
+                        <FlatList
+                            data={this.state.dataSource}
+                            renderItem={this.renderItem}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
+
+                </View>
+            )
+      }
     }
 
     renderItem = ({ item }) => {
@@ -76,7 +158,7 @@ export default class Activity extends Component{
 
     componentDidMount() {
         
-        fetch( `${Config.API_URL}/api/v1/activities/list`)
+        fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
             .then((Response) => Response.json())
             .then((ResponseJson) => {
                 this.setState({
@@ -87,6 +169,9 @@ export default class Activity extends Component{
             .catch((error) => {
                 console.log(error)
             })
+
+        // this._renderComponent;
+        
             
     }
     handleBackButtonClick() {
@@ -97,7 +182,7 @@ export default class Activity extends Component{
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
      } 
      componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+        //BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
     }
 
     handleClick = ()=>{
@@ -113,7 +198,7 @@ export default class Activity extends Component{
             </View>
             :
                 <Container >
-                    <Header>
+                    <Header hasSegment>
                         <Left>
                             <Button
                                 transparent
@@ -126,72 +211,19 @@ export default class Activity extends Component{
                         </Body>
                         
                     </Header>
+                    <Segment>
+                        <Button first active={this.state.activePage === 1}
+                                onPress={this.selectComponent(1)}>
+                            <Text>HĐ Cấp trường</Text>
+                        </Button>
+                        
+                        <Button last active={this.state.activePage === 2}
+                                onPress={this.selectComponent(2)}>
+                            <Text>HĐ Cấp khoa</Text>
+                        </Button>
+                    </Segment>
+                    {this._renderComponent()}
                     
-                    {/* <Content padder style={{height:'100%'}}> */}
-                        <View>
-                            <View style={{ height: '93%' }}>
-                                <FlatList
-                                    data={this.state.dataSource}
-                                    renderItem={this.renderItem}
-                                    keyExtractor={(item, index) => index.toString()}
-                                //ItemSeparatorComponent={this.renderSeparator}
-                                />
-                                {/* <ConfirmDialog
-                                    title={this.state.activytyName}
-                                    message={this.state.activityContent}
-                                    visible={this.state.dialogVisible}
-                                    onTouchOutside={() => this.setState({ dialogVisible: false })}
-                                    positiveButton={{
-                                        title: "Đăng kí",
-                                        onPress: () => {
-                                            try {
-                                                AsyncStorage.getItem('access_token', (err, result) => {
-                                                    console.log(result);
-                                                    if (result !== null) {
-                                                        var response = fetch(`${Config.API_URL}/api/v1/activities/registration/${this.state.activityId}`, {
-                                                            method: 'POST',
-                                                            headers: {
-                                                                Accept: 'application/json',
-                                                                'Content-Type': 'application/json',
-                                                                'Authorization': 'Bearer ' + result,
-                                                            },
-                                                            body: JSON.stringify({
-
-                                                            }),
-                                                        })
-                                                            .then((response) => { return response.json() })
-                                                            .then(response => {
-                                                                let ari = (response.isSuccess)
-                                                                if (ari == 'true') {
-                                                                    ToastAndroid.show('Đã đăng kí thành công!', ToastAndroid.LONG);
-                                                                    this.setState({ dialogVisible: false })
-                                                                }
-                                                                if (ari == 'false') {
-                                                                    let message = response.errors.map((val, title) => {
-                                                                        ToastAndroid.show(val.message, ToastAndroid.LONG);
-                                                                        this.setState({ dialogVisible: false })
-                                                                    })
-                                                                }
-                                                            })
-                                                            .catch(err => { console.log('ERR', err), ToastAndroid.show('Lỗi đăng kí không thành công!', ToastAndroid.LONG) });
-                                                    }
-
-                                                })
-                                            } catch (error) {
-                                                // Error retrieving data
-                                            }
-
-                                        }
-                                    }}
-                                    negativeButton={{
-                                        title: "Hủy",
-                                        onPress: () => this.setState({ dialogVisible: false })
-                                    }}
-                                /> */}
-                            </View>
-                           
-                        </View>
-                    {/* </Content> */}
                 </Container>
         )
     

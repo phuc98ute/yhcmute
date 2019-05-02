@@ -1,10 +1,19 @@
 import React, {Component} from 'react'
 import {StyleSheet,Text,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
 TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage,ScrollView} from 'react-native'
+import Dropdown from 'react-native-material-dropdown';
 import ModalDropdown from 'react-native-modal-dropdown';
 
-const listKhoa=['CNTT', 'CKM', 'CLC'];
+const listKhoa=['Công nghệ thông tin', 'Công nghệ may thời trang', 'Đào tạo chất lượng cao'];
+const listKhoaContent=['yfit','cnmtt','dtclc'];
 const listLop=[];
+// const data = [{
+//     value: 'Banana',
+//   }, {
+//     value: 'Mango',
+//   }, {
+//     value: 'Pear',
+//   }];
 
 export default class Signup extends Component{
     static navigationOptions={
@@ -24,48 +33,71 @@ export default class Signup extends Component{
             aClassName: "",
             faculytyName: "",
             shortName: "",
+            enableDropdown:true,
+            indexKhoa:-1,
+            contentLop:'Vui lòng chọn lớp!',
         }
       }
+    _selectDropdownKhoa(idx){
+        console.log(listLop.length)
+        this.setState({shortName:listKhoaContent[idx]})
+        this.setState({enableDropdown:false,indexKhoa:idx})
+         if(listLop.length==0) {
+             this.setState({contentLop:'Danh sách lớp trống',enableDropdown:true})
+             
+         }
+         
+
+    }
     _signup = () => {
-        console.log(this.state.fullName)
-        // AsyncStorage.getItem('access_token', (err, result) => {
-        //     console.log(result);
-        //     if (result != null) {
-        //         console.log(result)
-        //         var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
-        //             {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     Accept: 'application/json',
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': 'Bearer ' + result,
-        //                 },
-        //                 // body:{
-        //                 //     username:'phuc123',
-        //                 //     password:'123',
-        //                 //     people:{
-        //                 //         fullName:'vo hong phuc',
-        //                 //         email:'phucvoitspkt',
-        //                 //         phone:'111',
-        //                 //         studentCode:'16110423',
-        //                 //     }
-        //                 body:JSON.stringify( {
-        //                     "userDto": this.state
-        //                  })
-        //             })
-        //             .then(Response => Response.json()
-        //             )
-        //             .then(ResponseJson => {
-        //                 console.log(ResponseJson)
-        //             })
-        //             .catch(error => {
-        //                 console.log(error);
-        //             });
-        //     }
-        // });
+        // const { fullName,username,password,email,studentCode,shortName,indexKhoa } = this.state;
+        if(this.state.fullName!=''&&this.state.username!=''&&this.state.password!=''&&this.state.email!=''&&this.state.studentCode!=''
+        &&this.state.shortName!=''&&this.state.indexKhoa!=-1)
+        {
+            console.log(this.state.fullName)
+
+            var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+
+                    },
+                    // body:{
+                    //     username:'phuc123',
+                    //     password:'123',
+                    //     people:{
+                    //         fullName:'vo hong phuc',
+                    //         email:'phucvoitspkt',
+                    //         phone:'111',
+                    //         studentCode:'16110423',
+                    //     }
+                    body: JSON.stringify({
+                        username: this.state.username,
+                        people: {
+                            fullname: this.state.fullName,
+                            email: this.state.email,
+                            phone: this.state.phone,
+                            studentCode: this.state.studentCode,
+                        }
+                    })
+
+                })
+                .then(Response => Response.json()
+                )
+                .then(ResponseJson => {
+                    console.log(ResponseJson)
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
     };
 
     render (){
+        
         return (
             <ScrollView style={styles.inforContainer}>
                 <Text style={styles.title}>
@@ -77,29 +109,28 @@ export default class Signup extends Component{
                 onChangeText={fullName => this.setState({fullName})}
                 underlineColorAndroid={'transparent'}
                 />
+                <Text style={{color:'#3366CC', fontSize:15,textAlign:'center'}}>Chúng tôi sử dụng email sinh viên từ MSSV này!</Text>
                 <TextInput style={styles.input}
                 placeholder="Nhập mã số sinh viên"
-                onChangeText={studentCode => this.setState({studentCode})}
+                onChangeText={studentCode => this.setState({studentCode:studentCode,username:studentCode})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
-                <TextInput style={styles.input}
+                {/* <TextInput style={styles.input}
                 placeholder="Nhập email"
                 keyboardType="email-address"
                 onChangeText={email=> this.setState({email})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
-                />
+                /> */}
                   <TextInput style={styles.input}
                 placeholder="Nhập số điện thoại"
-                
                 onChangeText={phone => this.setState({phone})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
-                <TextInput style={styles.input}
+                {/* <TextInput style={styles.input}
                 placeholder="Password"
-                //keyboardType="email-address"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 onChangeText={password => this.setState({password})}
@@ -110,11 +141,23 @@ export default class Signup extends Component{
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 secureTextEntry={true}
-                />
-                <ModalDropdown style={styles.doropDownModal} options={listKhoa}/>
+                /> */}
+                <ModalDropdown 
+                dropdownTextStyle={{fontSize:15}} 
+                textStyle={{fontSize:13, justifyContent: 'center',padding:6}} 
+                defaultValue='Vui lòng chọn khoa của bạn!'
+                style={styles.dropDownModal}
+                onSelect={(idx)=>this._selectDropdownKhoa(idx)}
+                options={listKhoa}/>
 
-                <ModalDropdown style={styles.doropDownModal} options={listLop}/>
-
+                <ModalDropdown 
+                dropdownTextStyle={{fontSize:15}} 
+                textStyle={{fontSize:13, justifyContent: 'center',padding:6}}
+                options={listLop}
+                defaultValue={this.state.contentLop}
+                disabled={this.state.enableDropdown}
+                style={styles.dropDownModal}/>
+                
                 <TouchableOpacity style={styles.buttonContainer}
                 onPress={this._signup}>
                 <Text style={styles.buttonText}>Đăng kí</Text>
@@ -166,11 +209,11 @@ const styles= StyleSheet.create({
         fontWeight:'bold',
         fontSize:18
     },
-    doropDownModal:{
+    dropDownModal:{
         height:40,
         marginTop:20,
         backgroundColor:'rgba(144, 164, 174  ,0.7)' ,
         color:'#546E7A',
-        fontSize:25
+        fontSize:50,
     }
 })

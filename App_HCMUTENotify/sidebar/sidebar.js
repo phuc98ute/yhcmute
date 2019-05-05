@@ -15,7 +15,7 @@ export default class SideBar extends React.Component {
     return (
       <Container>
         <Content>
-          <Image
+          {/* <Image
             source={{
               uri:
                 "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/drawer-cover.png"
@@ -26,7 +26,7 @@ export default class SideBar extends React.Component {
               alignSelf: "stretch",
               position: "absolute"
             }}
-          />
+          /> */}
           <Image
             square
             style={{

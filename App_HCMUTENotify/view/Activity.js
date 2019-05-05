@@ -9,7 +9,7 @@ import {Link} from 'react-router-native';
 //import { Icon } from 'react-native-elements';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import jwtDecode from 'jwt-decode';
-import { ConfirmDialog } from 'react-native-simple-dialogs';
+import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
 
@@ -34,13 +34,14 @@ export default class Activity extends Component{
             activityImage:'',
             activePage:1,
             keyword:"",
+            showLoading:false,
         }
     }
 
-    selectComponent = (activePage) => () => this.setState({activePage})
+    selectComponent = (activePage) => () => this.setState({activePage,showLoading:true})
 
     _renderComponent = () => {
-
+        
 
         if(this.state.activePage === 1)
         {
@@ -49,7 +50,7 @@ export default class Activity extends Component{
                 .then((ResponseJson) => {
                     this.setState({
                         dataSource: ResponseJson.data,
-                        isLoading: false
+                        showLoading: false
                     })
                 })
                 .catch((error) => {
@@ -88,7 +89,7 @@ export default class Activity extends Component{
                             {
                                 this.setState({
                                     dataSource: ResponseJson.data,
-                                    isLoading: false,
+                                    showLoading: false,
     
                                 });
                             }
@@ -123,7 +124,7 @@ export default class Activity extends Component{
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
-                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id });}}
+                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id,activyLevel:item.activityLevel.unit });}}
                 
             >
             
@@ -137,7 +138,8 @@ export default class Activity extends Component{
                                 {item.actName}
                             </Text>
                             <Text style={styles.description}>
-                                {item.actContent.substring(1, 100)}
+                                {item.actContent.substring(1, 200)}
+                                {/* {item.actContent} */}
                             </Text>
                         </View>
 
@@ -223,6 +225,15 @@ export default class Activity extends Component{
                         </Button>
                     </Segment>
                     {this._renderComponent()}
+                    <ProgressDialog
+                  style={{borderRadius:10}}
+                  visible={this.state.showLoading}
+                  title="Đang kết nối đến server"
+                  activityIndicatorColor="blue"
+                  activityIndicatorSize="large"
+                  animationType="slide"
+                  message="Vui lòng chờ trong giây lát ..."
+                />
                     
                 </Container>
         )

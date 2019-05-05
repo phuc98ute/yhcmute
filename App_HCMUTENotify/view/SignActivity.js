@@ -12,7 +12,8 @@ import {
   KeyboardAvoidingView,
   FlatList,
   ActivityIndicator,
-  ToastAndroid,BackHandler
+  ToastAndroid,BackHandler,
+  ScrollView
 } from "react-native";
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import { AsyncStorage } from "react-native";
@@ -150,7 +151,7 @@ componentWillUnmount() {
               />
               <ConfirmDialog
                 title={this.state.activytyName}
-                message={this.state.activityContent}
+                // message={this.state.activityContent}
                 visible={this.state.dialogVisible}
                 onTouchOutside={() => this.setState({ dialogVisible: false })}
                 positiveButton={{
@@ -160,7 +161,13 @@ componentWillUnmount() {
                   }
                 }}
 
-              />
+              >
+              <ScrollView style={{height:'80%'}}>
+                <Text>
+                  {this.state.activityContent}
+                </Text>
+              </ScrollView>
+              </ConfirmDialog>
             </View>
 
           </View>

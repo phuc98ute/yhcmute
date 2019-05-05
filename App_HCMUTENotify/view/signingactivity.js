@@ -19,6 +19,7 @@ export default class signingactivity extends Component{
             activityImage:this.props.navigation.state.params.activityImage,
             activityId:this.props.navigation.state.params.activityId,
             dialogVisible:false,
+            activyLevel:this.props.navigation.state.params.activyLevel,
             message:"",
             isTrue:false,
 
@@ -100,7 +101,7 @@ export default class signingactivity extends Component{
                     <View style={{ flex:10 }}>
                         <ScrollView>
                             <Text style={styles.name}>{this.state.actName}</Text>
-                            <Text style={styles.info}>Khoa Công nghệ Thông tin/ Cấp trường</Text>
+                            <Text style={styles.info}>{this.state.activyLevel}</Text>
                             <Text style={styles.description}>{this.state.actContent}</Text>
 
                         </ScrollView>

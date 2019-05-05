@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,Dimensions,ScrollView,AsyncStorage,FlatList
 } from 'react-native';
-import { ConfirmDialog } from 'react-native-simple-dialogs';
+import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Moment from 'moment';
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Config from 'react-native-config';
@@ -27,12 +27,14 @@ export default class Profile extends Component {
         email:"",
         image:"",
         dataSource: [],
-      isLoading: true
+      isLoading: true,
+      showLoading:false,
     }
 }
 
   componentDidMount()
   {
+    this.setState({showLoading:true})
     console.log("Da vao DidMount")
     AsyncStorage.getItem('access_token', (err, result) => {
       if (result != null) {
@@ -56,6 +58,7 @@ export default class Profile extends Component {
             phone:ResponseJson.data.people.phone,
             email:ResponseJson.data.people.email,
             image:ResponseJson.data.people.image,
+            showLoading:false,
             })
              : null}
           })
@@ -154,12 +157,20 @@ export default class Profile extends Component {
               <Icon name="menu" />
             </Button>
           </Left>
+          
           <Body>
             <Title>Tài khoản</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button
+            transparent
+            onPress={() => this.props.navigation.openDrawer()}
+            >
+              <Icon name="ios-settings"/>
+            </Button>
+          </Right>
         </Header>
-        <ScrollView style={{ height: Screen.height - 50 }}>
+        <ScrollView style={{ height: Screen.height - 70 }}>
           <View style={styles.header}></View>
           <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:this.state.image}} />
           <View style={styles.body}>
@@ -178,23 +189,39 @@ export default class Profile extends Component {
                     keyExtractor={(item, index) => index.toString()}
                   //ItemSeparatorComponent={this.renderSeparator}
                   />
-                  <ConfirmDialog
-                    title={this.state.activytyName}
-                    message={this.state.activityContent}
-                    visible={this.state.dialogVisible}
-                    onTouchOutside={() => this.setState({ dialogVisible: false })}
-                    positiveButton={{
-                      title: "OK",
-                      onPress: () => {
-                        this.setState({ dialogVisible: false })
-                      }
-                    }}
+                <ConfirmDialog
+                  title={this.state.activytyName}
+                  // message={this.state.activityContent}
+                  visible={this.state.dialogVisible}
+                  onTouchOutside={() => this.setState({ dialogVisible: false })}
+                  positiveButton={{
+                    title: "OK",
+                    onPress: () => {
+                      this.setState({ dialogVisible: false })
+                    }
+                  }}
 
-                  />
+                >
+                  <ScrollView style={{ height: '80%' }}>
+                    <Text>
+                      {this.state.activityContent}
+                    </Text>
+                  </ScrollView>
+                </ConfirmDialog>
                 </View>
               </View>
           </View>
         </ScrollView>
+        <ProgressDialog
+                  style={{borderRadius:10}}
+                  visible={this.state.showLoading}
+                  title="Đang kết nối đến server"
+                  activityIndicatorColor="blue"
+                  activityIndicatorSize="large"
+                  animationType="slide"
+                  message="Vui lòng chờ trong giây lát ..."
+                />
+        
       </View>
      
     );

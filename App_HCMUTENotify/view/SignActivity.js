@@ -23,8 +23,9 @@ import { Link } from "react-router-native";
 import jwtDecode from "jwt-decode";
 import Config from "react-native-config";
 import { ConfirmDialog } from 'react-native-simple-dialogs';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Moment from 'moment';
+import Icon from 'react-native-vector-icons/Entypo';
 
 export default class Activity extends Component {
   static navigationOptions = {
@@ -130,7 +131,7 @@ componentWillUnmount() {
         </View>
         :
         <Container >
-          <Header>
+          {/* <Header>
             <Left>
               <Button
                 transparent
@@ -141,7 +142,28 @@ componentWillUnmount() {
             <Body>
               <Title>Hoạt động đã đăng kí</Title>
             </Body>
-          </Header>
+          </Header> */}
+          <Header style={{ backgroundColor: '#CCCCCC' }}
+                        androidStatusBarColor="#CCCCCC">
+                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                        </Body>
+                    </Header>
+                    <Header style={{ backgroundColor:"#FFFFFF" }}
+                            androidStatusBarColor="#CCCCCC">
+                        <Left>
+                            <Button
+                                transparent
+                                onPress={() => this.props.navigation.openDrawer()}>
+                                {/* <Icon name="menu" color="black" /> */}
+                                <Icon name="menu" size={30} color="black" />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title style={{justifyContent: 'center', color: 'black'}}>Hoạt động đã đăng kí</Title>
+                        </Body>
+                        
+                    </Header>
           <View>
             <View style={{ height: '93%' }}>
               <FlatList
@@ -150,6 +172,7 @@ componentWillUnmount() {
                 keyExtractor={(item, index) => index.toString()}
               />
               <ConfirmDialog
+                style={{borderRadius:20}}
                 title={this.state.activytyName}
                 // message={this.state.activityContent}
                 visible={this.state.dialogVisible}

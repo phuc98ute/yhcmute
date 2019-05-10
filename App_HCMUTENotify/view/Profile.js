@@ -7,8 +7,11 @@ import {
 } from 'react-native';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Moment from 'moment';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Config from 'react-native-config';
+import { Avatar } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Entypo';
+import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -130,6 +133,7 @@ export default class Profile extends Component {
         </View> */}
         <View style={{ flex: 1, flexDirection: 'row' }} >
           <View style={styles.container}>
+            {/* <Image source={{ uri: item.image }} style={styles.photo} /> */}
             <Image source={{ uri: item.image }} style={styles.photo} />
             <View style={styles.container_text}>
               <Text style={styles.title}>
@@ -149,7 +153,36 @@ export default class Profile extends Component {
     return (
       
       <View >
-        <Header>
+        <Header style={{ backgroundColor: '#CCCCCC' }}
+          androidStatusBarColor="#CCCCCC">
+          <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+          </Body>
+        </Header>
+        <Header style={{ backgroundColor: "#FFFFFF" }}
+          androidStatusBarColor="#CCCCCC">
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.openDrawer()}>
+              {/* <Icon name="menu" color="black" /> */}
+              <Icon name="menu" size={30} color="black" />
+            </Button>
+          </Left>
+          <Body>
+            <Title style={{ justifyContent: 'center', color: 'black' }}>Tài khoản</Title>
+          </Body>
+          <Right>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("ChangeProfile",{})}
+            >
+              <IconSimpleLineIcons name="settings" />
+            </Button>
+          </Right>
+
+        </Header>
+        {/* <Header>
           <Left>
             <Button
               transparent
@@ -169,10 +202,23 @@ export default class Profile extends Component {
               <Icon name="ios-settings"/>
             </Button>
           </Right>
-        </Header>
+        </Header> */}
         <ScrollView style={{ height: Screen.height - 70 }}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:this.state.image}} />
+          <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/59771895_1829573317188600_6395205908607008768_n.jpg?_nc_cat=101&_nc_oc=AQlFIAsHnGBZPj9ORBEKE-aexEE0LkxlpJb7vn6Ez2MWKga0pj5pShRfnGrfognTJ74&_nc_ht=scontent.fsgn4-1.fna&oh=51e9fcf18a33dca52c21a02751b910be&oe=5D62E576"}} />
+          {/* <View style={styles.avatar}>
+            <Avatar
+            size="xlarge"
+              source={this.state.image==null?{
+                uri:
+                  'https://bootdey.com/img/Content/avatar/avatar6.png',
+              }:{uri:this.state.image}}
+              showEditButton
+              
+            />
+          </View> */}
+
+          
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.name}>{this.state.fullName}</Text>

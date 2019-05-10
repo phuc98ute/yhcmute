@@ -24,23 +24,25 @@ import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Car
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
-const logoHeight = deviceHeight-215-200;
+const logoHeight = deviceHeight - 295 - 200;
+const logobar=40;
 
 export default class Login extends Component {
   static navigationOptions = {
     header: null,
     drawerLockMode: 'locked-closed'
-    
+
   };
-  componentDidMount(){
+  componentDidMount() {
     AsyncStorage.getItem('access_token', (err, result) => {
-      if(result!=null){
-          console.log(result)
-          let decode = jwtDecode(result)
-          let current_time=new Date().getTime()/1000;
-          if(current_time < decode.exp){this.props.navigation.navigate("Activity",{})}
-        }})
-  
+      if (result != null) {
+        console.log(result)
+        let decode = jwtDecode(result)
+        let current_time = new Date().getTime() / 1000;
+        if (current_time < decode.exp) { this.props.navigation.navigate("Activity", {}) }
+      }
+    })
+
   }
   componentWillMount() {
     //this.loadAPI();
@@ -57,172 +59,198 @@ export default class Login extends Component {
       showLoading: false
     };
   }
-  _signIn=()=>
-  {
-    
+  _signIn = () => {
+
   }
   handleClick = () => {
-    if(this.state.username!=""&&this.state.pwd!="")
-    {
+    if (this.state.username != "" && this.state.pwd != "") {
       this.setState({ showLoading: true });
-    var { navigate } = this.props.navigation;
-    const { username, pwd } = this.state;
-    console.log(username);
-    console.log(pwd);
-    console.log(Config.API_URL);
-    var res = fetch(
-      `${Config.API_URL}/login?username=${username}&password=${pwd}`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Conten-Type": "application/json"
+      var { navigate } = this.props.navigation;
+      const { username, pwd } = this.state;
+      console.log(username);
+      console.log(pwd);
+      console.log(Config.API_URL);
+      var res = fetch(
+        `${Config.API_URL}/login?username=${username}&password=${pwd}`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Conten-Type": "application/json"
+          }
         }
-      }
-    )
-      .then(res => {
-        this.setState({ showLoading: false });
-        console.log("RES", res.headers.get("authorization"));
-        let accessToken = res.headers.get("authorization");
-        let decode = jwtDecode(accessToken);
-        console.log(decode);
-        const tokenIndex = accessToken.lastIndexOf(" ") + 1;
-        let token = accessToken.substr(tokenIndex);
-        if (token) {
-          console.log(token)
-          AsyncStorage.setItem("access_token", token);
-          AsyncStorage.setItem("username",this.state.username);
-          AsyncStorage.setItem("pass",this.state.pwd);
-          console.log(AsyncStorage.getItem("access_token"));
-          console.log("Sucess");
-          this.props.navigation.navigate("Activity",{});
-          
-        }
-      })
-      .catch(err => {
-        console.log("ERR", err),
-          ToastAndroid.show(
-            "Lỗi đăng nhập!",
-            ToastAndroid.LONG
-          );
-      });
+      )
+        .then(res => {
+          this.setState({ showLoading: false });
+          console.log("RES", res.headers.get("authorization"));
+          let accessToken = res.headers.get("authorization");
+          let decode = jwtDecode(accessToken);
+          console.log(decode);
+          const tokenIndex = accessToken.lastIndexOf(" ") + 1;
+          let token = accessToken.substr(tokenIndex);
+          if (token) {
+            console.log(token)
+            AsyncStorage.setItem("access_token", token);
+            AsyncStorage.setItem("username", this.state.username);
+            AsyncStorage.setItem("pass", this.state.pwd);
+            console.log(AsyncStorage.getItem("access_token"));
+            console.log("Sucess");
+            this.props.navigation.navigate("Activity", {});
+
+          }
+        })
+        .catch(err => {
+          console.log("ERR", err),
+            ToastAndroid.show(
+              "Lỗi đăng nhập!",
+              ToastAndroid.LONG
+            );
+        });
     }
-    else
-    {
+    else {
       ToastAndroid.show(
         "Chưa nhập thông tin!",
         ToastAndroid.LONG
       );
     }
   };
+  _forgotPwd = () => {
+    // ToastAndroid.show("Forgot pwd")
+  }
   render() {
     var { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView style={{flex:1}} >
-          <TouchableWithoutFeedback
-            style={styles.container}
-            onPress={Keyboard.dismiss}
-          >
-            <View style={{ backgroundColor: "#FFFFFF", flex: 1,flexDirection:'column',height:50,justifyContent: "flex-end", }}>
-              <View
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  flex: 3,
-                  marginTop:'2%',
-                  alignItems:'center',
-                }}
-              >
-                <Image
-                  source={require("../source/banner.png")}
-                  style={{width: deviceWidth-10,height:(deviceWidth-10)*0.23}}
-                />
-              </View>
-               <View style={styles.logoContainer}>
-                <Image
-                  style={styles.logo}
-                  source={require("../source/logodoan.png")}
-                />
-                <Text style={styles.title}>
-                  Y_HCMUTE
-                </Text>
-                <Text style={{
-                  color: "#21618C",
-                  fontSize: 20,
-                  textAlign: "center",
-                  marginTop: 5,
-                  opacity: 0.9
+      <KeyboardAvoidingView style={{ flex: 1 }} >
+        <TouchableWithoutFeedback
+          style={styles.container}
+          onPress={Keyboard.dismiss}
+        >
+          <View style={{ backgroundColor: "#FFFFFF", flex: 1, flexDirection: 'column', height: 50, justifyContent: "flex-end", }}>
 
-                }}>
-                  Ứng dụng quản lý hoạt động Đoàn - Hội
-                </Text>
-              </View>
-
-              <View style={styles.inforContainer}>
-                <View style={{flex:2,alignItems:'center'}}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter username/email"
-                    placeholderTextColor="rgba(84, 110, 122,0.8)"
-                    keyboardType="email-address"
-                    returnKeyType="next"
-                    autoCorrect={false}
-                    onChangeText={username => this.setState({ username })}
-                    onSubmitEditing={() => this.refs.txtPassword.focus()}
-                  />
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter password"
-                    placeholderTextColor="rgba(84, 110, 122,0.8)"
-                    onChangeText={pwd => this.setState({ pwd })}
-                    returnKeyType="go"
-                    secureTextEntry
-                    autoCorrect={false}
-                    ref={"txtPassword"}
-                  />
-                </View>
-                <View style={{flex:2,alignItems:'center'}}>
-                  <View style={{flexDirection: 'row', height: 50, padding:5 }}>
-                    <TouchableOpacity
-                      style={{
-                        flex: 1, backgroundColor: "#3366CC", borderRadius: 10
-                        , margin: 5, height: 50,alignItems:"center",padding:10
-                      }}
-                      onPress={this.handleClick}
-                    >
-                      <Text style={styles.buttonText}>Đăng nhập</Text>
-                    </TouchableOpacity>
-                    <GoogleSigninButton
-                      style={{ flex: 1, margin: 5, height: 50 }}
-                      size={GoogleSigninButton.Size.Wide}
-                      color={GoogleSigninButton.Color.Dark}
-                      onPress={this._signIn}
-                      disabled={this.state.isSigninInProgress} />
+            <View style={{ flex: 1, backgroundColor: "#CCCCCC" }}>
+              <Header style={{ backgroundColor: '#CCCCCC' }}
+                androidStatusBarColor="#CCCCCC">
+                <Body style={{ alignItems: 'center',  flex: 1 }}>
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Image style={{ height: logobar, width: logobar, flex: 1,margin:10 }} source={require("../source/logodoan.png")}></Image>
+                    <Title style={{ flex: 8,marginTop:20, justifyContent: 'center', color: '0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                    <Image style={{ height: logobar, width: logobar, flex: 1,margin:10 }} source={require("../source/logohoi.png")}></Image>
                   </View>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => this.props.navigation.navigate("Signup", {})}
-                  >
-                    <Text style={styles.buttonText}>Đăng kí</Text>
-                  </TouchableOpacity>
-                </View>
-                <ProgressDialog
-                  style={{borderRadius:10}}
-                  visible={this.state.showLoading}
-                  title="Đang kết nối đến server"
-                  activityIndicatorColor="blue"
-                  activityIndicatorSize="large"
-                  animationType="slide"
-                  message="Vui lòng chờ trong giây lát ..."
+
+                </Body>
+              </Header>
+              {/* <Header style={{ backgroundColor: '#CCCCCC' }}
+                androidStatusBarColor="#CCCCCC">
+                
+                <Body style={{alignItems:'center',justifyContent:'center'}}>
+                  <Title style={{justifyContent:'center',color:'#3366CC',fontWeight:'bold',fontSize:15}}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                </Body>
+                
+              </Header> */}
+
+            </View>
+
+            <View
+              style={{
+                backgroundColor: "#FFFFFF",
+                flex: 2,
+                marginTop: '2%',
+                alignItems: 'center',
+              }}
+            >
+              <Image
+                source={require("../source/banner.png")}
+                style={{ width: deviceWidth - 10, height: (deviceWidth - 10) * 0.23 }}
+              />
+            </View>
+            <View style={styles.logoContainer}>
+            <View style={{flex:1,flexDirection:"row"}}>
+            <Image
+                style={styles.logo}
+                source={require("../source/logodoan.png")}
+              />
+              <Image
+                style={styles.logo}
+                source={require("../source/logohoi.png")}
+              />
+            </View>
+              
+              <Text style={styles.title}>
+                Y_HCMUTE
+                </Text>
+              <Text style={{
+                color: "#0000DD",
+                fontSize: 18,
+                textAlign: "center",
+                marginBottom: 20,
+                fontWeight:'bold',
+                opacity: 0.9
+
+              }}>
+               ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI
+                </Text>
+            </View>
+
+            <View style={styles.inforContainer}>
+              <View style={{ flex: 2, alignItems: 'center', marginBottom: 10 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Nhập tên đăng nhập hoặc Email"
+                  placeholderTextColor="rgba(84, 110, 122,0.8)"
+                  keyboardType="email-address"
+                  returnKeyType="next"
+                  autoCorrect={false}
+                  onChangeText={username => this.setState({ username })}
+                  onSubmitEditing={() => this.refs.txtPassword.focus()}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Nhập mật khẩu"
+                  placeholderTextColor="rgba(84, 110, 122,0.8)"
+                  onChangeText={pwd => this.setState({ pwd })}
+                  returnKeyType="go"
+                  secureTextEntry
+                  autoCorrect={false}
+                  ref={"txtPassword"}
                 />
               </View>
+              <View style={{ flex: 2, alignItems: 'center', marginBottom: 20 }}>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={this.handleClick}
+                >
+                  <Text style={styles.buttonText}>Đăng nhập</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() => this.props.navigation.navigate("Signup", {})}
+                >
+                  <Text style={styles.buttonText}>Đăng kí</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity style={{ flex: 1, alignItems: "center", marginTop: 15 }}
+                onPress={this._forgotPwd}
+              >
+                <Text>Quên mật khẩu ?</Text>
+              </TouchableOpacity>
+              <ProgressDialog
+                style={{ borderRadius: 20 }}
+                visible={this.state.showLoading}
+                title="Đang kết nối đến server"
+                activityIndicatorColor="blue"
+                activityIndicatorSize="large"
+                animationType="slide"
+                message="Vui lòng chờ trong giây lát ..."
+              />
             </View>
-          </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
       // <KeyboardAvoidingView
-        
+
       //   style={{ flex: 1 }}
       // >
-        
+
       //     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       //       <View style={styles.inner}>
       //         <Image
@@ -287,7 +315,7 @@ export default class Login extends Component {
       //         </View>
       //       </View>
       //     </TouchableWithoutFeedback>
-        
+
       //   <ProgressDialog
       //     style={{ borderRadius: 10 }}
       //     visible={this.state.showLoading}
@@ -298,7 +326,7 @@ export default class Login extends Component {
       //     message="Vui lòng chờ trong giây lát ..."
       //   />
       // </KeyboardAvoidingView>
-     
+
     );
   }
 }
@@ -308,19 +336,25 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: {
-     alignItems: "center",
-     justifyContent: "center",
-    height:logoHeight,
-    marginBottom:20,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: '#FFFFFF',
+    height: logoHeight,
+    marginBottom: 5,
   },
-  logo: {},
+  logo: {
+
+    width: logoHeight / 2,
+    height: logoHeight / 2,
+  },
   banner: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom:15,
+    marginBottom: 15,
+
   },
   title: {
-    color: "#21618C",
+    color: "#0000DD",
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: "center",
@@ -328,25 +362,26 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   inforContainer: {
-    height:215,
+    height: 295,
   },
   input: {
-    width:'93%',
-    height:50,
+    width: '80%',
+    height: 50,
     backgroundColor: "rgba(144, 164, 174  ,0.7)",
     color: "#546E7A",
     marginBottom: 10,
-    borderRadius:20,
-    
+    borderRadius: 30,
+    textAlign: 'center',
+
   },
   buttonContainer: {
-    borderRadius: 10,
+    borderRadius: 30,
     backgroundColor: "#3366CC",
-    alignItems:"center",
-    height:50,
-    padding :10,
-    marginTop:15,
-    width:'93%',
+    alignItems: "center",
+    height: 50,
+    padding: 10,
+    marginTop: 10,
+    width: '80%',
   },
   buttonText: {
     textAlign: "center",
@@ -354,19 +389,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
   },
-  
-inner: {
+
+  inner: {
     padding: 24,
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor:"#FFFFFF",
-},
-header: {
+    backgroundColor: "#FFFFFF",
+  },
+  header: {
     fontSize: 36,
     marginBottom: 48,
 
-},
-btnContainer: {
+  },
+  btnContainer: {
     backgroundColor: "white",
-},
+  },
 });

@@ -81,7 +81,7 @@ export default class signingactivity extends Component{
         return (
             
             <Container style={{flex:1}} >
-                    <Header stlye={{flex:2}}>
+                    {/* <Header stlye={{flex:2}}>
                         <Left>
                             <Button
                                 transparent
@@ -91,6 +91,31 @@ export default class signingactivity extends Component{
                         </Left>
                         <Body>
                             <Title>Đăng kí hoạt động</Title>
+                        </Body>
+                        
+                    </Header> */}
+                    <Header style={{ backgroundColor: '#CCCCCC' }}
+                        androidStatusBarColor="#CCCCCC">
+                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <View>
+                            <Image style={{}} source={require("../source/logodoan.png")}></Image>
+                            <Title style={{ justifyContent: 'center', color: '0000FF', fontWeight: 'bold', fontSize: 18 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                        </View>
+                           
+                        </Body>
+                    </Header>
+                    <Header style={{ backgroundColor:"#FFFFFF" }}
+                            androidStatusBarColor="#CCCCCC">
+                        <Left>
+                            <Button
+                                transparent
+                                onPress={() => this.props.navigation.openDrawer()}>
+                                {/* <Icon name="menu" color="black" /> */}
+                                <Icon name="menu" size={30} color="black" />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title style={{justifyContent: 'center', color: 'black'}}>Đăng kí hoạt động</Title>
                         </Body>
                         
                     </Header>

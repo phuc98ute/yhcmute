@@ -14,6 +14,7 @@ import  { createDrawerNavigator,StackNavigator }  from 'react-navigation';
 import React, { Component } from 'react';
 import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
+import changeProfile from './view/ChangeProfile';
 
 // export const Routers=()=>(
 //     <NativeRouter initialEntries={["/listing/find"]}>
@@ -61,6 +62,7 @@ const HomeScreenRouter = createDrawerNavigator(
       Profile:{screen: Profile},
       Signup:{screen:Signup},
       signingactivity:{screen:signingactivity},
+      ChangeProfile:{screen:changeProfile}
     },
     {
       contentComponent: props => <SideBar {...props} />

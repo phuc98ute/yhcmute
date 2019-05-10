@@ -11,7 +11,8 @@ import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
+import Icon from 'react-native-vector-icons/Entypo';
+import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -138,7 +139,11 @@ export default class Activity extends Component{
                                 {item.actName}
                             </Text>
                             <Text style={styles.description}>
-                                {item.actContent.substring(1, 200)}
+                            
+                            {
+                                (item.actContent==null?"Không có nội dung!":item.actContent.substring(1,200))
+                            }
+                                {/* {item.actContent.substring(1, 200)} */}
                                 {/* {item.actContent} */}
                             </Text>
                         </View>
@@ -199,31 +204,49 @@ export default class Activity extends Component{
                 <ActivityIndicator size="large" color="330066" animating />
             </View>
             :
-                <Container >
-                    <Header hasSegment>
+                <Container style={{flex:1}} >
+                    <Header style={{ backgroundColor: '#CCCCCC' }}
+                        androidStatusBarColor="#CCCCCC">
+                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                        </Body>
+                    </Header>
+                    <Header hasSegment style={{ backgroundColor:"#FFFFFF" }}
+                            androidStatusBarColor="#CCCCCC">
                         <Left>
                             <Button
                                 transparent
                                 onPress={() => this.props.navigation.openDrawer()}>
-                                <Icon name="menu" />
+                                {/* <Icon name="menu" color="black" /> */}
+                                <Icon name="menu" size={30} color="black" />
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Hoạt động đang diễn ra</Title>
+                            <Title style={{justifyContent: 'center', color: 'black'}}>Hoạt động đang diễn ra</Title>
                         </Body>
                         
                     </Header>
-                    <Segment>
-                        <Button first active={this.state.activePage === 1}
+                    
+                    <Segment style={{backgroundColor:"#FFFFFF"}}>
+                        <Button first active={this.state.activePage === 1} 
+                        style={{
+                            backgroundColor: this.state.activePage === 1 ? "#CCCCCC" : undefined,
+									borderColor: "3366CC",
+                        }}
                                 onPress={this.selectComponent(1)}>
-                            <Text>HĐ Cấp trường</Text>
+                            <Text style={{ color: this.state.activePage === 1 ? "#3366CC" : undefined }}>Cấp trường</Text>
                         </Button>
                         
                         <Button last active={this.state.activePage === 2}
+                        style={{
+                            backgroundColor: this.state.activePage === 2 ? "#CCCCCC" : undefined,
+									borderColor: "3366CC",
+                        }}
                                 onPress={this.selectComponent(2)}>
-                            <Text>HĐ Cấp khoa</Text>
+                            <Text style={{ color: this.state.activePage === 2 ? "#3366CC" : undefined }}>Cấp khoa</Text>
                         </Button>
                     </Segment>
+                    <View style={{height:1, backgroundColor:'black'}}></View>
                     {this._renderComponent()}
                     <ProgressDialog
                   style={{borderRadius:10}}

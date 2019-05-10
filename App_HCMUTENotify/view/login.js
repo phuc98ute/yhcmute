@@ -24,8 +24,10 @@ import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Car
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
-const logoHeight = deviceHeight - 295 - 200;
-const logobar=40;
+const logoHeight = deviceHeight - 55 - 600;
+const logobar=deviceWidth*0.1;
+const bottomFlex= logoHeight<0?0:logoHeight;
+const fontSize= logoHeight<0?11:13;
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -34,6 +36,7 @@ export default class Login extends Component {
 
   };
   componentDidMount() {
+    console.log(deviceHeight)
     AsyncStorage.getItem('access_token', (err, result) => {
       if (result != null) {
         console.log(result)
@@ -120,40 +123,30 @@ export default class Login extends Component {
   render() {
     var { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView style={{ flex: 1 }} >
+      <KeyboardAvoidingView style={{ flex: 1}} >
         <TouchableWithoutFeedback
           style={styles.container}
           onPress={Keyboard.dismiss}
         >
-          <View style={{ backgroundColor: "#FFFFFF", flex: 1, flexDirection: 'column', height: 50, justifyContent: "flex-end", }}>
-
-            <View style={{ flex: 1, backgroundColor: "#CCCCCC" }}>
+          <View style={{ backgroundColor: "#FFFFFF", flex: 1, flexDirection: 'column', justifyContent: "flex-end" }}>
+            <View style={{ height:deviceHeight*0.1, backgroundColor: "#CCCCCC" }}>
               <Header style={{ backgroundColor: '#CCCCCC' }}
                 androidStatusBarColor="#CCCCCC">
                 <Body style={{ alignItems: 'center',  flex: 1 }}>
                   <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Image style={{ height: logobar, width: logobar, flex: 1,margin:10 }} source={require("../source/logodoan.png")}></Image>
-                    <Title style={{ flex: 8,marginTop:20, justifyContent: 'center', color: '0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                    <Image style={{ height: logobar, width: logobar, flex: 1,margin:10 }} source={require("../source/logohoi.png")}></Image>
+                    <Image style={{ height: logobar, width: logobar+2, flex: 1,margin:10 }} source={require("../source/logodoan.png")}></Image>
+                    <Title style={{ flex: 8,marginTop:20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: fontSize }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                    <Image style={{ height: logobar, width: logobar+2, flex: 1,margin:10 }} source={require("../source/logohoi.png")}></Image>
                   </View>
 
                 </Body>
               </Header>
-              {/* <Header style={{ backgroundColor: '#CCCCCC' }}
-                androidStatusBarColor="#CCCCCC">
-                
-                <Body style={{alignItems:'center',justifyContent:'center'}}>
-                  <Title style={{justifyContent:'center',color:'#3366CC',fontWeight:'bold',fontSize:15}}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                </Body>
-                
-              </Header> */}
-
             </View>
 
             <View
               style={{
                 backgroundColor: "#FFFFFF",
-                flex: 2,
+                height:deviceHeight*0.13,
                 marginTop: '2%',
                 alignItems: 'center',
               }}
@@ -164,35 +157,35 @@ export default class Login extends Component {
               />
             </View>
             <View style={styles.logoContainer}>
-            <View style={{flex:1,flexDirection:"row"}}>
-            <Image
-                style={styles.logo}
-                source={require("../source/logodoan.png")}
-              />
-              <Image
-                style={styles.logo}
-                source={require("../source/logohoi.png")}
-              />
-            </View>
-              
-              <Text style={styles.title}>
-                Y_HCMUTE
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <Image
+                  style={styles.logo}
+                  source={require("../source/logodoan.png")}
+                />
+                <Image
+                  style={styles.logo}
+                  source={require("../source/logohoi.png")}
+                />
+              </View>
+              <View style={{flex:1}}>
+                <Text style={styles.title}>
+                  Y_HCMUTE
                 </Text>
-              <Text style={{
-                color: "#0000DD",
-                fontSize: 18,
-                textAlign: "center",
-                marginBottom: 20,
-                fontWeight:'bold',
-                opacity: 0.9
+                <Text style={{
+                  color: "#0000DD",
+                  fontSize: fontSize+4,
+                  textAlign: "center",
+                  marginBottom: 20,
+                  fontWeight: 'bold',
+                  opacity: 0.9
 
-              }}>
-               ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI
+                }}>
+                  ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI
                 </Text>
+              </View>
             </View>
-
             <View style={styles.inforContainer}>
-              <View style={{ flex: 2, alignItems: 'center', marginBottom: 10 }}>
+              <View style={{ flex: 1, alignItems: 'center', marginBottom: 5 }}>
                 <TextInput
                   style={styles.input}
                   placeholder="Nhập tên đăng nhập hoặc Email"
@@ -213,14 +206,16 @@ export default class Login extends Component {
                   autoCorrect={false}
                   ref={"txtPassword"}
                 />
-              </View>
-              <View style={{ flex: 2, alignItems: 'center', marginBottom: 20 }}>
+                <View style={{alignItems: 'center', marginBottom: 20, flexDirection: "row",width:"75%"}}>
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   onPress={this.handleClick}
                 >
                   <Text style={styles.buttonText}>Đăng nhập</Text>
                 </TouchableOpacity>
+                <View style={{width:15}}>
+
+                </View>
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   onPress={() => this.props.navigation.navigate("Signup", {})}
@@ -228,11 +223,16 @@ export default class Login extends Component {
                   <Text style={styles.buttonText}>Đăng kí</Text>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity style={{ flex: 1, alignItems: "center", marginTop: 15 }}
+              <TouchableOpacity style={{ flex: 1, alignItems: "center", marginTop: 5,}}
                 onPress={this._forgotPwd}
               >
                 <Text>Quên mật khẩu ?</Text>
               </TouchableOpacity>
+              </View>
+              
+              <View style={{height:bottomFlex}}>
+
+              </View>
               <ProgressDialog
                 style={{ borderRadius: 20 }}
                 visible={this.state.showLoading}
@@ -246,87 +246,7 @@ export default class Login extends Component {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-      // <KeyboardAvoidingView
-
-      //   style={{ flex: 1 }}
-      // >
-
-      //     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      //       <View style={styles.inner}>
-      //         <Image
-      //           source={require("../source/banner.png")}
-      //           style={{ marginTop: 5, height:100,width:deviceWidth }}
-      //         />
-      //         <View style={styles.logoContainer}>
-      //           <Image
-      //             style={styles.logo}
-      //             source={require("../source/logodoan.png")}
-      //           />
-      //           <Text style={styles.title}>
-      //             QUẢN LÝ HOẠT ĐỘNG ĐOÀN HỘI HCMUTE
-      //           </Text>
-      //         </View>
-
-      //         <View style={styles.inforContainer}>
-      //           <TextInput
-      //             style={styles.input}
-      //             placeholder="Enter username/email"
-      //             placeholderTextColor="rgba(84, 110, 122,0.8)"
-      //             keyboardType="email-address"
-      //             returnKeyType="next"
-      //             autoCorrect={false}
-      //             onChangeText={username => this.setState({ username })}
-      //             onSubmitEditing={() => this.refs.txtPassword.focus()}
-      //           />
-      //           <TextInput
-      //             style={styles.input}
-      //             placeholder="Enter password"
-      //             placeholderTextColor="rgba(84, 110, 122,0.8)"
-      //             onChangeText={pwd => this.setState({ pwd })}
-      //             returnKeyType="go"
-      //             secureTextEntry
-      //             autoCorrect={false}
-      //             ref={"txtPassword"}
-      //           />
-      //           <View style={{ flexDirection: 'row', height: 50 }}>
-      //             <TouchableOpacity
-      //               style={{
-      //                 flex: 1, backgroundColor: "#3366CC", borderRadius: 10
-      //                 , height: 50, alignItems: "center", padding: 10
-      //               }}
-      //               onPress={this.handleClick}
-      //             >
-      //               <Text style={styles.buttonText}>Đăng nhập</Text>
-      //             </TouchableOpacity>
-      //             <GoogleSigninButton
-      //               style={{ flex: 1, height: 50 }}
-      //               size={GoogleSigninButton.Size.Wide}
-      //               color={GoogleSigninButton.Color.Dark}
-      //               onPress={this._signIn}
-      //               disabled={this.state.isSigninInProgress} />
-      //           </View>
-
-      //           <TouchableOpacity
-      //             style={styles.buttonContainer}
-      //             onPress={() => this.props.navigation.navigate("Signup", {})}
-      //           >
-      //             <Text style={styles.buttonText}>Đăng kí</Text>
-      //           </TouchableOpacity>
-      //         </View>
-      //       </View>
-      //     </TouchableWithoutFeedback>
-
-      //   <ProgressDialog
-      //     style={{ borderRadius: 10 }}
-      //     visible={this.state.showLoading}
-      //     title="Đang kết nối đến server"
-      //     activityIndicatorColor="blue"
-      //     activityIndicatorSize="large"
-      //     animationType="slide"
-      //     message="Vui lòng chờ trong giây lát ..."
-      //   />
-      // </KeyboardAvoidingView>
-
+      
     );
   }
 }
@@ -334,18 +254,20 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height:deviceHeight
   },
   logoContainer: {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: '#FFFFFF',
-    height: logoHeight,
-    marginBottom: 5,
+    height: deviceHeight*0.3,
+    marginBottom: 10,
   },
   logo: {
 
-    width: logoHeight / 2,
-    height: logoHeight / 2,
+    width: deviceHeight * 0.15,
+    height: deviceHeight * 0.15,
+    marginTop:25,
   },
   banner: {
     alignItems: "center",
@@ -362,7 +284,8 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   inforContainer: {
-    height: 295,
+    height: deviceHeight*0.4,
+    backgroundColor:"#FFFFFF"
   },
   input: {
     width: '80%',
@@ -375,13 +298,12 @@ const styles = StyleSheet.create({
 
   },
   buttonContainer: {
+    flex:1,
     borderRadius: 30,
     backgroundColor: "#3366CC",
     alignItems: "center",
-    height: 50,
-    padding: 10,
-    marginTop: 10,
-    width: '80%',
+    height: 30,
+    padding:3,
   },
   buttonText: {
     textAlign: "center",

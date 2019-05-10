@@ -13,6 +13,7 @@ import {
   FlatList,
   ActivityIndicator,
   ToastAndroid,BackHandler,
+  Dimensions,
   ScrollView
 } from "react-native";
 import ScrollableTabView from "react-native-scrollable-tab-view";
@@ -26,6 +27,9 @@ import { ConfirmDialog } from 'react-native-simple-dialogs';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Moment from 'moment';
 import Icon from 'react-native-vector-icons/Entypo';
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+const logobar=deviceWidth*0.1;
 
 export default class Activity extends Component {
   static navigationOptions = {
@@ -143,10 +147,15 @@ componentWillUnmount() {
               <Title>Hoạt động đã đăng kí</Title>
             </Body>
           </Header> */}
-          <Header style={{ backgroundColor: '#CCCCCC' }}
+           <Header style={{ backgroundColor: '#CCCCCC' }}
                         androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                        <Body style={{ alignItems: 'center', flex: 1 }}>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
+                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
+                            </View>
+
                         </Body>
                     </Header>
                     <Header style={{ backgroundColor:"#FFFFFF" }}

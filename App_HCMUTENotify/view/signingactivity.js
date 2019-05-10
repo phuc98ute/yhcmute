@@ -2,9 +2,14 @@ import React, {Component} from 'react'
 import {StyleSheet,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
 TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler,AsyncStorage} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
+import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Config from 'react-native-config';
+import Icon from 'react-native-vector-icons/Entypo';
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+const logobar=deviceWidth*0.1;
 
 export default class signingactivity extends Component{
     static navigationOptions={
@@ -62,46 +67,21 @@ export default class signingactivity extends Component{
         }
     });
 }
-        // fetch(`https://yhcmute.herokuapp.com/api/v1/activities/registration/${activityId}`, {
-        //     method: "POST",
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'authorization': "Bearer "+ AsyncStorage.getItem("access_token"),
-        //     }})
-        //     // }}).then((Response) => Response.json())
-        //     // .then((ResponseJson) => {
-        //     //    Console.log(ResponseJson)
-        //     // })
-        //     // .catch((error) => {
-        //     //     console.log(error)
-        //     // }  
+      
     render (){
         const screenHeight = Dimensions.get('window').height;
         return (
             
             <Container style={{flex:1}} >
-                    {/* <Header stlye={{flex:2}}>
-                        <Left>
-                            <Button
-                                transparent
-                                onPress={() => this.props.navigation.openDrawer()}>
-                                <Icon name="menu" />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title>Đăng kí hoạt động</Title>
-                        </Body>
-                        
-                    </Header> */}
-                    <Header style={{ backgroundColor: '#CCCCCC' }}
+                     <Header style={{ backgroundColor: '#CCCCCC' }}
                         androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <View>
-                            <Image style={{}} source={require("../source/logodoan.png")}></Image>
-                            <Title style={{ justifyContent: 'center', color: '0000FF', fontWeight: 'bold', fontSize: 18 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                        </View>
-                           
+                        <Body style={{ alignItems: 'center', flex: 1 }}>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
+                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
+                            </View>
+
                         </Body>
                     </Header>
                     <Header style={{ backgroundColor:"#FFFFFF" }}
@@ -110,7 +90,6 @@ export default class signingactivity extends Component{
                             <Button
                                 transparent
                                 onPress={() => this.props.navigation.openDrawer()}>
-                                {/* <Icon name="menu" color="black" /> */}
                                 <Icon name="menu" size={30} color="black" />
                             </Button>
                         </Left>
@@ -123,28 +102,47 @@ export default class signingactivity extends Component{
                     <View style={styles.cover}>
                         <Image style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
                     </View>
+                    <Text style={styles.name}>{this.state.actName}</Text>
                     <View style={{ flex:10 }}>
-                        <ScrollView>
-                            <Text style={styles.name}>{this.state.actName}</Text>
+                        <ScrollView style={{borderColor:"red",borderRadius:5,borderWidth:1,width:"96%",marginLeft:"2%"}}>
+                            
                             <Text style={styles.info}>{this.state.activyLevel}</Text>
-                            <Text style={styles.description}>{this.state.actContent}</Text>
+                            <Text style={styles.description}>{this.state.actContent}{"\n"}{"\n"}</Text>
 
                         </ScrollView>
+                        <View style={{alignSelf:'center',position: 'absolute',flexDirection:'row',alignItems:'center',width:"80%",top:"88%"}}>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => this.props.navigation.navigate("Activity")}
+                            >
+                                <Text style={styles.buttonText}>TRỞ LẠI</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={this._signActivity}
+                            >
+                                <Text style={styles.buttonText}>ĐĂNG KÝ</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{height:"7%"}}>
+
+                        </View>
                     </View>
-                    <View style={{flex:2,flexDirection: 'row',alignItems:'center'}}>
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={this._signActivity}
-                        >
-                            <Text style={styles.buttonText}>Đăng kí ngay</Text>
-                        </TouchableOpacity>
+                    {/* <View style={{flex:2,flexDirection: 'row',alignItems:'center',width:"80%"}}>
+                        
                         <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={()=>this.props.navigation.navigate("Activity")}
                         >
-                            <Text style={styles.buttonText}>Trở lại</Text>
+                            <Text style={styles.buttonText}>TRỞ LẠI</Text>
                         </TouchableOpacity>
-                    </View>
+                        <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={this._signActivity}
+                        >
+                            <Text style={styles.buttonText}>ĐĂNG KÝ</Text>
+                        </TouchableOpacity>
+                    </View> */}
                     <ConfirmDialog
                                     title="Thông báo đăng kí"
                                     message={this.state.message}
@@ -188,12 +186,12 @@ const styles= StyleSheet.create({
        //paddingHorizontal:10,
     },
     buttonContainer:{
-        borderRadius:10,
+        borderRadius:30,
         backgroundColor:'#3366CC',
         paddingVertical:5,
-        height:50,
+        height:30,
         flex:1,
-        marginHorizontal:5,
+        marginLeft:"8%"
     },
     buttonText:{
         textAlign:'center',
@@ -227,7 +225,7 @@ const styles= StyleSheet.create({
       },
       name:{
         fontSize:28,
-        color: "#696969",
+        color: "#0000DD",
         fontWeight: "600",
         textAlign: 'center'
       },

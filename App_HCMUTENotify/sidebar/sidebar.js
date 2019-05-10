@@ -7,7 +7,8 @@ import {
   List,
   ListItem,
   Content,
-  Icon
+  Icon,
+  View,
 } from "native-base";
 const routes = [{component:"Profile",title:"Tài khoản"}, {component:"Activity",title:"Hoạt động đang diễn ra"}, {component:"SignActivity",title:"Hoạt động đã đăng kí"},{component:"Login",title:"Đăng xuất"}];
 export default class SideBar extends React.Component {
@@ -27,22 +28,44 @@ export default class SideBar extends React.Component {
               position: "absolute"
             }}
           /> */}
-          <Image
-            square
-            style={{
-              height: 90,
-              width: 75,
-              position: "absolute",
-              alignSelf: "center",
-              top: 20
-            }}
-            source={
-                require("../source/Hcmute.png")
-            }
-          />
+          <View style={{flex:1,flexDirection:"row",marginTop:20}}>
+            <View style={{ flex: 1,alignItems:"center",marginLeft:"15%" }}>
+              <Image
+
+                style={{
+                  height: 90,
+                  width: 77,
+                }}
+                source={
+                  require("../source/logodoan.png")
+                }
+              />
+            </View>
+            <View style={{ flex: 1, alignItems: "center",marginRight:"15%" }}>
+              <Image
+
+                style={{
+                  flex: 1,
+                  height: 90,
+                  width: 77,
+                }}
+                source={
+                  require("../source/logohoi.png")
+                }
+              />
+            </View>
+          </View>
+          <Text style={{
+            marginVertical:10,
+              color: "#0000DD",
+              fontSize: 30,
+              fontWeight: 'bold',
+              textAlign: "center",
+            }}>Y_HCMUTE</Text>
+          
           <List
             dataArray={routes}
-            contentContainerStyle={{ marginTop: 120 }}
+            contentContainerStyle={{ marginTop: 10 }}
             renderRow={data => {
               return (
                 <ListItem

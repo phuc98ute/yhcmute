@@ -14,9 +14,11 @@ import Icon from 'react-native-vector-icons/Entypo';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
 const Screen = Dimensions.get('window')
-const SideMenuWidth = 300
-const RemainingWidth = Screen.width - SideMenuWidth
-
+const SideMenuWidth = 300;
+const RemainingWidth = Screen.width - SideMenuWidth;
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+const logobar=deviceWidth*0.1;
 
 
 export default class Profile extends Component {
@@ -119,18 +121,6 @@ export default class Profile extends Component {
           })
         }
       >
-        {/* <View style={{ flex: 1, flexDirection: "row" }}>
-          <View style={styles.container}>
-            <Image
-              source={{url:item.image}}
-              style={styles.photo}
-            />
-            <View style={styles.container_text}>
-              <Text style={styles.title}>{item.actName}</Text>
-              <Text style={styles.description}>{item.actContent}</Text>
-            </View>
-          </View>
-        </View> */}
         <View style={{ flex: 1, flexDirection: 'row' }} >
           <View style={styles.container}>
             {/* <Image source={{ uri: item.image }} style={styles.photo} /> */}
@@ -143,7 +133,6 @@ export default class Profile extends Component {
                 {Moment(item.startDate).format('MMMM Do, YYYY H:mma')}
               </Text>
             </View>
-
           </View>
         </View>
       </TouchableOpacity>
@@ -153,12 +142,17 @@ export default class Profile extends Component {
     return (
       
       <View >
-        <Header style={{ backgroundColor: '#CCCCCC' }}
-          androidStatusBarColor="#CCCCCC">
-          <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-          </Body>
-        </Header>
+         <Header style={{ backgroundColor: '#CCCCCC' }}
+                        androidStatusBarColor="#CCCCCC">
+                        <Body style={{ alignItems: 'center', flex: 1 }}>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
+                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
+                            </View>
+
+                        </Body>
+                    </Header>
         <Header style={{ backgroundColor: "#FFFFFF" }}
           androidStatusBarColor="#CCCCCC">
           <Left>
@@ -182,28 +176,8 @@ export default class Profile extends Component {
           </Right>
 
         </Header>
-        {/* <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          
-          <Body>
-            <Title>Tài khoản</Title>
-          </Body>
-          <Right>
-            <Button
-            transparent
-            onPress={() => this.props.navigation.openDrawer()}
-            >
-              <Icon name="ios-settings"/>
-            </Button>
-          </Right>
-        </Header> */}
-        <ScrollView style={{ height: Screen.height - 70 }}>
+       
+        <ScrollView style={{ height: Screen.height *0.75 }}>
           <View style={styles.header}></View>
           <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/59771895_1829573317188600_6395205908607008768_n.jpg?_nc_cat=101&_nc_oc=AQlFIAsHnGBZPj9ORBEKE-aexEE0LkxlpJb7vn6Ez2MWKga0pj5pShRfnGrfognTJ74&_nc_ht=scontent.fsgn4-1.fna&oh=51e9fcf18a33dca52c21a02751b910be&oe=5D62E576"}} />
           {/* <View style={styles.avatar}>

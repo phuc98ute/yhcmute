@@ -13,10 +13,14 @@ import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
+import Moment from 'moment';
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
-const RemainingWidth = Screen.width - SideMenuWidth
+const RemainingWidth = Screen.width - SideMenuWidth;
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+const logobar=deviceWidth*0.1;
 
 export default class Activity extends Component{
     static navigationOptions={
@@ -121,7 +125,7 @@ export default class Activity extends Component{
 
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
-                 
+        const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
@@ -139,12 +143,19 @@ export default class Activity extends Component{
                                 {item.actName}
                             </Text>
                             <Text style={styles.description}>
+                            - Thời gian : 
                             
                             {
-                                (item.actContent==null?"Không có nội dung!":item.actContent.substring(1,200))
+                                (item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))
                             }
-                                {/* {item.actContent.substring(1, 200)} */}
-                                {/* {item.actContent} */}
+                            </Text>
+                            <Text style={styles.description}>
+                            - Địa điểm : 
+                            
+                            {
+                                (item.location==null?" toàn trường":item.location)
+                            }
+                               
                             </Text>
                         </View>
 
@@ -207,8 +218,13 @@ export default class Activity extends Component{
                 <Container style={{flex:1}} >
                     <Header style={{ backgroundColor: '#CCCCCC' }}
                         androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Title style={{ justifyContent: 'center', color: '#3366CC', fontWeight: 'bold', fontSize: 15 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                        <Body style={{ alignItems: 'center', flex: 1 }}>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
+                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
+                            </View>
+
                         </Body>
                     </Header>
                     <Header hasSegment style={{ backgroundColor:"#FFFFFF" }}
@@ -234,7 +250,7 @@ export default class Activity extends Component{
 									borderColor: "3366CC",
                         }}
                                 onPress={this.selectComponent(1)}>
-                            <Text style={{ color: this.state.activePage === 1 ? "#3366CC" : undefined }}>Cấp trường</Text>
+                            <Text style={{ color: this.state.activePage === 1 ? "#0000DD" : undefined }}>Cấp trường</Text>
                         </Button>
                         
                         <Button last active={this.state.activePage === 2}
@@ -243,7 +259,7 @@ export default class Activity extends Component{
 									borderColor: "3366CC",
                         }}
                                 onPress={this.selectComponent(2)}>
-                            <Text style={{ color: this.state.activePage === 2 ? "#3366CC" : undefined }}>Cấp khoa</Text>
+                            <Text style={{ color: this.state.activePage === 2 ? "#0000DD" : undefined }}>Cấp khoa</Text>
                         </Button>
                     </Segment>
                     <View style={{height:1, backgroundColor:'black'}}></View>
@@ -280,7 +296,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        color: '#000',
+        color: '#0000DD',
+        fontWeight:"bold",
     },
     container_text: {
         flex: 1,
@@ -295,6 +312,6 @@ const styles = StyleSheet.create({
     photo: {
         height: 50,
         width: 50,
-        borderRadius:20,
+        borderRadius:30,
     },
 });

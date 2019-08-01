@@ -5,9 +5,9 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.wix.interactable.Interactable;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+// import io.invertase.firebase.RNFirebasePackage;
+// import io.invertase.firebase.RNFirebasePackage;
+// import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
@@ -32,8 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNGoogleSigninPackage(),
             new Interactable(),
-            new RNFirebasePackage(),
-            new RNFirebaseMessagingPackage(),
+            // new RNFirebasePackage(),
+            // new RNFirebaseMessagingPackage(),
             new VectorIconsPackage(),
             new ReactNativeConfigPackage()
       );

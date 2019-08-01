@@ -75,39 +75,50 @@ export default class Activity extends Component{
           )
         }
         if(this.state.activePage === 2) {
-            AsyncStorage.getItem('access_token', (err, result) => {
-                if (result != null) {
-                    var Response = fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`,
-                        {
-                            method: 'GET',
-                            headers: {
-                                Accept: 'application/json',
-                                'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + result,
-                            },
+            // AsyncStorage.getItem('access_token', (err, result) => {
+            //     if (result != null) {
+            //         var Response = fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`,
+            //             {
+            //                 method: 'GET',
+            //                 headers: {
+            //                     Accept: 'application/json',
+            //                     'Content-Type': 'application/json',
+            //                     'Authorization': 'Bearer ' + result,
+            //                 },
 
-                        })
-                        .then(Response => Response.json()
-                        )
-                        .then(ResponseJson => {
-                            if(ResponseJson.isSuccess=="true")
-                            {
-                                this.setState({
-                                    dataSource: ResponseJson.data,
-                                    showLoading: false,
+            //             })
+            //             .then(Response => Response.json()
+            //             )
+            //             .then(ResponseJson => {
+            //                 if(ResponseJson.isSuccess=="true")
+            //                 {
+            //                     this.setState({
+            //                         dataSource: ResponseJson.data,
+            //                         showLoading: false,
     
-                                });
-                            }
-                            console.log(ResponseJson.data)
+            //                     });
+            //                 }
+            //                 console.log(ResponseJson.data)
                             
-                        })
-                        .catch(error => {
-                            console.log(error);
+            //             })
+            //             .catch(error => {
+            //                 console.log(error);
                             
-                        });
-                }
-            }
-            )
+            //             });
+            //     }
+            // }
+            // )
+            fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
+                .then((Response) => Response.json())
+                .then((ResponseJson) => {
+                    this.setState({
+                        dataSource: ResponseJson.data,
+                        showLoading: false
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                }) 
             return (
                 <View>
                     <View style={{ height: '93%' }}>

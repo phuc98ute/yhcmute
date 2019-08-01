@@ -113,12 +113,13 @@ export default class Profile extends Component {
       <TouchableOpacity
         style={{ flex: 1, flexDirection: "column", marginBottom: 3 }}
         onPress={() =>
-          this.setState({
-            dialogVisible: true,
-            activytyName: item.actName,
-            activityContent: item.actContent,
-            activityId: item.id
-          })
+          // this.setState({
+          //   dialogVisible: true,
+          //   activytyName: item.actName,
+          //   activityContent: item.actContent,
+          //   activityId: item.id
+          // })
+          this.props.navigation.navigate('RatingComponet',{'actName':item.actName,'activityContent':item.activityContent,'activityId':item.id})
         }
       >
         <View style={{ flex: 1, flexDirection: 'row' }} >

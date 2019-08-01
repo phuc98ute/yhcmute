@@ -27,6 +27,7 @@ import { ConfirmDialog } from 'react-native-simple-dialogs';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Moment from 'moment';
 import Icon from 'react-native-vector-icons/Entypo';
+
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 const logobar=deviceWidth*0.1;
@@ -85,7 +86,7 @@ export default class Activity extends Component {
     );
   };
 componentWillUnmount() {
-  this.isCancelled = true;
+  // this.isCancelled = true;
 }
   componentDidMount() {
     AsyncStorage.getItem('access_token', (err, result) => {

@@ -14,6 +14,7 @@ import {
   ToastAndroid,
   Dimensions,
   Platform,
+  NetInfo 
 } from "react-native";
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
@@ -36,17 +37,41 @@ export default class Login extends Component {
 
   };
   componentDidMount() {
-    console.log(deviceHeight)
-    AsyncStorage.getItem('access_token', (err, result) => {
-      if (result != null) {
-        console.log(result)
-        let decode = jwtDecode(result)
-        let current_time = new Date().getTime() / 1000;
-        if (current_time < decode.exp) { this.props.navigation.navigate("Activity", {}) }
+    // NetInfo.getConnectionInfo().then((connectionInfo) => {
+    //   console.log(
+    //     'Initial, type: ' +
+    //       connectionInfo.type +
+    //       ', effectiveType: ' +
+    //       connectionInfo.effectiveType,
+    //   );
+    // });
+    NetInfo.getConnectionInfo().then((connect)=>
+    {
+      if(connect!="none"){
+        console.log(connect)
+        ToastAndroid.show('Bạn đang sử dụng '+connect.type.toString()+' để truy cập!',ToastAndroid.SHORT)
+        AsyncStorage.getItem('access_token', (err, result) => {
+          if (result != null) {
+            console.log(result)
+            let decode = jwtDecode(result)
+            let current_time = new Date().getTime() / 1000;
+            if (current_time < decode.exp) { this.props.navigation.navigate("Activity", {}) }
+          }
+        }
+        )
       }
+      else{
+        this.setState({showLoading2:true})
+      }
+      
+     
     })
+  
+      console.log(deviceHeight)
+      
+    
 
-  }
+    }
   componentWillMount() {
     //this.loadAPI();
     //const token = await AsyncStorage.getItem('token');
@@ -59,7 +84,8 @@ export default class Login extends Component {
     this.state = {
       username: "",
       pwd: "",
-      showLoading: false
+      showLoading: false,
+      showLoading2: false
     };
   }
   _signIn = () => {
@@ -79,7 +105,7 @@ export default class Login extends Component {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Conten-Type": "application/json"
+            "Content-Type": "application/json"
           }
         }
       )
@@ -103,11 +129,11 @@ export default class Login extends Component {
           }
         })
         .catch(err => {
-          console.log("ERR", err),
-            ToastAndroid.show(
-              "Lỗi đăng nhập!",
-              ToastAndroid.LONG
-            );
+          console.log("ERR", err)
+            // ToastAndroid.show(
+            //   "Lỗi đăng nhập!",
+            //   ToastAndroid.LONG
+            // );
         });
     }
     else {
@@ -241,6 +267,15 @@ export default class Login extends Component {
                 activityIndicatorSize="large"
                 animationType="slide"
                 message="Vui lòng chờ trong giây lát ..."
+              />
+              <ProgressDialog
+                style={{ borderRadius: 20 }}
+                visible={this.state.showLoading2}
+                title="Đang chờ kết nối mạng"
+                activityIndicatorColor="blue"
+                activityIndicatorSize="large"
+                animationType="slide"
+                message="Vui lòng mở kết nối mạng Internet ..."
               />
             </View>
           </View>

@@ -15,45 +15,8 @@ import React, { Component } from 'react';
 import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
 import changeProfile from './view/ChangeProfile';
+import ratingComponet from './view/ratingComponet';
 
-// export const Routers=()=>(
-//     <NativeRouter initialEntries={["/listing/find"]}>
-//     <Switch>
-//         <View>
-//             <Route exact={true} path="/login" Component={Login}/>
-//             <Route exact={true} path="/signup" Component={Signup}/>
-//             <Route
-//             exact={true}
-//             path="listing/create"
-//             Component={CreateListingConnector}
-//             />
-//         </View>
-//     </Switch>
-//     </NativeRouter>
-// )
-
-// const Navigation = createStackNavigator({
-//     First:{screen:Login},
-//     Second:{screen:Signup},
-//     Main:{screen:Main},
-//     Activity:{screen:Activity},
-//     SignActivity:{screen:SignActivity},
-    
-// },{headerMode: 'screen'});
-
-// AppRegistry.registerComponent(appName, () => Navigation);
-// const Profile1Stack = StackNavigator(
-//   {
-//     profile: {
-//       screen: Profile1,
-//       path: '/',
-//     },
-    
-//   },
-//   {
-//     mode: 'card',
-//   }
-// )
 const HomeScreenRouter = createDrawerNavigator(
     {
       Login: { screen: Login},
@@ -62,7 +25,8 @@ const HomeScreenRouter = createDrawerNavigator(
       Profile:{screen: Profile},
       Signup:{screen:Signup},
       signingactivity:{screen:signingactivity},
-      ChangeProfile:{screen:changeProfile}
+      ChangeProfile:{screen:changeProfile},
+      RatingComponet:{screen : ratingComponet}
     },
     {
       contentComponent: props => <SideBar {...props} />

@@ -71,7 +71,6 @@ export default class signingactivity extends Component{
     render (){
         const screenHeight = Dimensions.get('window').height;
         return (
-            
             <Container style={{flex:1}} >
                      <Header style={{ backgroundColor: '#CCCCCC' }}
                         androidStatusBarColor="#CCCCCC">
@@ -100,7 +99,7 @@ export default class signingactivity extends Component{
                     </Header>
                 <View style={{flex:10}}>
                     <View style={styles.cover}>
-                        <Image style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
+                        <Image resizeMode="contain" style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
                     </View>
                     <Text style={styles.name}>{this.state.actName}</Text>
                     <View style={{ flex:10 }}>
@@ -128,21 +127,6 @@ export default class signingactivity extends Component{
 
                         </View>
                     </View>
-                    {/* <View style={{flex:2,flexDirection: 'row',alignItems:'center',width:"80%"}}>
-                        
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={()=>this.props.navigation.navigate("Activity")}
-                        >
-                            <Text style={styles.buttonText}>TRỞ LẠI</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={this._signActivity}
-                        >
-                            <Text style={styles.buttonText}>ĐĂNG KÝ</Text>
-                        </TouchableOpacity>
-                    </View> */}
                     <ConfirmDialog
                                     title="Thông báo đăng kí"
                                     message={this.state.message}
@@ -211,6 +195,8 @@ const styles= StyleSheet.create({
         flex:4,
         borderRadius:10,
         margin:10,
+        justifyContent:'flex-start',
+        alignItems:'center'
       },
       avatar: {
         width: 130,
@@ -242,6 +228,7 @@ const styles= StyleSheet.create({
         textAlign: 'center'
       },
       photocover:{
-          height:'100%',
+          width:'100%',
+          height:'100%'
       }
 })

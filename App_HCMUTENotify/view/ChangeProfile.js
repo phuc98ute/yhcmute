@@ -18,10 +18,7 @@ import {
 import { AsyncStorage } from "react-native";
 import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
-import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { Container, Header, Title, Left, Right, Button, Body, Content, Card, CardItem, Segment } from "native-base";
-import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Icon from 'react-native-vector-icons/Entypo';
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;

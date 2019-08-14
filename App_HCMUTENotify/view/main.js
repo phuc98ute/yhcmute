@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet,Text,View,Image,TouchableWithoutFeedback,StatusBar,
     TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView} from 'react-native'
-import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { AsyncStorage } from 'react-native'
 import {Link} from 'react-router-native'
 import { Icon } from 'react-native-elements';

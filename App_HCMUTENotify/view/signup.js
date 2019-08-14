@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet,Text,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
 TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage,ScrollView} from 'react-native'
-import Dropdown from 'react-native-material-dropdown';
 import ModalDropdown from 'react-native-modal-dropdown';
 import Config from 'react-native-config';
 import { ConfirmDialog } from 'react-native-simple-dialogs';

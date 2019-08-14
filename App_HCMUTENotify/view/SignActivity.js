@@ -16,9 +16,7 @@ import {
   Dimensions,
   ScrollView
 } from "react-native";
-import ScrollableTabView from "react-native-scrollable-tab-view";
 import { AsyncStorage } from "react-native";
-import { Link } from "react-router-native";
 // import { Icon } from "react-native-elements";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import jwtDecode from "jwt-decode";

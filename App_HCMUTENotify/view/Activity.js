@@ -2,17 +2,13 @@ import React, {Component} from 'react'
 import {StyleSheet,View,Image,TouchableWithoutFeedback,StatusBar,
     TextInput,SafeAreaView,Keyboard,TouchableOpacity,
     KeyboardAvoidingView, FlatList,ActivityIndicator,
-    ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler} 
+    ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler,ScrollView} 
     from 'react-native'
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import {Link} from 'react-router-native';
-//import { Icon } from 'react-native-elements';
-import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
 import Icon from 'react-native-vector-icons/Entypo';
-import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem, Segment } from "native-base";
+import { Container, Header, Title, Left, Button, Body, Text, Segment } from "native-base";
 import Moment from 'moment';
 
 const Screen = Dimensions.get('window')
@@ -63,7 +59,7 @@ export default class Activity extends Component{
                 }) 
           return (
               <View>
-                  <View style={{ height: '93%' }}>
+                  <View style={{ height: '88%' }}>
                       <FlatList
                           data={this.state.dataSource}
                           renderItem={this.renderItem}
@@ -75,39 +71,6 @@ export default class Activity extends Component{
           )
         }
         if(this.state.activePage === 2) {
-            // AsyncStorage.getItem('access_token', (err, result) => {
-            //     if (result != null) {
-            //         var Response = fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`,
-            //             {
-            //                 method: 'GET',
-            //                 headers: {
-            //                     Accept: 'application/json',
-            //                     'Content-Type': 'application/json',
-            //                     'Authorization': 'Bearer ' + result,
-            //                 },
-
-            //             })
-            //             .then(Response => Response.json()
-            //             )
-            //             .then(ResponseJson => {
-            //                 if(ResponseJson.isSuccess=="true")
-            //                 {
-            //                     this.setState({
-            //                         dataSource: ResponseJson.data,
-            //                         showLoading: false,
-    
-            //                     });
-            //                 }
-            //                 console.log(ResponseJson.data)
-                            
-            //             })
-            //             .catch(error => {
-            //                 console.log(error);
-                            
-            //             });
-            //     }
-            // }
-            // )
             fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
                 .then((Response) => Response.json())
                 .then((ResponseJson) => {
@@ -121,7 +84,7 @@ export default class Activity extends Component{
                 }) 
             return (
                 <View>
-                    <View style={{ height: '93%' }}>
+                    <View style={{ height: '88%' }}>
                         <FlatList
                             data={this.state.dataSource}
                             renderItem={this.renderItem}
@@ -141,13 +104,9 @@ export default class Activity extends Component{
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
                 navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id,activyLevel:item.activityLevel.unit });}}
-                
             >
-            
                 <View style={{ flex: 1, flexDirection: 'row' }} >
-
                     <View style={styles.container}>
-
                         <Image source={{ uri: item.image }} style={styles.photo} />
                         <View style={styles.container_text}>
                             <Text style={styles.title}>
@@ -155,26 +114,22 @@ export default class Activity extends Component{
                             </Text>
                             <Text style={styles.description}>
                             - Thời gian : 
-                            
                             {
                                 (item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))
                             }
                             </Text>
                             <Text style={styles.description}>
                             - Địa điểm : 
-                            
                             {
                                 (item.location==null?" toàn trường":item.location)
                             }
                                
                             </Text>
                         </View>
-
                     </View>
                 </View>
             </TouchableOpacity>
         )
-
     }
 
     renderSeparator= () => {

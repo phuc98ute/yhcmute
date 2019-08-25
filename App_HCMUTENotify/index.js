@@ -16,11 +16,10 @@ import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
 import changeProfile from './view/ChangeProfile';
 import ratingComponet from './view/ratingComponet';
-import test from './view/test'
 
 const HomeScreenRouter = createDrawerNavigator(
     {
-      Login: { screen: Activity},
+      Login: { screen: Login},
       Activity: { screen: Activity},
       SignActivity: { screen: SignActivity },
       Profile:{screen: Profile},
@@ -33,5 +32,4 @@ const HomeScreenRouter = createDrawerNavigator(
       contentComponent: props => <SideBar {...props} />
     }
   );
-  //export default HomeScreenRouter;
   AppRegistry.registerComponent(appName, () => HomeScreenRouter);

@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "962517492908",
+    "firebase_url": "https://yhcmute-2019-notify.firebaseio.com",
+    "project_id": "yhcmute-2019-notify",
+    "storage_bucket": "yhcmute-2019-notify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962517492908:android:8a8159cc767d2eff",
+        "android_client_info": {
+          "package_name": "com.app.hcmutenotify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962517492908-g1d7kel0ncdv1qre8oijp320bcmoo3uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7kpbZW7CVe8rfACUi9uHE288F7Bc5sz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962517492908-g1d7kel0ncdv1qre8oijp320bcmoo3uq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962517492908-jnui2huj46mgluojqvia3mitjici47m9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.hcmute.yhcmute"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962517492908:android:ae7b3c757779bdd9",
+        "android_client_info": {
+          "package_name": "com.app_hcmutenotify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962517492908-g1d7kel0ncdv1qre8oijp320bcmoo3uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7kpbZW7CVe8rfACUi9uHE288F7Bc5sz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962517492908-g1d7kel0ncdv1qre8oijp320bcmoo3uq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "962517492908-jnui2huj46mgluojqvia3mitjici47m9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.hcmute.yhcmute"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

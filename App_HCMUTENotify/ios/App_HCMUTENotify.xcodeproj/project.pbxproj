@@ -51,7 +51,6 @@
 		F4D3AC400EB1429787EC6BB0 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 417C6D222F09445AB940323A /* Octicons.ttf */; };
 		2D2F60BF88F34F41A9A68F60 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057DE3B6809D4738B7F96B95 /* SimpleLineIcons.ttf */; };
 		D84B79216149487EA0E14854 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F65EBED96A14A658248535A /* Zocial.ttf */; };
-		5C79A78BFCF643E48102E709 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A489E3BCB8A544B4BF994FCB /* libRNFirebase.a */; };
 		4192162A5F33493B8C09DAAD /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6739DE008914680B8FA2FAC /* libInteractable.a */; };
 		BA927051257143ED9B09BEB8 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02D42CDB29BD4B359C449A87 /* AntDesign.ttf */; };
 		1CED8CE9BEAA4560BDF8DB30 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68DEF58EA3D475CB2DCEF94 /* Entypo.ttf */; };
@@ -72,6 +71,10 @@
 		E76B6437ABAC4713AFC52BFE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B65A6B4B8DF041B1B46CC06A /* SimpleLineIcons.ttf */; };
 		69F0D58668CC469D83A93F04 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32AAB7967CFD426691D4EF12 /* Zocial.ttf */; };
 		8E45441250624A078E28BFF3 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 756442604F434A8DB81DE807 /* libRNGoogleSignin.a */; };
+		F0A381E7E4C54F31ABD7E082 /* libRNStompWS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 586A641E0D494421B85816BB /* libRNStompWS.a */; };
+		ABBE28C0DB214203867BA52F /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2AE06CBCE34338881293C3 /* libRNCNetInfo.a */; };
+		4AFED84D47174B6E887CED58 /* libRNCNetInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1428F019180A4A44922EA0CA /* libRNCNetInfo-tvOS.a */; };
+		8AE90229B2F14AD5BE1AE5EA /* libRNCPushNotificationIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F4E1AA84134893A088258C /* libRNCPushNotificationIOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,8 +396,6 @@
 		417C6D222F09445AB940323A /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		057DE3B6809D4738B7F96B95 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1F65EBED96A14A658248535A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B3A6475462924F9BAF39BC79 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A489E3BCB8A544B4BF994FCB /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8B82123020AD478DB610267D /* Interactable.xcodeproj */ = {isa = PBXFileReference; name = "Interactable.xcodeproj"; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		C6739DE008914680B8FA2FAC /* libInteractable.a */ = {isa = PBXFileReference; name = "libInteractable.a"; path = "libInteractable.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		02D42CDB29BD4B359C449A87 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -417,6 +418,13 @@
 		32AAB7967CFD426691D4EF12 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A137D9B9442947298BBD7498 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		756442604F434A8DB81DE807 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2CF6490A452940D9BF6F47F6 /* RNStompWS.xcodeproj */ = {isa = PBXFileReference; name = "RNStompWS.xcodeproj"; path = "../node_modules/react-native-stomp-websocket/ios/RNStompWS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		586A641E0D494421B85816BB /* libRNStompWS.a */ = {isa = PBXFileReference; name = "libRNStompWS.a"; path = "libRNStompWS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		35272901F429412F97C53F8C /* RNCNetInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNCNetInfo.xcodeproj"; path = "../node_modules/@react-native-community/netinfo/ios/RNCNetInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2F2AE06CBCE34338881293C3 /* libRNCNetInfo.a */ = {isa = PBXFileReference; name = "libRNCNetInfo.a"; path = "libRNCNetInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1428F019180A4A44922EA0CA /* libRNCNetInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNCNetInfo-tvOS.a"; path = "libRNCNetInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		18862BF9BC1F43749D0B5E62 /* PushNotificationIOS.xcodeproj */ = {isa = PBXFileReference; name = "PushNotificationIOS.xcodeproj"; path = "../node_modules/@react-native-community/push-notification-ios/ios/PushNotificationIOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		31F4E1AA84134893A088258C /* libRNCPushNotificationIOS.a */ = {isa = PBXFileReference; name = "libRNCPushNotificationIOS.a"; path = "libRNCPushNotificationIOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,9 +454,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				AC257D6113BE4B52AFA370B9 /* libReactNativeConfig.a in Frameworks */,
 				FBA371BC8D48465A971C3BF6 /* libRNVectorIcons.a in Frameworks */,
-				5C79A78BFCF643E48102E709 /* libRNFirebase.a in Frameworks */,
 				4192162A5F33493B8C09DAAD /* libInteractable.a in Frameworks */,
 				8E45441250624A078E28BFF3 /* libRNGoogleSignin.a in Frameworks */,
+				F0A381E7E4C54F31ABD7E082 /* libRNStompWS.a in Frameworks */,
+				ABBE28C0DB214203867BA52F /* libRNCNetInfo.a in Frameworks */,
+				8AE90229B2F14AD5BE1AE5EA /* libRNCPushNotificationIOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +476,7 @@
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				14753F2732AC4BB09ECB28A4 /* libReactNativeConfig-tvOS.a in Frameworks */,
 				FEA08B0596B04184890D5CE4 /* libRNCNetInfo-tvOS.a in Frameworks */,
+				4AFED84D47174B6E887CED58 /* libRNCNetInfo-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,9 +650,11 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				474EC082EC9C4AD6A99BAB60 /* ReactNativeConfig.xcodeproj */,
 				731530CFAEEF4067BC557E7D /* RNVectorIcons.xcodeproj */,
-				B3A6475462924F9BAF39BC79 /* RNFirebase.xcodeproj */,
 				8B82123020AD478DB610267D /* Interactable.xcodeproj */,
 				A137D9B9442947298BBD7498 /* RNGoogleSignin.xcodeproj */,
+				2CF6490A452940D9BF6F47F6 /* RNStompWS.xcodeproj */,
+				35272901F429412F97C53F8C /* RNCNetInfo.xcodeproj */,
+				18862BF9BC1F43749D0B5E62 /* PushNotificationIOS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1336,14 +1349,19 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App_HCMUTENotify.app/App_HCMUTENotify";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Debug;
@@ -1365,14 +1383,19 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App_HCMUTENotify.app/App_HCMUTENotify";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Release;
@@ -1397,9 +1420,11 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Debug;
@@ -1423,9 +1448,11 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Release;
@@ -1455,14 +1482,19 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Debug;
@@ -1492,14 +1524,19 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Release;
@@ -1528,14 +1565,19 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Debug;
@@ -1564,14 +1606,19 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-config\ios\ReactNativeConfig",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-interactable\ios\Interactable/**",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
+					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
+					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
 				);
 			};
 			name = Release;

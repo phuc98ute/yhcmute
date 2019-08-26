@@ -18,12 +18,9 @@ import jwtDecode from "jwt-decode";
 import { ProgressDialog } from "react-native-simple-dialogs";
 import { Header, Title, Body } from "native-base";
 import NetInfo from "@react-native-community/netinfo";
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
+import type { RemoteMessage } from 'react-native-firebase';
  
-import StompWS from 'react-native-stomp-websocket';
-// import BackgroundTask from 'react-native-background-task';
-import pushNotifications from './pushNotifications'
-import PushNotificationAndroid from 'react-native-push-notification'
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
@@ -31,7 +28,6 @@ const logoHeight = deviceHeight - 55 - 600;
 const logobar = deviceWidth * 0.1;
 const bottomFlex = logoHeight < 0 ? 0 : logoHeight;
 const fontSize = logoHeight < 0 ? 11 : 13;
-pushNotifications.configure();
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -39,37 +35,7 @@ export default class Login extends Component {
     drawerLockMode: 'locked-closed'
 
   }
-  ws_url = "ws://192.168.1.55:8080/ws";
-  subscribeToWebsocket = (url, channels) => {
-    const stompClient = StompWS.client(url);
-    stompClient.connect({}, () => {
-      channels.forEach(channel => {
-        stompClient.subscribe(channel.route, channel.callback);
-      })
-    });
-  };
-  handleReceiveWs= (msg)=>{
-
-    var temp=JSON.parse(msg.body);
-    console.log(temp);
-    pushNotifications.localNotification(`${temp.status=='1'?"Thanh cong":"That bai"}`,`Xin chao ${temp.student.fullName}`,this.props)
-    console.log("Da nhan thong bao")
-  };
   componentWillMount() {
-    // (function() {
-    //   // Register all the valid actions for notifications here and add the action handler for each action
-    //   PushNotificationAndroid.registerNotificationActions(['Accept','Reject','Yes','No']);
-    //   DeviceEventEmitter.addListener('notificationActionReceived', function(e){
-    //     console.log ('notificationActionReceived event received: ' + e);
-    //     const info = JSON.parse(e.dataJSON);
-    //     if (info.action == 'Accept') {
-    //       // Do work pertaining to Accept action here
-    //     } else if (info.action == 'Reject') {
-    //       // Do work pertaining to Reject action here
-    //     }
-    //     // Add all the required actions handlers
-    //   });
-    // })();
   }
 
   //Automatically log in if the token is still valid
@@ -84,18 +50,34 @@ export default class Login extends Component {
     }
     )
   }
-
+  componentWillUnmount(): void {
+    this.messageListener();
+  }
 
   componentDidMount() {
-    this.subscribeToWebsocket(this.ws_url, [
-      {route: '/topic/newUser', callback: this.handleReceiveWs}
-    ]);
 
     NetInfo.fetch().then(state => {
       console.log("Connection type", state.type);
       console.log("Is connected?", state.isConnected);
     });
-
+    const fcmToken = firebase.messaging().getToken();
+    if (fcmToken) {
+      console.log(fcmToken)
+    } else {
+      console.log("no fcmtoken")
+    }
+    firebase.messaging().hasPermission()
+        .then(enabled => {
+          if (enabled) {
+            console.log("has permission")
+          } else {
+            console.log(" user doesn't have permission")
+          }
+        });
+    this.messageListener = firebase.messaging().onMessage((message: RemoteMessage) => {
+      // Process your message as required
+      console.log(message.toString())
+    });
     console.log(deviceHeight)
   }
   constructor(props) {

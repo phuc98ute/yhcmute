@@ -1,17 +1,17 @@
-package com.app_hcmutenotify;
+package com.app.hcmutenotify;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
-//import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
 import cc.creamcookie.stompws.RNStompWSPackage;
 //Firebase
 
-//import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.wix.interactable.Interactable;
 //Firebase
-//import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
@@ -21,7 +21,6 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-//import com.app_hcmutenotify.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -36,16 +35,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFirebasePackage(),
             new NetInfoPackage(),
             new RNStompWSPackage(),
-            //new RNFirebasePackage(),
-            //new RNGoogleSigninPackage(),
             new Interactable(),
-            //new RNFirebaseMessagingPackage(),
             new VectorIconsPackage(),
             new ReactNativeConfigPackage(),
-            new ReactNativePushNotificationPackage()
-      
+            new ReactNativePushNotificationPackage(),
+            new RNFirebaseMessagingPackage()
+
       );
     }
 

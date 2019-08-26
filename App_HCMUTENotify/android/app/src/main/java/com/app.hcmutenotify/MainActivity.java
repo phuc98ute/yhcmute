@@ -1,4 +1,4 @@
-package com.app_hcmutenotify;
+package com.app.hcmutenotify;
 
 import com.facebook.react.ReactActivity;
 

@@ -75,6 +75,7 @@
 		ABBE28C0DB214203867BA52F /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2AE06CBCE34338881293C3 /* libRNCNetInfo.a */; };
 		4AFED84D47174B6E887CED58 /* libRNCNetInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1428F019180A4A44922EA0CA /* libRNCNetInfo-tvOS.a */; };
 		8AE90229B2F14AD5BE1AE5EA /* libRNCPushNotificationIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F4E1AA84134893A088258C /* libRNCPushNotificationIOS.a */; };
+		6AE195A9CDF447868CE6D814 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FF77AA059247F8AE685E3B /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,6 +426,8 @@
 		1428F019180A4A44922EA0CA /* libRNCNetInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNCNetInfo-tvOS.a"; path = "libRNCNetInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		18862BF9BC1F43749D0B5E62 /* PushNotificationIOS.xcodeproj */ = {isa = PBXFileReference; name = "PushNotificationIOS.xcodeproj"; path = "../node_modules/@react-native-community/push-notification-ios/ios/PushNotificationIOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		31F4E1AA84134893A088258C /* libRNCPushNotificationIOS.a */ = {isa = PBXFileReference; name = "libRNCPushNotificationIOS.a"; path = "libRNCPushNotificationIOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		28FD166EB58243D59DB0E6C2 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		35FF77AA059247F8AE685E3B /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +462,7 @@
 				F0A381E7E4C54F31ABD7E082 /* libRNStompWS.a in Frameworks */,
 				ABBE28C0DB214203867BA52F /* libRNCNetInfo.a in Frameworks */,
 				8AE90229B2F14AD5BE1AE5EA /* libRNCPushNotificationIOS.a in Frameworks */,
+				6AE195A9CDF447868CE6D814 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +659,7 @@
 				2CF6490A452940D9BF6F47F6 /* RNStompWS.xcodeproj */,
 				35272901F429412F97C53F8C /* RNCNetInfo.xcodeproj */,
 				18862BF9BC1F43749D0B5E62 /* PushNotificationIOS.xcodeproj */,
+				28FD166EB58243D59DB0E6C2 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1350,8 +1355,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1362,6 +1365,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Debug;
@@ -1384,8 +1388,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1396,6 +1398,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Release;
@@ -1425,6 +1428,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Debug;
@@ -1453,6 +1457,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Release;
@@ -1483,8 +1488,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1495,6 +1498,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Debug;
@@ -1525,8 +1529,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1537,6 +1539,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Release;
@@ -1566,8 +1569,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1578,6 +1579,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Debug;
@@ -1607,8 +1609,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1619,6 +1619,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-stomp-websocket\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\netinfo\ios",
 					"$(SRCROOT)/..\node_modules\@react-native-community\push-notification-ios\ios",
+					"$(SRCROOT)/../**",
 				);
 			};
 			name = Release;

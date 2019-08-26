@@ -108,7 +108,7 @@ android {
             }
     }
     defaultConfig {
-        applicationId "com.app_hcmutenotify"
+        applicationId "com.app.hcmutenotify"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -148,9 +148,10 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-firebase')
     implementation project(':@react-native-community_netinfo')
     implementation project(':react-native-stomp-websocket')
-    //implementation project(':react-native-firebase')
+
     implementation project(':react-native-google-signin')
     implementation project(':react-native-interactable')
     implementation project(':react-native-vector-icons')
@@ -158,10 +159,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    //implementation "com.google.android.gms:play-services-base:16.1.0"
-    //implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.android.gms:play-services-base:16.1.0"
+    implementation "com.google.firebase:firebase-core:16.0.9"
     implementation "com.google.firebase:firebase-messaging:18.0.0"
-    //implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
+    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
     implementation project(':react-native-push-notification')
     implementation ('com.google.android.gms:play-services-gcm:+') {
        force = true;
@@ -175,4 +176,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

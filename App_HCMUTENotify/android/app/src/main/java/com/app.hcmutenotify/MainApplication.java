@@ -1,7 +1,5 @@
 package com.app.hcmutenotify;
-
 import android.app.Application;
-
 import com.facebook.react.ReactApplication;
 import io.invertase.firebase.RNFirebasePackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -12,6 +10,7 @@ import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.wix.interactable.Interactable;
 //Firebase
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
@@ -42,7 +41,8 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeConfigPackage(),
             new ReactNativePushNotificationPackage(),
-            new RNFirebaseMessagingPackage()
+            new RNFirebaseMessagingPackage(),
+            new RNFirebaseNotificationsPackage()
 
       );
     }

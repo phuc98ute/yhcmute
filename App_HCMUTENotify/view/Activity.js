@@ -9,8 +9,7 @@ import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Container, Header, Title, Left, Button, Body, Text, Segment } from "native-base";
-import Moment from 'moment';
-// import BackgroundTask from 'react-native-background-task';
+
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -19,10 +18,7 @@ const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 const logobar=deviceWidth*0.1;
 
-// BackgroundTask.define(() => {
-//     console.log('Hello from a background task')
-//     BackgroundTask.finish()
-//   })
+
 
 export default class Activity extends Component{
     static navigationOptions={
@@ -105,7 +101,8 @@ export default class Activity extends Component{
 
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
-        const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
+        //const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
+        const startDate=item.startDate;
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
@@ -121,7 +118,8 @@ export default class Activity extends Component{
                             <Text style={styles.description}>
                             - Thời gian : 
                             {
-                                (item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))
+                                //(item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))
+                                (item.startDate==null?" không có thời gian cụ thể":item.startDate)
                             }
                             </Text>
                             <Text style={styles.description}>
@@ -147,7 +145,6 @@ export default class Activity extends Component{
     }
 
     componentDidMount() {
-        BackgroundTask.schedule()
         
         fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
             .then((Response) => Response.json())
@@ -205,7 +202,8 @@ export default class Activity extends Component{
                         <Left>
                             <Button
                                 transparent
-                                onPress={() => this.props.navigation.openDrawer()}>
+                                onPress={() => this.props.navigation.navigate.openDrawer()}>
+
                                 {/* <Icon name="menu" color="black" /> */}
                                 <Icon name="menu" size={30} color="black" />
                             </Button>

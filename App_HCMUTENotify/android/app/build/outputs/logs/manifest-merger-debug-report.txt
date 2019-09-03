@@ -1,0 +1,516 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+MERGED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
+MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\1b1f13b050bb870527dce263cb8b0d3a\AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:17:1-47:12
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\321fdb86f7a50e3fcb002fdcdc195895\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:17:1-29:12
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\22b3314c188cf0d99f85f49bc9d07f2d\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cf858eb85b22f810ff91fd62e0572844\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\78b78851025443f63fa4895a244f5255\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c9639726df3cdf158aa6eadd4bdd309c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f64422098545170747a8e18ea453a37\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\a5f83d7fa4b6b8e1b336729aba4d823d\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\139f716db83fa406916366dbcfd88d56\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\966c97e809c55aaf88ffe06d980206c8\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f0cd6cd0b1890b73a34ab64e5c015ee2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\07ba7fdddd08787918fe61590e12c1c2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65727ab8f534b816a9ba4396c9b4c084\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c0a9804fc3b3c9c58dc78a7063fda22f\AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\61b0e43f47158a265856a5dc0e55ad99\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\dff0c5f2b763a43f49b4aa10ac1e6029\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\95abbb30cfaff802e7ad945e390d7cf9\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\533779ae0067f5c81e56c3c7600789fc\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5d8c397bfaaf9775da3ccf653540d699\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66adb47fff6fcade0e6f187fe852799d\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4f330f442440880e4f5b6a86a74b134\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\e5995d6efec2f62357a4163eac43df02\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\3b16d58a6b5bd526be63a762c3dc7108\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\40da7483c9821f063dbfc9f578b5ef61\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\219171a8888dd9284197e617ca4b604d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\93d7921890f4c4078d613336677d1829\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f958593b02f82a4acfdffce3c9ed0de1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0ff869278a22000f1c4d4355c822cf26\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65d2de59b91e0195af3ed0c76bee9764\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\02499910eb0a092fdb6d8cfc21bed568\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4b8eafb3740e286e2a4aec7119dc457\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bf08d4704d6def805f7e43f463f081ef\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\2324907371d523555197eea2625227aa\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c774f618f4699efeba007bf556bc2885\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9253d0f034a21a19e0b48cb2ccd3b0a9\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\72ef9a94a92f41d6a7319f6462514801\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5c76e802b998dc1bf4be2c00184d0412\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\705ef7d9120d3ed9931db4ca8ef16b6e\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\17c23bab18e5a0a1ebdd4ccc9b8e0fc7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bcbe487e18aab948219010bd77d4f321\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\03319dd5238a8f746a4e53d17a9f973b\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0d23bc51d5c0fe0fe1b350930698e0d7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cfd390d4003096adfd0c9cc4a5a46bb5\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\26c2383be940866ba03884f16b74ccc1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f171ac1471a084c479efbf19ffb5f2a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\96702cbbb930ac6bd2ca907ab78b8174\AndroidManifest.xml:2:1-9:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:2:1-8:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:2:1-8:12
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:2:1-8:12
+	package
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:2:3-30
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:2:3-30
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:4:5-67
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-67
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:4:22-64
+application
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:6:5-31:19
+MERGED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:6:5-31:19
+MERGED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:6:5-31:19
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-21:19
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-21:19
+MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\1b1f13b050bb870527dce263cb8b0d3a\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\1b1f13b050bb870527dce263cb8b0d3a\AndroidManifest.xml:11:5-20
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\321fdb86f7a50e3fcb002fdcdc195895\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\321fdb86f7a50e3fcb002fdcdc195895\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:22:5-27:19
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c0a9804fc3b3c9c58dc78a7063fda22f\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c0a9804fc3b3c9c58dc78a7063fda22f\AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\61b0e43f47158a265856a5dc0e55ad99\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\61b0e43f47158a265856a5dc0e55ad99\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\dff0c5f2b763a43f49b4aa10ac1e6029\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\dff0c5f2b763a43f49b4aa10ac1e6029\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\95abbb30cfaff802e7ad945e390d7cf9\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\95abbb30cfaff802e7ad945e390d7cf9\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\533779ae0067f5c81e56c3c7600789fc\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\533779ae0067f5c81e56c3c7600789fc\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5d8c397bfaaf9775da3ccf653540d699\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5d8c397bfaaf9775da3ccf653540d699\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66adb47fff6fcade0e6f187fe852799d\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66adb47fff6fcade0e6f187fe852799d\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9253d0f034a21a19e0b48cb2ccd3b0a9\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9253d0f034a21a19e0b48cb2ccd3b0a9\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:22:18-86
+	android:label
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:8:7-39
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:8:7-39
+	tools:ignore
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:7:75-114
+	android:roundIcon
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:10:7-52
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:10:7-52
+	tools:targetApi
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:7:54-74
+	android:icon
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:9:7-41
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:9:7-41
+	android:allowBackup
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:11:7-34
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:11:7-34
+	android:theme
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:12:7-38
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:12:7-38
+	android:usesCleartextTraffic
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:7:18-53
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:7:7-38
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:7:7-38
+activity#com.yhcmutenotify.MainActivity
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:13:7-22:18
+	android:label
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:15:9-41
+	android:windowSoftInputMode
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:17:9-51
+	android:configChanges
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:16:9-79
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:14:9-37
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:18:9-21:25
+action#android.intent.action.MAIN
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:19:13-65
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:19:21-62
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:20:13-73
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:20:23-70
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:23:7-84
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:23:17-81
+service#io.invertase.firebase.messaging.RNFirebaseMessagingService
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:25:9-29:19
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:25:18-91
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:26:13-28:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:27:17-78
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:27:25-75
+service#io.invertase.firebase.messaging.RNFirebaseBackgroundMessagingService
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:30:9-104
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml:30:18-101
+uses-sdk
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\1b1f13b050bb870527dce263cb8b0d3a\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\1b1f13b050bb870527dce263cb8b0d3a\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\321fdb86f7a50e3fcb002fdcdc195895\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\321fdb86f7a50e3fcb002fdcdc195895\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:20:5-44
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\22b3314c188cf0d99f85f49bc9d07f2d\AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\22b3314c188cf0d99f85f49bc9d07f2d\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cf858eb85b22f810ff91fd62e0572844\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cf858eb85b22f810ff91fd62e0572844\AndroidManifest.xml:20:5-44
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\78b78851025443f63fa4895a244f5255\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\78b78851025443f63fa4895a244f5255\AndroidManifest.xml:20:5-43
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c9639726df3cdf158aa6eadd4bdd309c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c9639726df3cdf158aa6eadd4bdd309c\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f64422098545170747a8e18ea453a37\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f64422098545170747a8e18ea453a37\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\a5f83d7fa4b6b8e1b336729aba4d823d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\a5f83d7fa4b6b8e1b336729aba4d823d\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\139f716db83fa406916366dbcfd88d56\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\139f716db83fa406916366dbcfd88d56\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\966c97e809c55aaf88ffe06d980206c8\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\966c97e809c55aaf88ffe06d980206c8\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f0cd6cd0b1890b73a34ab64e5c015ee2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f0cd6cd0b1890b73a34ab64e5c015ee2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\07ba7fdddd08787918fe61590e12c1c2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\07ba7fdddd08787918fe61590e12c1c2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65727ab8f534b816a9ba4396c9b4c084\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65727ab8f534b816a9ba4396c9b4c084\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c0a9804fc3b3c9c58dc78a7063fda22f\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c0a9804fc3b3c9c58dc78a7063fda22f\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\61b0e43f47158a265856a5dc0e55ad99\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\61b0e43f47158a265856a5dc0e55ad99\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\dff0c5f2b763a43f49b4aa10ac1e6029\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\dff0c5f2b763a43f49b4aa10ac1e6029\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\95abbb30cfaff802e7ad945e390d7cf9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\95abbb30cfaff802e7ad945e390d7cf9\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\533779ae0067f5c81e56c3c7600789fc\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\533779ae0067f5c81e56c3c7600789fc\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5d8c397bfaaf9775da3ccf653540d699\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5d8c397bfaaf9775da3ccf653540d699\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66adb47fff6fcade0e6f187fe852799d\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66adb47fff6fcade0e6f187fe852799d\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4f330f442440880e4f5b6a86a74b134\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4f330f442440880e4f5b6a86a74b134\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\e5995d6efec2f62357a4163eac43df02\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\e5995d6efec2f62357a4163eac43df02\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\3b16d58a6b5bd526be63a762c3dc7108\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\3b16d58a6b5bd526be63a762c3dc7108\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\40da7483c9821f063dbfc9f578b5ef61\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\40da7483c9821f063dbfc9f578b5ef61\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\219171a8888dd9284197e617ca4b604d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\219171a8888dd9284197e617ca4b604d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\93d7921890f4c4078d613336677d1829\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\93d7921890f4c4078d613336677d1829\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f958593b02f82a4acfdffce3c9ed0de1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f958593b02f82a4acfdffce3c9ed0de1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0ff869278a22000f1c4d4355c822cf26\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0ff869278a22000f1c4d4355c822cf26\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65d2de59b91e0195af3ed0c76bee9764\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\65d2de59b91e0195af3ed0c76bee9764\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\02499910eb0a092fdb6d8cfc21bed568\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\02499910eb0a092fdb6d8cfc21bed568\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4b8eafb3740e286e2a4aec7119dc457\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c4b8eafb3740e286e2a4aec7119dc457\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bf08d4704d6def805f7e43f463f081ef\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bf08d4704d6def805f7e43f463f081ef\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\2324907371d523555197eea2625227aa\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\2324907371d523555197eea2625227aa\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c774f618f4699efeba007bf556bc2885\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c774f618f4699efeba007bf556bc2885\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\c27a1dacecb9dddd3fa9fd2baf097a9d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9253d0f034a21a19e0b48cb2ccd3b0a9\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9253d0f034a21a19e0b48cb2ccd3b0a9\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\72ef9a94a92f41d6a7319f6462514801\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\72ef9a94a92f41d6a7319f6462514801\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5c76e802b998dc1bf4be2c00184d0412\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\5c76e802b998dc1bf4be2c00184d0412\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\705ef7d9120d3ed9931db4ca8ef16b6e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\705ef7d9120d3ed9931db4ca8ef16b6e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\17c23bab18e5a0a1ebdd4ccc9b8e0fc7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\17c23bab18e5a0a1ebdd4ccc9b8e0fc7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bcbe487e18aab948219010bd77d4f321\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\bcbe487e18aab948219010bd77d4f321\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\03319dd5238a8f746a4e53d17a9f973b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\03319dd5238a8f746a4e53d17a9f973b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0d23bc51d5c0fe0fe1b350930698e0d7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\0d23bc51d5c0fe0fe1b350930698e0d7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cfd390d4003096adfd0c9cc4a5a46bb5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\cfd390d4003096adfd0c9cc4a5a46bb5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\26c2383be940866ba03884f16b74ccc1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\26c2383be940866ba03884f16b74ccc1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f171ac1471a084c479efbf19ffb5f2a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\7f171ac1471a084c479efbf19ffb5f2a\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\96702cbbb930ac6bd2ca907ab78b8174\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\96702cbbb930ac6bd2ca907ab78b8174\AndroidManifest.xml:5:5-7:41
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:5:5-77
+	android:name
+		ADDED from C:\Users\PhucVo\Desktop\yhcmutenotify\android\app\src\debug\AndroidManifest.xml:5:22-75
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-65
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-79
+MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-79
+MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\85790fed0535dcfaed47ac385c4320a8\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:22-76
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:9-20:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:29:9-35:19
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:18-89
+meta-data#com.google.firebase.components:io.invertase.firebase.ReactNativeFirebaseAppRegistrar
+ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-19:85
+	android:value
+		ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-82
+	android:name
+		ADDED from [:react-native-firebase] C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-116
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:29:13-82
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\9778f3cead9127886a33af23a648fb72\AndroidManifest.xml:31:17-139
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\fb22982dc7a7675cd5cc2afe0f729c6e\AndroidManifest.xml:42:25-78
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\712c1d0d8d2add950152c6a411bc2fcc\AndroidManifest.xml:24:13-79
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:26:5-110
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8bdf3dbb2648613325f173a1bdf5e65b\AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\11935d2780616f927fbb76371c85e39b\AndroidManifest.xml:49:13-87
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:12:9-16:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:14:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:15:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:16:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:19.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\66418682ffd4da43fae7de21aa692ded\AndroidManifest.xml:13:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\f752369b163a18bae7154abb316488e2\AndroidManifest.xml:24:13-58

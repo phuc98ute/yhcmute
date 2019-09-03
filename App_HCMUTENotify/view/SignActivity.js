@@ -23,7 +23,7 @@ import jwtDecode from "jwt-decode";
 import Config from "react-native-config";
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
-import Moment from 'moment';
+
 import Icon from 'react-native-vector-icons/Entypo';
 
 const deviceWidth = Dimensions.get('window').width;

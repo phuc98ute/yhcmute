@@ -16,18 +16,6 @@ export default class SideBar extends React.Component {
     return (
       <Container>
         <Content>
-          {/* <Image
-            source={{
-              uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/drawer-cover.png"
-            }}
-            style={{
-              height: 120,
-              width: "100%",
-              alignSelf: "stretch",
-              position: "absolute"
-            }}
-          /> */}
           <View style={{flex:1,flexDirection:"row",marginTop:20}}>
             <View style={{ flex: 1,alignItems:"center",marginLeft:"15%" }}>
               <Image

@@ -6,7 +6,6 @@ import {
   TouchableOpacity,Dimensions,ScrollView,AsyncStorage,FlatList
 } from 'react-native';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
-import Moment from 'moment';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Config from 'react-native-config';
 import { Avatar } from 'react-native-elements';

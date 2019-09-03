@@ -4,7 +4,6 @@ TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStora
 import ModalDropdown from 'react-native-modal-dropdown';
 import Config from 'react-native-config';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
-import Moment from 'moment';
 // const data = [{
 //     value: 'Banana',
 //   }, {

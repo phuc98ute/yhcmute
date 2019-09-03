@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:962517492908:android:8a8159cc767d2eff",
+        "mobilesdk_app_id": "1:962517492908:android:ae7b3c757779bdd9",
         "android_client_info": {
-          "package_name": "com.app.hcmutenotify"
+          "package_name": "com.app_hcmutenotify"
         }
       },
       "oauth_client": [
@@ -44,9 +44,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:962517492908:android:ae7b3c757779bdd9",
+        "mobilesdk_app_id": "1:962517492908:android:3748272844f9c3e8",
         "android_client_info": {
-          "package_name": "com.app_hcmutenotify"
+          "package_name": "com.yhcmutenotify"
         }
       },
       "oauth_client": [

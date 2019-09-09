@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry, Image, StatusBar,AsyncStorage } from "react-native";
+import { Image,AsyncStorage } from "react-native";
 import {
   Button,
   Text,
@@ -7,7 +7,6 @@ import {
   List,
   ListItem,
   Content,
-  Icon,
   View,
 } from "native-base";
 const routes = [{component:"Profile",title:"Tài khoản"}, {component:"Activity",title:"Hoạt động đang diễn ra"}, {component:"SignActivity",title:"Hoạt động đã đăng kí"},{component:"Login",title:"Đăng xuất"}];

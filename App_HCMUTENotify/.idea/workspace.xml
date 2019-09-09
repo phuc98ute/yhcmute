@@ -9,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -33,6 +33,8 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,6 +66,11 @@
       <workItem from="1567092860794" duration="1124000" />
       <workItem from="1567096321845" duration="2056000" />
       <workItem from="1567128551969" duration="600000" />
+      <workItem from="1567649834207" duration="3965000" />
+      <workItem from="1567672645373" duration="621000" />
+      <workItem from="1567840886170" duration="85000" />
+      <workItem from="1567995485480" duration="2204000" />
+      <workItem from="1568017298796" duration="6434000" />
     </task>
     <servers />
   </component>
@@ -82,5 +89,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LIMIT_HISTORY" value="false" />
   </component>
 </project>

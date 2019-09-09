@@ -172,7 +172,7 @@ export default class Login extends Component {
                   const notification: Notification = notificationOpen.notification;
               }
           });
-    //this._autoLogin();
+    this._autoLogin();
 
 
     NetInfo.fetch().then(state => {

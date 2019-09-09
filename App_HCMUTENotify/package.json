@@ -25,7 +25,7 @@
     "react-native-scrollable-tab-view": "^0.10.0",
     "react-native-simple-dialogs": "^1.2.0",
     "react-native-vector-icons": "^6.6.0",
-    "react-navigation": "^3.12.1",
+    "react-navigation": "^2.18.2",
     "react-router-native": "^5.0.1"
   },
   "devDependencies": {

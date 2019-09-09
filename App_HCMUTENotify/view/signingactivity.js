@@ -12,10 +12,11 @@ const deviceHeight = Dimensions.get('window').height;
 const logobar=deviceWidth*0.1;
 
 export default class signingactivity extends Component{
-    static navigationOptions={
-        title:'Đăng kí thông tin tài khoản',
-        headerMode:'screen'
-    };
+    // static navigationOptions={
+    //     title:'Đăng kí thông tin tài khoản',
+    //     headerMode:'none',
+    //     headerBackTitleVisible:false,
+    // };
     constructor(props) {
         super(props)
         this.state={
@@ -31,10 +32,10 @@ export default class signingactivity extends Component{
         };
     }
     componentWillMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+        //BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
      } 
      componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+       // BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
     }
     _signActivity=()=>
     {

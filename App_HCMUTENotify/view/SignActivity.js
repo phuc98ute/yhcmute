@@ -23,7 +23,7 @@ import jwtDecode from "jwt-decode";
 import Config from "react-native-config";
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
-
+import Moment from 'moment';
 import Icon from 'react-native-vector-icons/Entypo';
 
 const deviceWidth = Dimensions.get('window').width;
@@ -33,7 +33,8 @@ const logobar=deviceWidth*0.1;
 export default class Activity extends Component {
   static navigationOptions = {
       title:'Các hoạt động đã đăng kí',
-      headerMode:'screen'
+      headerMode:'none',
+      headerBackTitleVisible:false,
   };
   constructor() {
     super();

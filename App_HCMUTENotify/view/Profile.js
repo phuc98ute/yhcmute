@@ -11,7 +11,7 @@ import Config from 'react-native-config';
 import { Avatar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Entypo';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-
+import Moment from 'moment';
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300;
 const RemainingWidth = Screen.width - SideMenuWidth;
@@ -276,11 +276,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding:30,
-  },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600"
   },
   info:{
     fontSize:16,

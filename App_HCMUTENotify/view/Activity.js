@@ -4,6 +4,7 @@ import {StyleSheet,View,Image,TouchableWithoutFeedback,StatusBar,
     KeyboardAvoidingView, FlatList,ActivityIndicator,
     ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler,ScrollView} 
     from 'react-native'
+import { DrawerActions } from 'react-navigation';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
@@ -159,7 +160,8 @@ export default class Activity extends Component{
             })
 
         // this._renderComponent;
-        
+        //this.props.navigation.dispatch(DrawerActions.closeDrawer());
+        //this.props.navigation.dispatch(DrawerActions.openDrawer());
             
     }
     handleBackButtonClick() {
@@ -167,7 +169,7 @@ export default class Activity extends Component{
         
     }
     componentWillMount() {
-        
+
      } 
      componentWillUnmount() {
         
@@ -202,7 +204,7 @@ export default class Activity extends Component{
                         <Left>
                             <Button
                                 transparent
-                                onPress={() => this.props.navigation.navigate.openDrawer()}>
+                                onPress={() => this.props.navigation.openDrawer()}>
 
                                 {/* <Icon name="menu" color="black" /> */}
                                 <Icon name="menu" size={30} color="black" />

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\PhucVo\\Desktop\\yhcmutenotify\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
+            "outputFile": "C:\\Users\\PhucVo\\Desktop\\gitdev1.0\\dev1.0\\App_HCMUTENotify\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\PhucVo\\.gradle\\caches\\transforms-2\\files-2.1\\15a13b1c15b14b58e73c9d21268dc5fc\\res\\values-vi\\values.xml",

@@ -4,7 +4,8 @@ import {AppRegistry} from 'react-native';
 import {
       createStackNavigator,
       createAppContainer,
-    createDrawerNavigator
+    createDrawerNavigator,
+    DrawerNavigator,
     } from 'react-navigation';
 import {NativeRouter,Switch} from 'react-router-native';
 import {name as appName} from './app.json';
@@ -13,7 +14,6 @@ import Signup from './view/signup';
 import Activity from './view/Activity';
 import SignActivity from './view/SignActivity';
 import Profile from './view/Profile'
-
 import React, { Component } from 'react';
 import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
@@ -21,21 +21,40 @@ import changeProfile from './view/ChangeProfile';
 import ratingComponet from './view/ratingComponet';
 import bgMessaging from './bgMessaging';
 
-const HomeScreenRouter = createDrawerNavigator(
-    {
-      Login: { screen: Login},
-      Activity: { screen: Activity},
-      SignActivity: { screen: SignActivity },
-      Profile:{screen: Profile},
-      Signup:{screen:Signup},
-      signingactivity:{screen:signingactivity},
-      ChangeProfile:{screen:changeProfile},
-      RatingComponet:{screen : ratingComponet}
+
+const AppNavigator = createStackNavigator({
+        Login: {screen: Login},
+        Activity: {screen: Activity},
+        SignActivity: {screen: SignActivity},
+        Profile: {screen: Profile},
+        Signup: {screen: Signup},
+        signingactivity: {screen: signingactivity},
+        ChangeProfile: {screen: changeProfile},
+        RatingComponet: {screen: ratingComponet}
     },
     {
-      contentComponent: props => <SideBar {...props} />
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        }
     }
-  );
-const App = createAppContainer(HomeScreenRouter);
-AppRegistry.registerComponent(appName, () => App);
+);
+
+const HomeScreenRouter = createDrawerNavigator(
+    {
+        Login: {screen: Login},
+        Activity: {screen: Activity},
+        SignActivity: {screen: SignActivity},
+        Profile: {screen: Profile},
+        Signup: {screen: Signup},
+        signingactivity: {screen: signingactivity},
+        ChangeProfile: {screen: changeProfile},
+        RatingComponet: {screen: ratingComponet}
+    },
+    {
+        contentComponent: props => <SideBar {...props} />
+    }
+);
+export default HomeScreenRouter;
+AppRegistry.registerComponent(appName, () => HomeScreenRouter);
 AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () => bgMessaging); // <-- Add this line

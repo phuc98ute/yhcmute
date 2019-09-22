@@ -4,13 +4,7 @@ TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStora
 import ModalDropdown from 'react-native-modal-dropdown';
 import Config from 'react-native-config';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
-// const data = [{
-//     value: 'Banana',
-//   }, {
-//     value: 'Mango',
-//   }, {
-//     value: 'Pear',
-//   }];
+
 
 export default class Signup extends Component{
     static navigationOptions={
@@ -20,18 +14,22 @@ export default class Signup extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
-            fullName: "",
-            email: "",
-            image: "",
-            phone: "",
-            studentCode: "",
-            aClassName: "",
-            faculytyName: "",
-            shortName: "",
-            enableDropdown:true,
-            aClassid:'',
+            data:{
+                username: "",
+                password: "",
+            },
+            API:{
+                fullName: "",
+                email: "",
+                image: "",
+                phone: "",
+                studentCode: "",
+                aClassName: "",
+                faculytyName: "",
+                shortName: "",
+                enableDropdown:true,
+                aClassid:'',
+            },
             contentLop:'Vui lòng chọn lớp!',
             listKhoa:[],
             listLop:[],
@@ -82,11 +80,6 @@ export default class Signup extends Component{
                this.setState({contentLop:'Chọn lớp!'}) 
             }
         })
-        
-         
-         
-         
-
     }
     _selectDropdownLop(idx){
        this.setState({aClassid:this.state.listLop.id})
@@ -183,19 +176,7 @@ export default class Signup extends Component{
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
-                {/* <TextInput style={styles.input}
-                placeholder="Password"
-                placeholderTextColor='rgba(84, 110, 122,0.8)'
-                underlineColorAndroid={'transparent'}
-                onChangeText={password => this.setState({password})}
-                secureTextEntry={true}
-                />
-                <TextInput style={styles.input}
-                placeholder="Cormfirm password"
-                placeholderTextColor='rgba(84, 110, 122,0.8)'
-                underlineColorAndroid={'transparent'}
-                secureTextEntry={true}
-                /> */}
+
                 <ModalDropdown 
                 dropdownTextStyle={{fontSize:15}} 
                 textStyle={{fontSize:13, justifyContent: 'center',padding:6}} 

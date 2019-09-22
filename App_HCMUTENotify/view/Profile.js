@@ -27,9 +27,9 @@ export default class Profile extends Component {
     this.state={
         fullName:"",
         studentCode:"",
-        phone:"",
-        email:"",
-        image:"",
+        phone:"00",
+        email:"00",
+        image:"https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/69314035_1934696760009588_692014236062187520_n.jpg?_nc_cat=108&_nc_eui2=AeH9QgSsnRGKIJzkNaqJRUOn8iB-SvzAlWxeDCEfGM7MVomUgp_s-xbby1jBcfOEKl2kXRW23wyA6jTcXgjoe2fS0qeDD_jXXOUCk-fX5GLvAg&_nc_oc=AQmFxsNmruliDm5Ln2ALhNB7GRaNXsMn5hxUh0gzI-0woFLaMAciFH-idVYboQPUGyPiGWiNeZTyOzqqmBo3ikgD&_nc_ht=scontent.fsgn5-5.fna&oh=bb206805d6c2a4ee245fdbb416500795&oe=5DFBE305",
         dataSource: [],
       isLoading: true,
       showLoading:false,
@@ -42,8 +42,8 @@ export default class Profile extends Component {
     console.log("Da vao DidMount")
     AsyncStorage.getItem('access_token', (err, result) => {
       if (result != null) {
-        console.log(result)
-        var Response = fetch(`${Config.API_URL}/api/v1/users/logged`,
+        console.log('Token Profile result '+result)
+        var Response = fetch(`${Config.API_URL}/api/v1/user/current`,
           {
             method: 'GET',
             headers: {
@@ -55,16 +55,16 @@ export default class Profile extends Component {
           })
           .then(Response => Response.json()
           )
-          .then(ResponseJson =>  {console.log(ResponseJson.isSuccess)
-            {ResponseJson.isSuccess == "true" ? 
-            this.setState({fullName:ResponseJson.data.people.fullName,
-            studentCode:ResponseJson.data.people.studentCode,
-            phone:ResponseJson.data.people.phone,
-            email:ResponseJson.data.people.email,
-            image:ResponseJson.data.people.image,
+          .then(ResponseJson =>  {console.log(ResponseJson)
+            {
+            this.setState({fullName:ResponseJson.student.fullName,
+            studentCode:ResponseJson.student.code,
+            //phone:ResponseJson.data.people.phone,
+            //email:ResponseJson.data.people.email,
+           // image:ResponseJson.data.people.image,
             showLoading:false,
             })
-             : null}
+             }
           })
           .catch(error => {
             console.log(error);
@@ -87,7 +87,9 @@ export default class Profile extends Component {
             },
 
           })
-          .then(Response => Response.json()
+          .then(Response =>{
+              console.log('profile json', Response);
+              Response.json()}
           )
           .then(ResponseJson => {
             console.log(ResponseJson)
@@ -179,18 +181,18 @@ export default class Profile extends Component {
        
         <ScrollView style={{ height: Screen.height *0.75 }}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={ this.state.image==null ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/59771895_1829573317188600_6395205908607008768_n.jpg?_nc_cat=101&_nc_oc=AQlFIAsHnGBZPj9ORBEKE-aexEE0LkxlpJb7vn6Ez2MWKga0pj5pShRfnGrfognTJ74&_nc_ht=scontent.fsgn4-1.fna&oh=51e9fcf18a33dca52c21a02751b910be&oe=5D62E576"}} />
-          {/* <View style={styles.avatar}>
-            <Avatar
-            size="xlarge"
-              source={this.state.image==null?{
-                uri:
-                  'https://bootdey.com/img/Content/avatar/avatar6.png',
-              }:{uri:this.state.image}}
-              showEditButton
-              
-            />
-          </View> */}
+          <Image style={styles.avatar} source={ this.state.image=="" ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"this.state.image"}} />
+          {/* <View style={styles.avatar}>*/}
+          {/*  <Avatar*/}
+          {/*  size="xlarge"*/}
+          {/*    source={this.state.image==null?{*/}
+          {/*      uri:*/}
+          {/*        'https://bootdey.com/img/Content/avatar/avatar6.png',*/}
+          {/*    }:{uri:this.state.image}}*/}
+          {/*    showEditButton*/}
+
+          {/*  />*/}
+          {/*</View>*/}
 
           
           <View style={styles.body}>

@@ -7,6 +7,6 @@
     <integer name="react_native_dev_server_port">8081</integer>
     <integer name="react_native_inspector_proxy_port">8081</integer>
     <!-- Values from default config. -->
-    <string name="API_URL" translatable="false">"https://yhcmute.herokuapp.com"</string>
+    <string name="API_URL" translatable="false">"https://yhcmute.serveo.net"</string>
 
 </resources>

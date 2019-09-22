@@ -1,20 +1,14 @@
 /** @format */
 
 import {AppRegistry} from 'react-native';
-import {
-      createStackNavigator,
-      createAppContainer,
-    createDrawerNavigator,
-    DrawerNavigator,
-    } from 'react-navigation';
-import {NativeRouter,Switch} from 'react-router-native';
+import {createStackNavigator,createDrawerNavigator,} from 'react-navigation';
 import {name as appName} from './app.json';
 import Login from './view/login'
 import Signup from './view/signup';
 import Activity from './view/Activity';
 import SignActivity from './view/SignActivity';
 import Profile from './view/Profile'
-import React, { Component } from 'react';
+import React from 'react';
 import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
 import changeProfile from './view/ChangeProfile';

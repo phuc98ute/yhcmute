@@ -40,10 +40,11 @@ export default class ChangeProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      oldpwd: "",
-      newpwd: "",
-      newpwd2:"",
-      showLoading: false
+      oldPwd: "",
+      newPwd: "",
+      newPwd2:"",
+      showLoading: false,
+
     };
   }
   
@@ -55,19 +56,31 @@ export default class ChangeProfile extends Component {
     AsyncStorage.getItem('access_token', (err, result) => {
       if (result != null) {
     var res = fetch(
-      `${Config.API_URL}//api/v1/users/update/password?oldPwd=${this.state.oldpwd}&newPwd=${this.state.newpwd}`,
+      // `${Config.API_URL}//api/v1/users/update/password?oldPwd=${this.state.oldpwd}&newPwd=${this.state.newpwd}`,
+        `${Config.API_URL}/api/v1/user/changeStudentPassword/5d7a7cb5a2235907388ffd2a`,
+
+          // `/api/v1/user/changeStudentPassword/${AsyncStorage.getItem('id')}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           Accept: "application/json",
-          "Conten-Type": "application/json",
+          "Content-Type": "application/json",
           'Authorization': 'Bearer ' + result,
-        }
+        },
+          body: JSON.stringify({
+              oldPwd:this.state.oldPwd,
+              newPwd:this.state.newPwd,
+      })
       }
     )
-      .then(res => {
-        this.setState({ showLoading: false });
-      })
+        .then ((Response) => Response.json()
+        )
+        .then((ResponseJson) => {
+            console.log('resJson',ResponseJson)
+            this.setState({ showLoading: false });
+            if(ResponseJson.status==="METHOD_NOT_ALLOWED") {ToastAndroid.show ("Lỗi không đổi được mật khẩu!",ToastAndroid.LONG)}
+            else {AsyncStorage.clear(), this.props.navigation.navigate("Login", {});}
+        })
       .catch(err => {
         console.log("ERR", err),
           ToastAndroid.show(
@@ -131,7 +144,7 @@ export default class ChangeProfile extends Component {
                     keyboardType="email-address"
                     returnKeyType="next"
                     autoCorrect={false}
-                    onChangeText={oldpwd => this.setState({ oldpwd })}
+                    onChangeText={oldPwd => this.setState({ oldPwd })}
                     onSubmitEditing={() => this.refs.txtPassword.focus()}
                   />
                   <TextInput
@@ -141,7 +154,7 @@ export default class ChangeProfile extends Component {
                     keyboardType="email-address"
                     returnKeyType="next"
                     autoCorrect={false}
-                    onChangeText={newpwd => this.setState({ newpwd })}
+                    onChangeText={newPwd => this.setState({ newPwd })}
                     onSubmitEditing={() => this.refs.txtPassword.focus()}
                   />
                   <TextInput
@@ -151,7 +164,7 @@ export default class ChangeProfile extends Component {
                     keyboardType="email-address"
                     returnKeyType="next"
                     autoCorrect={false}
-                    onChangeText={newpwd2 => this.setState({ newpwd2 })}
+                    onChangeText={newPwd2 => this.setState({ newPwd2 })}
                     onSubmitEditing={() => this.refs.txtPassword.focus()}
                   />
                   <TouchableOpacity

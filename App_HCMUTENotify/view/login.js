@@ -215,6 +215,7 @@ export default class Login extends Component {
           this.setState({ showLoading: false });
           console.log("RES", res.headers.get("authorization"));
           let accessToken = res.headers.get("authorization");
+
           let decode = jwtDecode(accessToken);
           console.log(decode);
           const tokenIndex = accessToken.lastIndexOf(" ") + 1;
@@ -224,6 +225,7 @@ export default class Login extends Component {
             AsyncStorage.setItem("access_token", token);
             AsyncStorage.setItem("username", this.state.username);
             AsyncStorage.setItem("pass", this.state.pwd);
+           // AsyncStorage.setItem("id",this.state.id),
             console.log(AsyncStorage.getItem("access_token"));
             console.log("Sucess");
             this.props.navigation.navigate("Activity", {});
@@ -232,10 +234,10 @@ export default class Login extends Component {
         })
         .catch(err => {
           console.log("ERR", err)
-          // ToastAndroid.show(
-          //   "Lỗi đăng nhập!",
-          //   ToastAndroid.LONG
-          // );
+          ToastAndroid.show(
+            "Lỗi đăng nhập!",
+            ToastAndroid.LONG
+          );
         });
     }
     else {

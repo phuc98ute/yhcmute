@@ -32,6 +32,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\PhucVo\Desktop\yhcmutenotify\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -71,6 +72,10 @@
       <workItem from="1567840886170" duration="85000" />
       <workItem from="1567995485480" duration="2204000" />
       <workItem from="1568017298796" duration="6434000" />
+      <workItem from="1568042842017" duration="5563000" />
+      <workItem from="1568100846421" duration="1828000" />
+      <workItem from="1569052763057" duration="14789000" />
+      <workItem from="1569152644634" duration="115000" />
     </task>
     <servers />
   </component>

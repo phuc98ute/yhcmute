@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {StyleSheet,View,Image,TouchableWithoutFeedback,StatusBar,
     TextInput,SafeAreaView,Keyboard,TouchableOpacity,
     KeyboardAvoidingView, FlatList,ActivityIndicator,
-    ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler,ScrollView} 
+    ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler,ScrollView}
     from 'react-native'
 import { DrawerActions } from 'react-navigation';
 import jwtDecode from 'jwt-decode';
@@ -39,97 +39,127 @@ export default class Activity extends Component{
             activePage:1,
             keyword:"",
             showLoading:false,
+            input:{
+                page: 0,
+                size: 20,
+                levelCode: "vn.yhcmute.act.level.faculty",
+                facultyId: "5d77d9f0463348c9ae0a3107",
+            },
         }
     }
 
     selectComponent = (activePage) => () => this.setState({activePage,showLoading:true})
 
     _renderComponent = () => {
-        
+        //let token=AsyncStorage.getItem("access_token");
+        AsyncStorage.getItem('access_token', (err, result) => {
+                if (result != null) {
+                    console.log(result)
+                      if(this.state.activePage === 1)
+                      {
+                          fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+                              {
+                                  method:'POST',
+                                  headers:{
+                                      Accept: 'application/json',
+                                      'Content-Type': 'application/json',
+                                    'Authorization':'Bearer '+result,
+                                  },
+                                  body:
+                                      JSON.stringify({
+                                          page: 0,
+                                          size: 20,
+                                          levelCode: "vn.yhcmute.act.level.faculty",
+                                          facultyId: "5d77d9f0463348c9ae0a3107",}),
+                              })
+                              .then ((Response) => Response.json())
+                              .then((ResponseJson) => {
+                                  console.log("activity", ResponseJson.result)
+                                  this.setState({
+                                      dataSource: ResponseJson.result,
+                                      showLoading: false
+                                  })
+                                  console.log(this.state.dataSource)
+                                  return (
+                                      <View>
+                                          <View style={{ height: '88%' }}>
+                                              <FlatList
+                                                  data={this.state.dataSource}
+                                                  renderItem={this.renderItem}
+                                                  keyExtractor={(item, index) => index.toString()}
+                                              />
+                                          </View>
 
-        if(this.state.activePage === 1)
-        {
-            fetch(`${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
-                .then((Response) => Response.json())
-                .then((ResponseJson) => {
-                    this.setState({
-                        dataSource: ResponseJson.data,
-                        showLoading: false
-                    })
-                })
-                .catch((error) => {
-                    console.log(error)
-                }) 
-          return (
-              <View>
-                  <View style={{ height: '88%' }}>
-                      <FlatList
-                          data={this.state.dataSource}
-                          renderItem={this.renderItem}
-                          keyExtractor={(item, index) => index.toString()}
-                      />
-                  </View>
+                                      </View>
+                                  )
+                              })
+                              .catch((error) => {
+                                  console.log(error)
+                              })
 
-              </View>
-          )
-        }
-        if(this.state.activePage === 2) {
-            fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
-                .then((Response) => Response.json())
-                .then((ResponseJson) => {
-                    this.setState({
-                        dataSource: ResponseJson.data,
-                        showLoading: false
-                    })
-                })
-                .catch((error) => {
-                    console.log(error)
-                }) 
-            return (
-                <View>
-                    <View style={{ height: '88%' }}>
-                        <FlatList
-                            data={this.state.dataSource}
-                            renderItem={this.renderItem}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
-                    </View>
+                      }
+                      if(this.state.activePage === 2) {
+                          fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
+                              .then((Response) => Response.json())
+                              .then((ResponseJson) => {
+                                  this.setState({
+                                      dataSource: ResponseJson.data,
+                                      showLoading: false
+                                  })
+                              })
+                              .catch((error) => {
+                                  console.log(error)
+                              })
+                          return (
+                              <View>
+                                  <View style={{ height: '88%' }}>
+                                      <FlatList
+                                          data={this.state.dataSource}
+                                          renderItem={this.renderItem}
+                                          keyExtractor={(item, index) => index.toString()}
+                                      />
+                                  </View>
 
-                </View>
-            )
-      }
+                              </View>
+                          )
+                    }
+                }
+            }
+        )
+
+
     }
 
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
         //const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
-        const startDate=item.startDate;
+        //const startDate=item.startDate;
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
-                onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
-                navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id,activyLevel:item.activityLevel.unit });}}
+                //onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
+                //navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id,activyLevel:item.activityLevel.unit });}}
             >
                 <View style={{ flex: 1, flexDirection: 'row' }} >
                     <View style={styles.container}>
-                        <Image source={{ uri: item.image }} style={styles.photo} />
+                        {/*<Image source={{ uri: item.image }} style={styles.photo} />*/}
                         <View style={styles.container_text}>
                             <Text style={styles.title}>
-                                {item.actName}
+                                {item.name}
                             </Text>
-                            <Text style={styles.description}>
-                            - Thời gian : 
-                            {
-                                //(item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))
-                                (item.startDate==null?" không có thời gian cụ thể":item.startDate)
-                            }
-                            </Text>
-                            <Text style={styles.description}>
-                            - Địa điểm : 
-                            {
-                                (item.location==null?" toàn trường":item.location)
-                            }
-                               
-                            </Text>
+                            {/*<Text style={styles.description}>*/}
+                            {/*- Thời gian : */}
+                            {/*{*/}
+                            {/*    //(item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))*/}
+                            {/*    (item.startDate==null?" không có thời gian cụ thể":item.startDate)*/}
+                            {/*}*/}
+                            {/*</Text>*/}
+                            {/*<Text style={styles.description}>*/}
+                            {/*- Địa điểm : */}
+                            {/*{*/}
+                            {/*    (item.location==null?" toàn trường":item.location)*/}
+                            {/*}*/}
+                            {/*   */}
+                            {/*</Text>*/}
                         </View>
                     </View>
                 </View>
@@ -137,19 +167,54 @@ export default class Activity extends Component{
         )
     }
 
-    renderSeparator= () => {
-        return(
-            <View>
-                style={{height:1,width:'100%',backgroundColor:'black'}}
-            </View>
-        )
-    }
+    // renderSeparator= () => {
+    //     return(
+    //         <View>
+    //             style={{height:1,width:'100%',backgroundColor:'black'}}
+    //         </View>
+    //     )
+    // }
 
     componentDidMount() {
+        // AsyncStorage.getItem('access_token', (err, result) => {
+        //     if (result != null) {
+        //         console.log(result);
+        //         fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+        //             {
+        //                 method: 'POST',
+        //                 headers: {
+        //                     Accept: 'application/json',
+        //                     'Content-Type': 'application/json',
+        //                     'Authorization': 'Bearer ' + result,
+        //                 },
+        //                 body:
+        //                     JSON.stringify({
+        //                         page: 0,
+        //                         size: 20,
+        //                         levelCode: "vn.yhcmute.act.level.faculty",
+        //                         facultyId: "5d77d9f0463348c9ae0a3107",
+        //                     }),
+        //             })
+        //             .then((Response) => Response.json())
+        //             .then((ResponseJson) => {
+        //                 console.log("activity", ResponseJson.result)
+        //                 this.setState({
+        //                     dataSource: ResponseJson.result,
+        //                     showLoading: false
+        //                 })
+        //                 console.log(this.state.dataSource)
+        //             })
+        //             .catch((error) => {
+        //                 console.log(error)
+        //             })
+        //     } else {console.log('loi cmr')}
+        // })
+
         
         fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
             .then((Response) => Response.json())
             .then((ResponseJson) => {
+                console.log('reponese ',ResponseJson)
                 this.setState({
                     dataSource: ResponseJson.data,
                     isLoading:false
@@ -159,7 +224,7 @@ export default class Activity extends Component{
                 console.log(error)
             })
 
-        // this._renderComponent;
+        //this._renderComponent();
         //this.props.navigation.dispatch(DrawerActions.closeDrawer());
         //this.props.navigation.dispatch(DrawerActions.openDrawer());
             

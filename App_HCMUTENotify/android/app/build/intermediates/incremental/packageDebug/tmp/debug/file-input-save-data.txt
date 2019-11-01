@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Sep 09 16:43:56 ICT 2019
+#Tue Oct 15 15:00:56 ICT 2019
 60.set=NATIVE_RESOURCE
 52.set=ASSET
 53.base=C\:\\Users\\PhucVo\\Desktop\\gitdev1.0\\dev1.0\\App_HCMUTENotify\\android\\app\\build\\intermediates\\transforms\\mergeJniLibs\\debug\\0

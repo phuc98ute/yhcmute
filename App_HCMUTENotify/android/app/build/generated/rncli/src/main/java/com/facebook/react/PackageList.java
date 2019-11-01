@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import com.yhcmutenotify.BuildConfig;
 import com.yhcmutenotify.R;
 
+// @react-native-community/async-storage
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/netinfo
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 // react-native-config
@@ -21,6 +23,8 @@ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import io.invertase.firebase.RNFirebasePackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-reanimated
+import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -56,10 +60,12 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(),
+      new AsyncStoragePackage(),
       new NetInfoPackage(),
       new ReactNativeConfigPackage(),
       new RNFirebasePackage(),
       new RNGestureHandlerPackage(),
+      new ReanimatedPackage(),
       new VectorIconsPackage()
     ));
   }

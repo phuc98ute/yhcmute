@@ -2,15 +2,17 @@ import React, {Component} from 'react'
 import {StyleSheet,View,Image,TouchableWithoutFeedback,StatusBar,
     TextInput,SafeAreaView,Keyboard,TouchableOpacity,
     KeyboardAvoidingView, FlatList,ActivityIndicator,
-    ToastAndroid,Dimensions,Animated,AsyncStorage ,BackHandler,ScrollView}
-    from 'react-native'
+    ToastAndroid,Dimensions,Animated ,BackHandler,ScrollView}
+    from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { DrawerActions } from 'react-navigation';
 import jwtDecode from 'jwt-decode';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import Config from 'react-native-config';
 import Icon from 'react-native-vector-icons/Entypo';
 import { Container, Header, Title, Left, Button, Body, Text, Segment } from "native-base";
-
+import { TabView, SceneMap } from 'react-native-tab-view';
+import Moment from 'moment';
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -18,8 +20,6 @@ const RemainingWidth = Screen.width - SideMenuWidth;
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 const logobar=deviceWidth*0.1;
-
-
 
 export default class Activity extends Component{
     static navigationOptions={
@@ -29,7 +29,8 @@ export default class Activity extends Component{
         super()
         this.state={
             dataSource:[],
-            isLoading:true,
+            dataSource1:[],
+            isLoading:false,
             visible:false,
             dialogVisible: false,
             activytyName:'',
@@ -45,11 +46,43 @@ export default class Activity extends Component{
                 levelCode: "vn.yhcmute.act.level.faculty",
                 facultyId: "5d77d9f0463348c9ae0a3107",
             },
+            index: 0,
+            routes: [
+                {key: 'first', icon: 'backup-restore', title: 'Suggestions'},
+                {key: 'second', icon: 'heart',title: 'Favoris'},
+
+            ],
         }
     }
 
-    selectComponent = (activePage) => () => this.setState({activePage,showLoading:true})
+    _testDangki=()=>{
+        AsyncStorage.getItem('access_token',(err,result)=>{
+            fetch (`${Config.API_URL}/api/v1/activity-detail/registerJoiner`,
+                {
+                    method:'POST',
+                    headers:{
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + result,
+                    },
+                    body: JSON.stringify({
+                        studentId:"5d7a7cb5a2235907388ffd29",
+                        activityId: "5d792b62463348dc59ae6256",
+                    })
+                }
+            )
+                .then ((Response) => Response.json())
+                .then((ResponseJson) => {
+                    console.log("Dang ki thanh cong")
 
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })
+    }
+
+    //selectComponent = (activePage) => () => this.setState({activePage,showLoading:true})
     _renderComponent = () => {
         //let token=AsyncStorage.getItem("access_token");
         AsyncStorage.getItem('access_token', (err, result) => {
@@ -58,58 +91,58 @@ export default class Activity extends Component{
                       if(this.state.activePage === 1)
                       {
                           fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
-                              {
-                                  method:'POST',
-                                  headers:{
-                                      Accept: 'application/json',
-                                      'Content-Type': 'application/json',
-                                    'Authorization':'Bearer '+result,
-                                  },
-                                  body:
-                                      JSON.stringify({
-                                          page: 0,
-                                          size: 20,
-                                          levelCode: "vn.yhcmute.act.level.faculty",
-                                          facultyId: "5d77d9f0463348c9ae0a3107",}),
-                              })
-                              .then ((Response) => Response.json())
-                              .then((ResponseJson) => {
-                                  console.log("activity", ResponseJson.result)
-                                  this.setState({
-                                      dataSource: ResponseJson.result,
-                                      showLoading: false
-                                  })
-                                  console.log(this.state.dataSource)
-                                  return (
-                                      <View>
-                                          <View style={{ height: '88%' }}>
-                                              <FlatList
-                                                  data={this.state.dataSource}
-                                                  renderItem={this.renderItem}
-                                                  keyExtractor={(item, index) => index.toString()}
-                                              />
-                                          </View>
+                        {
+                            method:'POST',
+                            headers:{
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                                'Authorization':'Bearer '+result,
+                            },
+                            body:
+                                JSON.stringify({
+                                    page: 0,
+                                    size: 20,
+                                    levelCode: "vn.yhcmute.act.level.faculty",
+                                    facultyId: "5d77d9f0463348c9ae0a3107",}),
+                        })
+                        .then ((Response) => Response.json())
+                        .then((ResponseJson) => {
+                            console.log("activity", ResponseJson.result)
+                            this.setState({
+                                dataSource: ResponseJson.result,
+                                showLoading: false
+                            })
+                            console.log(this.state.dataSource)
+                            return (
+                                <View>
+                                    <View style={{ height: '88%' }}>
+                                        <FlatList
+                                            data={this.state.dataSource}
+                                            renderItem={this.renderItem}
+                                            keyExtractor={(item, index) => index.toString()}
+                                        />
+                                    </View>
 
-                                      </View>
-                                  )
-                              })
-                              .catch((error) => {
-                                  console.log(error)
-                              })
+                                </View>
+                            )
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
 
-                      }
+                }
                       if(this.state.activePage === 2) {
-                          fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
-                              .then((Response) => Response.json())
-                              .then((ResponseJson) => {
-                                  this.setState({
-                                      dataSource: ResponseJson.data,
-                                      showLoading: false
-                                  })
-                              })
-                              .catch((error) => {
-                                  console.log(error)
-                              })
+                          // fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
+                          //     .then((Response) => Response.json())
+                          //     .then((ResponseJson) => {
+                          //         this.setState({
+                          //             dataSource: ResponseJson.data,
+                          //             showLoading: false
+                          //         })
+                          //     })
+                          //     .catch((error) => {
+                          //         console.log(error)
+                          //     })
                           return (
                               <View>
                                   <View style={{ height: '88%' }}>
@@ -129,10 +162,12 @@ export default class Activity extends Component{
 
 
     }
-
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
-        //const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
+        const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
+        console.log(startDate);
+        console.log(item.activityImages);
+
         //const startDate=item.startDate;
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
@@ -141,32 +176,31 @@ export default class Activity extends Component{
             >
                 <View style={{ flex: 1, flexDirection: 'row' }} >
                     <View style={styles.container}>
-                        {/*<Image source={{ uri: item.image }} style={styles.photo} />*/}
+                        <Image style={styles.photo} source={ item.activityImages===null ?  require('../source/noimageBackground.png') : {uri:item.activityImages}} />
                         <View style={styles.container_text}>
                             <Text style={styles.title}>
                                 {item.name}
                             </Text>
-                            {/*<Text style={styles.description}>*/}
-                            {/*- Thời gian : */}
-                            {/*{*/}
-                            {/*    //(item.startDate==null?" không có thời gian cụ thể":Moment(item.startDate).format('MMMM Do, YYYY H:mma'))*/}
-                            {/*    (item.startDate==null?" không có thời gian cụ thể":item.startDate)*/}
-                            {/*}*/}
-                            {/*</Text>*/}
-                            {/*<Text style={styles.description}>*/}
-                            {/*- Địa điểm : */}
-                            {/*{*/}
-                            {/*    (item.location==null?" toàn trường":item.location)*/}
-                            {/*}*/}
-                            {/*   */}
-                            {/*</Text>*/}
+                            <Text style={styles.description}>
+                            - Thời gian :
+                            {
+                                (item.activityDescription.startRegisCollaborator==null?" không có thời gian cụ thể":Moment(item.activityDescription.startRegisCollaborator).format('MMMM Do, YYYY H:mma'))
+                                //(item.startDate===null?" không có thời gian cụ thể":item.startDate)
+                            }
+                            </Text>
+                            <Text style={styles.description}>
+
+                            {
+                                (item.activityDescription.content==null?" toàn trường":item.activityDescription.content)
+                            }
+
+                            </Text>
                         </View>
                     </View>
                 </View>
             </TouchableOpacity>
         )
     }
-
     // renderSeparator= () => {
     //     return(
     //         <View>
@@ -174,75 +208,159 @@ export default class Activity extends Component{
     //         </View>
     //     )
     // }
+    loadData =()=>{
+        console.log('===================================================');
+        console.log('AsyncStorage: ' + AsyncStorage.getItem('access_token'));
+        AsyncStorage.getItem('access_token', (err, result) => {
+            if (result != null) {
+                console.log('result ' + result);
+                //fetch datsSouce
+                console.log("state 0: " + this.state.index)
+                fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer' + result,
+                        },
+                        body:
+                            JSON.stringify({
+                                "page": 0,
+                                "size": 20,
+                                "levelCode": "vn.yhcmute.act.level.school",
+                                "facultyId": "5d87ac3a362adf438cbc6b72"
+                            }),
+                    })
+                    .then((Response) => Response.json())
+                    .then((ResponseJson) => {
+                        console.log("activity", ResponseJson)
+                        console.log("result", ResponseJson.result)
+                        this.setState({
+                            dataSource: ResponseJson.result,
+                            showLoading: false
+                        })
+                        //console.log(this.state.dataSource)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+                //fetch dataSource1
+                fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer' + result,
+                        },
+                        body:
+                            JSON.stringify({
+                                "page": 0,
+                                "size": 20,
+                                "levelCode": "vn.yhcmute.act.level.faculty",
+                                "facultyId": "5d87ac3a362adf438cbc6b72"
+                            }),
+                    })
+                    .then((Response) => Response.json())
+                    .then((ResponseJson) => {
+                        console.log("activity", ResponseJson)
+                        console.log("result", ResponseJson.result)
+                        this.setState({
+                            dataSource1: ResponseJson.result,
+                            showLoading: false
+                        })
+                        //console.log(this.state.dataSource)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
 
+
+            } else {
+                console.log('loi cmr')
+            }
+        })
+    }
     componentDidMount() {
-        // AsyncStorage.getItem('access_token', (err, result) => {
-        //     if (result != null) {
-        //         console.log(result);
-        //         fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
-        //             {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     Accept: 'application/json',
-        //                     'Content-Type': 'application/json',
-        //                     'Authorization': 'Bearer ' + result,
-        //                 },
-        //                 body:
-        //                     JSON.stringify({
-        //                         page: 0,
-        //                         size: 20,
-        //                         levelCode: "vn.yhcmute.act.level.faculty",
-        //                         facultyId: "5d77d9f0463348c9ae0a3107",
-        //                     }),
-        //             })
-        //             .then((Response) => Response.json())
-        //             .then((ResponseJson) => {
-        //                 console.log("activity", ResponseJson.result)
-        //                 this.setState({
-        //                     dataSource: ResponseJson.result,
-        //                     showLoading: false
-        //                 })
-        //                 console.log(this.state.dataSource)
-        //             })
-        //             .catch((error) => {
-        //                 console.log(error)
-        //             })
-        //     } else {console.log('loi cmr')}
-        // })
-
-        
-        fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
-            .then((Response) => Response.json())
-            .then((ResponseJson) => {
-                console.log('reponese ',ResponseJson)
-                this.setState({
-                    dataSource: ResponseJson.data,
-                    isLoading:false
-                })
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-
+       this.loadData();
+        // fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
+        //     .then((Response) => Response.json())
+        //     .then((ResponseJson) => {
+        //         console.log('reponese ',ResponseJson)
+        //         this.setState({
+        //             dataSource: ResponseJson.data,
+        //             isLoading:false
+        //         })
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //     })
         //this._renderComponent();
         //this.props.navigation.dispatch(DrawerActions.closeDrawer());
         //this.props.navigation.dispatch(DrawerActions.openDrawer());
             
     }
-    handleBackButtonClick() {
-       
-        
-    }
-    componentWillMount() {
-
-     } 
-     componentWillUnmount() {
-        
-    }
 
     handleClick = ()=>{
         this.setState({dialogVisible:false})
     }
+    _renderScene = ({ route }) => {
+
+        switch (route.key) {
+            case 'first': {
+                if (this.state.dataSource && this.state.dataSource.length) {
+                    return (
+                        <View>
+                            <View style={{height: '100%'}}>
+                                <FlatList
+                                    data={this.state.dataSource}
+                                    renderItem={this.renderItem}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                            </View>
+
+                        </View>
+                    )
+                }
+                else {
+                    return (
+                        <View style={{height:'100%'}}>
+                            <Text> Không có hoạt động nào tồn tại ! </Text>
+                        </View>
+                    )
+                }
+
+
+            }
+
+            case 'second':
+                if (this.state.dataSource1 && this.state.dataSource1.length) {
+                    return (
+                        <View>
+                            <View style={{height: '100%'}}>
+                                <FlatList
+                                    data={this.state.dataSource1}
+                                    renderItem={this.renderItem}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                            </View>
+
+                        </View>
+                    )
+                }
+                else {
+                    return (
+                        <View style={{height:'100%'}}>
+                            <Text> Không có hoạt động nào tồn tại ! </Text>
+                        </View>
+                    )
+                }
+
+            default:
+                return null;
+        }
+    };
 
     render() {
         return (
@@ -280,28 +398,16 @@ export default class Activity extends Component{
                         </Body>
                         
                     </Header>
-                    
-                    <Segment style={{backgroundColor:"#FFFFFF"}}>
-                        <Button first active={this.state.activePage === 1} 
-                        style={{
-                            backgroundColor: this.state.activePage === 1 ? "#CCCCCC" : undefined,
-									borderColor: "3366CC",
-                        }}
-                                onPress={this.selectComponent(1)}>
-                            <Text style={{ color: this.state.activePage === 1 ? "#0000DD" : undefined }}>Cấp trường</Text>
-                        </Button>
-                        
-                        <Button last active={this.state.activePage === 2}
-                        style={{
-                            backgroundColor: this.state.activePage === 2 ? "#CCCCCC" : undefined,
-									borderColor: "3366CC",
-                        }}
-                                onPress={this.selectComponent(2)}>
-                            <Text style={{ color: this.state.activePage === 2 ? "#0000DD" : undefined }}>Cấp khoa</Text>
-                        </Button>
-                    </Segment>
+
+
+                    <TabView
+                        navigationState={this.state}
+                        renderScene={this._renderScene}
+                        onIndexChange={index => this.setState({ index })}
+                        initialLayout={{ width: Dimensions.get('window').width }}
+                    />
                     <View style={{height:1, backgroundColor:'black'}}></View>
-                    {this._renderComponent()}
+                    {/*{this._renderComponent()}*/}
                     <ProgressDialog
                   style={{borderRadius:10}}
                   visible={this.state.showLoading}
@@ -351,5 +457,8 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius:30,
+    },
+    scene: {
+        flex: 1,
     },
 });

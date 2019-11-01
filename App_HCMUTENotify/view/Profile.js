@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,Dimensions,ScrollView,AsyncStorage,FlatList
+    StyleSheet,
+    View,
+    Image,
+    TouchableOpacity, Dimensions, ScrollView, FlatList, ToastAndroid
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import Config from 'react-native-config';
@@ -29,12 +30,45 @@ export default class Profile extends Component {
         studentCode:"",
         phone:"00",
         email:"00",
-        image:"https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/69314035_1934696760009588_692014236062187520_n.jpg?_nc_cat=108&_nc_eui2=AeH9QgSsnRGKIJzkNaqJRUOn8iB-SvzAlWxeDCEfGM7MVomUgp_s-xbby1jBcfOEKl2kXRW23wyA6jTcXgjoe2fS0qeDD_jXXOUCk-fX5GLvAg&_nc_oc=AQmFxsNmruliDm5Ln2ALhNB7GRaNXsMn5hxUh0gzI-0woFLaMAciFH-idVYboQPUGyPiGWiNeZTyOzqqmBo3ikgD&_nc_ht=scontent.fsgn5-5.fna&oh=bb206805d6c2a4ee245fdbb416500795&oe=5DFBE305",
+        image:"",
         dataSource: [],
       isLoading: true,
       showLoading:false,
     }
 }
+
+    _testDangki=()=>{
+        AsyncStorage.getItem('access_token',(err,result)=>{
+            fetch (`${Config.API_URL}/api/v1/activity-detail/registerJoiner`,
+                {
+                    method:'POST',
+                    headers:{
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + result,
+                    },
+                    body: JSON.stringify({
+                        studentId:"5d7a7cb5a2235907388ffd29",
+                        activityId: "5d792b62463348dc59ae6256",
+                    })
+                }
+                )
+                .then ((Response) => Response.json())
+                .then((ResponseJson) => {
+                    console.log(ResponseJson)
+                    console.log("Nhan respones trả về!")
+                    if(ResponseJson.status==="METHOD_NOT_ALLOWED") {
+                        ToastAndroid.show(
+                            "Không thể đăng kí được hoạt động!",
+                            ToastAndroid.LONG
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        })
+    }
 
   componentDidMount()
   {
@@ -57,14 +91,22 @@ export default class Profile extends Component {
           )
           .then(ResponseJson =>  {console.log(ResponseJson)
             {
-            this.setState({fullName:ResponseJson.student.fullName,
-            studentCode:ResponseJson.student.code,
-            //phone:ResponseJson.data.people.phone,
-            //email:ResponseJson.data.people.email,
-           // image:ResponseJson.data.people.image,
-            showLoading:false,
-            })
-             }
+                if(ResponseJson.student!=null){
+                    this.setState({
+                             fullName:ResponseJson.student.fullName,
+                         studentCode:ResponseJson.student.code,
+                        //  phone:ResponseJson.data.people.phone,
+                        //  email:ResponseJson.data.people.email,
+                        // image:ResponseJson.data.people.image,
+                        showLoading:false,
+                    })
+                }
+                else {
+                    console.log('Student null Object')
+                    this.setState({showLoading:false})
+                }
+            }
+
           })
           .catch(error => {
             console.log(error);
@@ -171,7 +213,8 @@ export default class Profile extends Component {
           <Right>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("ChangeProfile",{})}
+               onPress={() => this.props.navigation.navigate("ChangeProfile",{})}
+                //onPress={this._testDangki}
             >
               <IconSimpleLineIcons name="settings" />
             </Button>
@@ -181,7 +224,7 @@ export default class Profile extends Component {
        
         <ScrollView style={{ height: Screen.height *0.75 }}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={ this.state.image=="" ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"this.state.image"}} />
+          <Image style={styles.avatar} source={ this.state.image==="" ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"this.state.image"}} />
           {/* <View style={styles.avatar}>*/}
           {/*  <Avatar*/}
           {/*  size="xlarge"*/}
@@ -268,7 +311,7 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:22,
-    color:"#FFFFFF",
+    color:"#33ccff",
     fontWeight:'600',
   },
   body:{

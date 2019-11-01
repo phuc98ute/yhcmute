@@ -16,7 +16,7 @@ import {
   Dimensions,
   ScrollView
 } from "react-native";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 // import { Icon } from "react-native-elements";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import jwtDecode from "jwt-decode";

@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {StyleSheet,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler,AsyncStorage} from 'react-native'
+TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Config from 'react-native-config';

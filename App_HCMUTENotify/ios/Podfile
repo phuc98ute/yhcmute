@@ -29,6 +29,8 @@ target 'yhcmutenotify' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'yhcmutenotifyTests' do
     inherit! :search_paths
     # Pods for testing

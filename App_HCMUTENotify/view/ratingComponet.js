@@ -21,9 +21,9 @@ export default class ratingComponent extends Component {
     constructor(props) {
         super(props)
         this.state={
-            actName: this.props.navigation.state.params.actName,
-            actContent:this.props.navigation.state.params.actContent,
-            activityId:this.props.navigation.state.params.activityId,
+            actName: "acp",//this.props.navigation.state.params.actName,
+            actContent:"test",//this.props.navigation.state.params.actContent,
+            activityId:"123",//this.props.navigation.state.params.activityId,
             dialogVisible:false,
             message:"",
             isTrue:false,

@@ -10,6 +10,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.0.5",
     "@mindinventory/react-native-tab-bar-interaction": "^1.0.3",
+    "@react-native-community/async-storage": "^1.6.2",
     "@react-native-community/netinfo": "^4.1.5",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
@@ -22,8 +23,10 @@
     "react-native-firebase": "^5.5.6",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-modal-dropdown": "^0.6.2",
+    "react-native-reanimated": "^1.2.0",
     "react-native-scrollable-tab-view": "^0.10.0",
     "react-native-simple-dialogs": "^1.2.0",
+    "react-native-tab-view": "^2.10.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^2.18.2",
     "react-router-native": "^5.0.1"

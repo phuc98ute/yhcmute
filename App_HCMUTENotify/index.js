@@ -14,6 +14,7 @@ import signingactivity from './view/signingactivity';
 import changeProfile from './view/ChangeProfile';
 import ratingComponet from './view/ratingComponet';
 import bgMessaging from './bgMessaging';
+import test from'./view/test';
 
 
 const AppNavigator = createStackNavigator({

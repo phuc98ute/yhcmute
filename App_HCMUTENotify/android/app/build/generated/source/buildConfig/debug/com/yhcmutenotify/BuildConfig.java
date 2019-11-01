@@ -11,5 +11,5 @@ public final class BuildConfig {
   public static final int VERSION_CODE = 1;
   public static final String VERSION_NAME = "1.0";
   // Fields from default config.
-  public static final String API_URL = "https://yhcmute.serveo.net";
+  public static final String API_URL = "http://192.168.1.12:8080";
 }

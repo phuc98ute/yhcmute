@@ -34,6 +34,12 @@ export default class Signup extends Component{
             listKhoa:[],
             listLop:[],
             dialogVisible:false,
+            username:"16110423",
+            password:"vhp123vhp",
+            code: "18133050",
+            firstname: "Vo Hong",
+            lastname: "Phuc",
+            aClassid:"5da5ed710e2bc7393cd97ca6",
 
         }
       }
@@ -88,24 +94,22 @@ export default class Signup extends Component{
         // const { fullName,username,password,email,studentCode,shortName,indexKhoa } = this.state;
         if(this.state.fullName!=''&&this.state.username!=''&&this.state.email!=''&&this.state.studentCode!='')
         {
-            console.log(this.state.fullName)
+            //console.log(this.state.fullName)
 
-            var Response = fetch(`https://yhcmute.herokuapp.com/api/v1/users/register`,
+            var Response = fetch(`${Config.API_URL}/api/v1/user/register`,
                 {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
-
                     },
-                    
                     body: JSON.stringify({
                         username: this.state.username,
-                        people: {
-                            fullname: this.state.fullName,
-                            email: this.state.email,
-                            phone: this.state.phone,
-                            studentCode: this.state.studentCode,
+                        password:this.state.password,
+                        student: {
+                            code: this.state.code,
+                            firstName: this.state.firstname,
+                            lastName: this.state.lastname,
                             aClass: {
                                 id:this.state.aClassid,
                               }
@@ -117,7 +121,7 @@ export default class Signup extends Component{
                 )
                 .then(ResponseJson => {
                     console.log(ResponseJson)
-                    this.setState({dialogVisible:true})
+                    //this.setState({dialogVisible:true})
                 })
                 
                 .catch(error => {

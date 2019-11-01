@@ -15,7 +15,7 @@ import {
   Dimensions,
   Platform,
 } from "react-native";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
 import { Container, Header, Title, Left, Right, Button, Body, Content, Card, CardItem, Segment } from "native-base";
@@ -57,7 +57,7 @@ export default class ChangeProfile extends Component {
       if (result != null) {
     var res = fetch(
       // `${Config.API_URL}//api/v1/users/update/password?oldPwd=${this.state.oldpwd}&newPwd=${this.state.newpwd}`,
-        `${Config.API_URL}/api/v1/user/changeStudentPassword/5d7a7cb5a2235907388ffd2a`,
+        `${Config.API_URL}/api/v1/user/changeStudentPassword/5da6a4800e2bc70fb49581da`,
 
           // `/api/v1/user/changeStudentPassword/${AsyncStorage.getItem('id')}`,
       {

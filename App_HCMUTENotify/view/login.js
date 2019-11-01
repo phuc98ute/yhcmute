@@ -13,7 +13,7 @@ import {
   DeviceEventEmitter,
     Alert,
 } from "react-native";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
 import { ProgressDialog } from "react-native-simple-dialogs";
@@ -34,10 +34,29 @@ export default class Login extends Component {
     header: null,
     drawerLockMode: 'locked-closed'
   }
-  componentWillMount() {
-  }
+    componentDidMount() {
+        this.checkPermission();
+        this.createNotificationListeners(); //add this line
+        firebase.notifications().getInitialNotification()
+            .then((notificationOpen: NotificationOpen) => {
+                if (notificationOpen) {
+                    // App was opened by a notification
+                    // Get the action triggered by the notification being opened
+                    const action = notificationOpen.action;
+                    // Get information about the notification that was opened
+                    const notification: Notification = notificationOpen.notification;
+                }
+            });
+        this._autoLogin();
 
 
+        NetInfo.fetch().then(state => {
+            console.log("Connection type", state.type);
+            console.log("Is connected?", state.isConnected);
+        });
+
+        console.log(deviceHeight)
+    }
   //Automatically log in if the token is still valid
   _autoLogin() {
     AsyncStorage.getItem('access_token', (err, result) => {
@@ -159,29 +178,7 @@ export default class Login extends Component {
 
 
 
-  componentDidMount() {
-      this.checkPermission();
-      this.createNotificationListeners(); //add this line
-      firebase.notifications().getInitialNotification()
-          .then((notificationOpen: NotificationOpen) => {
-              if (notificationOpen) {
-                  // App was opened by a notification
-                  // Get the action triggered by the notification being opened
-                  const action = notificationOpen.action;
-                  // Get information about the notification that was opened
-                  const notification: Notification = notificationOpen.notification;
-              }
-          });
-    this._autoLogin();
 
-
-    NetInfo.fetch().then(state => {
-      console.log("Connection type", state.type);
-      console.log("Is connected?", state.isConnected);
-    });
-   
-    console.log(deviceHeight)
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -221,19 +218,20 @@ export default class Login extends Component {
           const tokenIndex = accessToken.lastIndexOf(" ") + 1;
           let token = accessToken.substr(tokenIndex);
           if (token) {
-            console.log(token)
+            //console.log(token)
             AsyncStorage.setItem("access_token", token);
-            AsyncStorage.setItem("username", this.state.username);
-            AsyncStorage.setItem("pass", this.state.pwd);
+           //  AsyncStorage.setItem("username", this.state.username);
+           //  AsyncStorage.setItem("pass", this.state.pwd);
            // AsyncStorage.setItem("id",this.state.id),
-            console.log(AsyncStorage.getItem("access_token"));
+            console.log('AsyncStoreage: '+AsyncStorage.getItem("access_token"));
             console.log("Sucess");
             this.props.navigation.navigate("Activity", {});
 
           }
         })
         .catch(err => {
-          console.log("ERR", err)
+          console.log("ERR", err);
+          this.setState({showLoading:false});
           ToastAndroid.show(
             "Lỗi đăng nhập!",
             ToastAndroid.LONG

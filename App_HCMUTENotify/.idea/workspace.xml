@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../hcmute_notify_management_backoffice" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -76,6 +76,18 @@
       <workItem from="1568100846421" duration="1828000" />
       <workItem from="1569052763057" duration="14789000" />
       <workItem from="1569152644634" duration="115000" />
+      <workItem from="1569153618748" duration="6685000" />
+      <workItem from="1569166611204" duration="5588000" />
+      <workItem from="1569223349760" duration="3380000" />
+      <workItem from="1570035219201" duration="4762000" />
+      <workItem from="1571069919783" duration="665000" />
+      <workItem from="1571104764100" duration="1973000" />
+      <workItem from="1571125916799" duration="3375000" />
+      <workItem from="1571150411512" duration="2649000" />
+      <workItem from="1571153947249" duration="1799000" />
+      <workItem from="1571201284670" duration="6615000" />
+      <workItem from="1571295066066" duration="4705000" />
+      <workItem from="1572629173915" duration="7648000" />
     </task>
     <servers />
   </component>

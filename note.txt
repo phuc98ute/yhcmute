@@ -5,3 +5,4 @@ npm install --save react-native-push-notification
 react-native link react-native-push-notification
 
 https://github.com/zo0r/react-native-push-notification
+checkios

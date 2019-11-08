@@ -1,6 +1,22 @@
 import React, {Component} from 'react'
-import {StyleSheet,Text,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,AsyncStorage,ScrollView} from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    Alert,
+    View,
+    Image,
+    TouchableWithoutFeedback,
+    StatusBar,
+    TextInput,
+    SafeAreaView,
+    Keyboard,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    AsyncStorage,
+    ScrollView,
+    FlatList,
+    ToastAndroid
+} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
 import Config from 'react-native-config';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
@@ -18,33 +34,27 @@ export default class Signup extends Component{
                 username: "",
                 password: "",
             },
-            API:{
-                fullName: "",
-                email: "",
-                image: "",
-                phone: "",
-                studentCode: "",
-                aClassName: "",
-                faculytyName: "",
-                shortName: "",
-                enableDropdown:true,
-                aClassid:'',
-            },
+            idxKhoa:"",
+            idxlop:"",
             contentLop:'Vui lòng chọn lớp!',
             listKhoa:[],
             listLop:[],
             dialogVisible:false,
-            username:"16110423",
-            password:"vhp123vhp",
-            code: "18133050",
-            firstname: "Vo Hong",
-            lastname: "Phuc",
-            aClassid:"5da5ed710e2bc7393cd97ca6",
+            username:"",
+            password:"",
+            code: "",
+            firstname: "",
+            lastname: "",
+            aClassid:"",
+            lstKhoa:[],
+            listTempLop:[],
 
         }
+        this.sizeRef = React.createRef();
       }
+
       componentDidMount(){
-        var Response = fetch(`${Config.API_URL}/api/v1/faculties/list`,
+        var Response = fetch(`${Config.API_URL}/api/v1/faculty/getAll`,
         {
             method: 'GET',
             headers: {
@@ -52,50 +62,50 @@ export default class Signup extends Component{
                 'Content-Type': 'application/json',
             },
         })
-        .then(Response => Response.json()
+        .then((Response) => Response.json()
         )
         .then(ResponseJson => {
-            console.log(ResponseJson)
+
            this.setState({listKhoa:ResponseJson})
+            this.state.listKhoa.map(item => (
+                this.state.lstKhoa.push(item.vnName)
+            ));
         })
         .catch(error => {
             console.log(error);
         });
+
       }
     _selectDropdownKhoa(idx){
-        console.log(this.state.listKhoa[idx].id)
-         //console.log(this.state.listLop.length)
-        // this.setState({shortName:listKhoaContent[idx]})
+        this.setState({"idxKhoa":idx})
+
         this.setState({enableDropdown:false})
-        var Response = fetch(`${Config.API_URL}/api/v1/classes/list/faculty/${this.state.listKhoa[idx].id}`)
-        .then(Response => Response.json()
-        )
-        .then(ResponseJson => {
-            console.log(ResponseJson)
-           this.setState({listLop:ResponseJson})
-           console.log(this.state.listLop.length)
-        })
-        .catch(error => {
-            console.log(error);
-        }).then(()=>{
-            if(this.state.listLop.length==0) {
-                this.setState({contentLop:'Danh sách lớp trống',enableDropdown:true}) 
-            }
-            if(this.state.listLop.length!=0)
-            {
-               this.setState({contentLop:'Chọn lớp!'}) 
-            }
-        })
+
+        if(this.state.listKhoa[idx].classes!=null)
+        {
+            //this.setState({"listTempLop":[]});
+            this.state.listKhoa[idx].classes.map(item => (
+                this.state.listTempLop.push(item.name)
+            ));
+        }
+        console.log(this.state.listTempLop);
     }
     _selectDropdownLop(idx){
+        //console.log(idx)
+        this.setState({enableDropdown:false})
+        this.setState({"idxLop":idx});
        this.setState({aClassid:this.state.listLop.id})
+        //console.log("Dang ki noi dung")
+        //console.log(this.state.listKhoa[this.state.idxKhoa].id)
+       // console.log(this.state.listKhoa[this.state.idxKhoa].classes[idx].id)
     }
     _signup = () => {
         // const { fullName,username,password,email,studentCode,shortName,indexKhoa } = this.state;
-        if(this.state.fullName!=''&&this.state.username!=''&&this.state.email!=''&&this.state.studentCode!='')
+        if(this.state.fullName!=''&&this.state.username!=''&&this.state.email!=''&&this.state.studentCode!=''&&this.state.idxKhoa!=''&&this.state.idxLop!=undefined)
         {
-            //console.log(this.state.fullName)
-
+            console.log("DU dieu kien")
+            console.log(this.state.idxLop)
+            //console.log(this.state.firstname+" "+this.state.lastname+" "+this.state.username+" "+ this.state.email+ " "+this.state.studentCode+" "+this.state.listKhoa[this.state.idxKhoa].classes[this.state.idxLop].id)
             var Response = fetch(`${Config.API_URL}/api/v1/user/register`,
                 {
                     method: 'POST',
@@ -104,39 +114,55 @@ export default class Signup extends Component{
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        username: this.state.username,
-                        password:this.state.password,
+                        "username": this.state.username,
+                        "password":this.state.password,
                         student: {
-                            code: this.state.code,
+                            code: this.state.studentCode,
                             firstName: this.state.firstname,
                             lastName: this.state.lastname,
                             aClass: {
-                                id:this.state.aClassid,
+                                id:this.state.listKhoa[this.state.idxKhoa].classes[this.state.idxLop].id,
                               }
                         }
                     })
 
                 })
-                .then(Response => Response.json()
+                .then((Response) => Response.json()
                 )
                 .then(ResponseJson => {
                     console.log(ResponseJson)
+                    if(ResponseJson.status =="409") {
+                        ToastAndroid.show("Tài khoảng này đã được sử dụng!",ToastAndroid.LONG);
+                    }
+                    else {
+                        if(ResponseJson.id!=undefined) {this.setState({dialogVisible:true})}
+                    }
                     //this.setState({dialogVisible:true})
                 })
-                
+
                 .catch(error => {
                     console.log(error);
                 });
+
+        }
+        else{
+            ToastAndroid.show("Nhập đầy đủ các trường trên để đăng kí!",ToastAndroid.LONG);
         }
 
     };
 
-    renderButtonText(rowData) {
-        //console.log('rowdata', rowData);
-        return `${rowData.name}`;
+    renderButtonTextLop(rowData) {
+        console.log("rowData")
+        console.log(rowData);
+        return `Lớp ${rowData}`;
       }
-    
-      dropdownRenderRow(rowData, rowID, highlighted) {
+
+    renderButtonTextKhoa(rowData) {
+        this.sizeRef.current.select(-1);
+        return `Khoa ${rowData}`;
+    }
+
+        dropdownRenderRow(rowData, rowID, highlighted) {
        return (
            <View style={{fontSize:13, justifyContent: 'center',padding:6}} >
              <Text style={styles.dropdownRowTextStyle}>
@@ -145,61 +171,92 @@ export default class Signup extends Component{
            </View>
        );
      }
+    renderItem = ({ item }) => {
+        console.log(item.vnName);
+        return(
+            <Text> {item.vnName} </Text>
+            )
+
+    }
+    _onDropdownWillShowLop(){
+        console.log("_onDropdownWillShowLop")
+        console.log(this.state.listTempLop)
+        if(this.state.listTempLop && this.state.listTempLop.length == 0){
+
+            ToastAndroid.show(
+                "Danh sách lớp rỗng!",
+                ToastAndroid.LONG
+            );
+        }
+    }
+    _onDropdownWillShowKhoa(){
+        this.setState({"listTempLop":[]})
+        console.log("_onDropdownWillShowKhoa")
+        console.log(this.state.lstKhoa)
+        if(this.state.lstKhoa && this.state.lstKhoa.length == 0){
+
+            ToastAndroid.show(
+                "Danh sách khoa rỗng!",
+                ToastAndroid.LONG
+            );
+        }
+    }
+
 
     
     render (){
-        
         return (
             <ScrollView style={styles.inforContainer}>
                 <Text style={styles.title}>
                 Đăng kí tài khoản
                 </Text>
                 <TextInput style={styles.input}
-                placeholder="Nhập họ tên"
+                placeholder="Nhập họ đệm"
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
-                onChangeText={fullName => this.setState({fullName})}
+                onChangeText={firstname => this.setState({firstname})}
                 underlineColorAndroid={'transparent'}
+                />
+                <TextInput style={styles.input}
+                           placeholder="Nhập tên"
+                           placeholderTextColor='rgba(84, 110, 122,0.8)'
+                           onChangeText={lastname => this.setState({lastname})}
+                           underlineColorAndroid={'transparent'}
                 />
                 <Text style={{color:'#3366CC', fontSize:15,textAlign:'center'}}>Chúng tôi sử dụng email sinh viên từ MSSV này!</Text>
                 <TextInput style={styles.input}
                 placeholder="Nhập mã số sinh viên"
-                onChangeText={studentCode => this.setState({studentCode:studentCode,username:studentCode,email:`${studentCode}@student.hcmute.edu.vn`})}
+                onChangeText={studentCode => this.setState({"studentCode":studentCode,"username":studentCode,"email":`${studentCode}@student.hcmute.edu.vn`})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
-                {/* <TextInput style={styles.input}
-                placeholder="Nhập email"
-                keyboardType="email-address"
-                onChangeText={email=> this.setState({email})}
-                placeholderTextColor='rgba(84, 110, 122,0.8)'
-                underlineColorAndroid={'transparent'}
-                /> */}
                   <TextInput style={styles.input}
                 placeholder="Nhập số điện thoại"
                 onChangeText={phone => this.setState({phone})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
                 underlineColorAndroid={'transparent'}
                 />
-
-                <ModalDropdown 
-                dropdownTextStyle={{fontSize:15}} 
-                textStyle={{fontSize:13, justifyContent: 'center',padding:6}} 
+                <ModalDropdown
+                dropdownTextStyle={{fontSize:15}}
+                textStyle={{fontSize:13, justifyContent: 'center',padding:6}}
                 defaultValue='Vui lòng chọn khoa của bạn!'
                 style={styles.dropDownModal}
                 onSelect={(idx)=>this._selectDropdownKhoa(idx)}
-                renderButtonText={(rowData) => this.renderButtonText(rowData)}
-                renderRow={this.dropdownRenderRow.bind(this)}
-                options={this.state.listKhoa}/>
+                onDropdownWillShow={()=>this._onDropdownWillShowKhoa()}
+                renderButtonText={(rowData) => this.renderButtonTextKhoa(rowData)}
+                //renderRow={this.dropdownRenderRow.bind(this)}
+                options={this.state.lstKhoa}/>
 
-                <ModalDropdown 
-                dropdownTextStyle={{fontSize:15}} 
+                <ModalDropdown
+                    ref={this.sizeRef}
+                dropdownTextStyle={{fontSize:15}}
                 textStyle={{fontSize:13, justifyContent: 'center',padding:6}}
-                options={this.state.listLop}
+                options={this.state.listTempLop}
                 defaultValue={this.state.contentLop}
                 disabled={this.state.enableDropdown}
-                onSelect={(idx)=>this._selectDropdownKhoa(idx)}
-                renderButtonText={(rowData) => this.renderButtonText(rowData)}
-                renderRow={this.dropdownRenderRow.bind(this)}
+                onDropdownWillShow={()=>this._onDropdownWillShowLop()}
+                onSelect={(idx)=>this._selectDropdownLop(idx)}
+                renderButtonText={(rowData) => this.renderButtonTextLop(rowData)}
+                //renderRow={this.dropdownRenderRow.bind(this)}
                 style={styles.dropDownModal}/>
                 
                 <TouchableOpacity style={styles.buttonContainer}
@@ -210,6 +267,7 @@ export default class Signup extends Component{
                 onPress={() => this.props.navigation.navigate("Login", {})}>
                 <Text style={styles.buttonText}>Quay lại</Text>
                 </TouchableOpacity>
+
                 <ConfirmDialog
                   title="Đã đăng kí"
                   // message={this.state.activityContent}
@@ -224,7 +282,7 @@ export default class Signup extends Component{
                   }}
 
                 >
-                  <ScrollView style={{ height: '80%' }}>
+                  <ScrollView style={{ height: '20%' }}>
                     <Text>
                       Vui lòng kiểm tra Email đã đăng kí để nhận mật khẩu đăng nhập!
                     </Text>

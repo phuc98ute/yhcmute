@@ -34,26 +34,24 @@ export default class Login extends Component {
     header: null,
     drawerLockMode: 'locked-closed'
   }
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            pwd: "",
+            showLoading: false,
+            showLoading2: false,
+            topic:[]
+        };
+    }
     componentDidMount() {
-        this.checkPermission();
-        this.createNotificationListeners(); //add this line
-        firebase.notifications().getInitialNotification()
-            .then((notificationOpen: NotificationOpen) => {
-                if (notificationOpen) {
-                    // App was opened by a notification
-                    // Get the action triggered by the notification being opened
-                    const action = notificationOpen.action;
-                    // Get information about the notification that was opened
-                    const notification: Notification = notificationOpen.notification;
-                }
-            });
         this._autoLogin();
 
 
-        NetInfo.fetch().then(state => {
-            console.log("Connection type", state.type);
-            console.log("Is connected?", state.isConnected);
-        });
+        // NetInfo.fetch().then(state => {
+        //     ToastAndroid.show("Use: "+ state.type,ToastAndroid.LONG);
+        //     ToastAndroid.show("Is connected: "+ state.isConnected,ToastAndroid.LONG);
+        // });
 
         console.log(deviceHeight)
     }
@@ -109,11 +107,16 @@ export default class Login extends Component {
         }
     }
 
-    async createNotificationListeners() {
+    async createNotificationListeners(topic) {
         /*
         * Triggered when a particular notification has been received in foreground
         * */
-        firebase.messaging().subscribeToTopic("CNTT");
+        console.log('========================================== TOPIC')
+        console.log(topic)
+        //firebase.messaging().subscribeToTopic(topic);
+        topic.map(item => (
+            firebase.messaging().subscribeToTopic(item)
+        ));
         this.notificationListener = firebase.notifications().onNotification((notification) => {
             const { title, body } = notification;
             console.log('onNotification:');
@@ -179,15 +182,7 @@ export default class Login extends Component {
 
 
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      pwd: "",
-      showLoading: false,
-      showLoading2: false
-    };
-  }
+
   
 
   handleClick = () => {
@@ -195,9 +190,6 @@ export default class Login extends Component {
       this.setState({ showLoading: true });
       var { navigate } = this.props.navigation;
       const { username, pwd } = this.state;
-      console.log(username);
-      console.log(pwd);
-      console.log(Config.API_URL);
       var res = fetch(
         `${Config.API_URL}/login?username=${username}&password=${pwd}`,
         {
@@ -210,21 +202,62 @@ export default class Login extends Component {
       )
         .then(res => {
           this.setState({ showLoading: false });
-          console.log("RES", res.headers.get("authorization"));
+
           let accessToken = res.headers.get("authorization");
 
           let decode = jwtDecode(accessToken);
-          console.log(decode);
+
           const tokenIndex = accessToken.lastIndexOf(" ") + 1;
           let token = accessToken.substr(tokenIndex);
           if (token) {
-            //console.log(token)
             AsyncStorage.setItem("access_token", token);
-           //  AsyncStorage.setItem("username", this.state.username);
-           //  AsyncStorage.setItem("pass", this.state.pwd);
-           // AsyncStorage.setItem("id",this.state.id),
-            console.log('AsyncStoreage: '+AsyncStorage.getItem("access_token"));
-            console.log("Sucess");
+
+            fetch(`${Config.API_URL}/api/v1/user/current`,
+                  {
+                      method: 'GET',
+                      headers: {
+                          Accept: 'application/json',
+                          'Content-Type': 'application/json',
+                          'Authorization': 'Bearer ' + token,
+                      },
+
+                  })
+                  .then(Response => Response.json()
+                  )
+                  .then(ResponseJson =>  {
+
+                      AsyncStorage.setItem('Account', JSON.stringify(ResponseJson));
+                      const subscribeUriKhoa = ResponseJson.student.aClass.faculty.topicUri.replace('/topics/', '');
+                      const subscribeUriLop = ResponseJson.student.aClass.faculty.classes[0].topicUri.replace('/topics/', '');
+                      this.state.topic.push(subscribeUriKhoa);
+                      this.state.topic.push(subscribeUriLop);
+                      this.state.topic.push("yhcmute");
+                        console.log('this.state.topic',this.state.topic)
+                      console.log('Asynstor login',AsyncStorage);
+                      AsyncStorage.setItem('topic',JSON.stringify(this.state.topic) );
+                      AsyncStorage.getItem('topic',(err,result)=>{
+                          console.log('result')
+                          console.log(result)
+                      })
+                      //Listen TOPIC
+                      this.checkPermission();
+                      this.createNotificationListeners(this.state.topic); //add this line
+                      firebase.notifications().getInitialNotification()
+                          .then((notificationOpen: NotificationOpen) => {
+                              if (notificationOpen) {
+                                  // App was opened by a notification
+                                  // Get the action triggered by the notification being opened
+                                  const action = notificationOpen.action;
+                                  // Get information about the notification that was opened
+                                  const notification: Notification = notificationOpen.notification;
+                              }
+                          });
+                  })
+                  .catch(error => {
+                      console.log(error);
+                  });
+
+              //----------------------------------------------------
             this.props.navigation.navigate("Activity", {});
 
           }
@@ -246,12 +279,14 @@ export default class Login extends Component {
     }
   };
   _forgotPwd = () => {
-    // ToastAndroid.show("Forgot pwd")
+      console.log("FOrgetPass");
+      this.props.navigation.navigate("ForgetPass", {});
   }
   render() {
     var { navigate } = this.props.navigation;
+
     return (
-     
+
       <View style={{ flex: 1 }}>
         <View style={{ flex: 7, justifyContent: 'flex-end' }}>
           <View style={{ height: deviceHeight * 0.7 }}>

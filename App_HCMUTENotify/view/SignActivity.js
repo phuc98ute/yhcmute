@@ -38,36 +38,41 @@ export default class Activity extends Component {
   };
   constructor() {
     super();
+      this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.state = {
       dataSource: [],
-      isLoading: true
+      isLoading: true,
+        studentId:"",
+        activytyName:"",
+        activityContent:"",
+        activityId:"",
+
     };
   }
 
   renderItem = ({ item }) => {
     Moment.locale('en');
     return (
-      
       <TouchableOpacity
         style={{ flex: 1, flexDirection: "column", marginBottom: 3 }}
         onPress={() =>
           this.setState({
             dialogVisible: true,
-            activytyName: item.actName,
-            activityContent: item.actContent,
-            activityId: item.id
+            activytyName: item.activity.name,
+            activityContent: item.activity.activityDescription.content,
+            activityId: item.activity.id
           })
         }
       >
         <View style={{ flex: 1, flexDirection: 'row' }} >
           <View style={styles.container}>
-            <Image source={{ uri: item.image }} style={styles.photo} />
+            <Image source={ item.activity.activityImages===null ?  require('../source/noimageBackground.png') : {uri:item.activity.activityImages}} style={styles.photo} />
             <View style={styles.container_text}>
               <Text style={styles.title}>
-                {item.actName}
+                {item.activity.name}
               </Text>
               <Text style={styles.description}>
-                {Moment(item.startDate).format('MMMM Do, YYYY H:mma')}
+                {Moment(item.startDate).format('l')}
               </Text>
             </View>
 
@@ -84,17 +89,17 @@ export default class Activity extends Component {
       </View>
     );
   };
-componentWillUnmount() {
-  // this.isCancelled = true;
-}
+
   componentDidMount() {
+      AsyncStorage.getItem('Account',(err,result)=>{
+          var temmp= JSON.parse(result)
+          console.log(temmp)
+          this.setState({'studentId':temmp.student.id})
+
     AsyncStorage.getItem('access_token', (err, result) => {
       console.log('Get data !');
-      console.log(result);
       if (result != null) {
-        console.log(result)
-        //var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration`,
-        var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration?aStatus=PIP`,
+        var Response = fetch(`${Config.API_URL}/api/v1/activity/getActivitiesRegistration?page=0&size=20&studentId=${this.state.studentId}`,
           {
             method: 'GET',
             headers: {
@@ -102,27 +107,38 @@ componentWillUnmount() {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer ' + result,
             },
-
           })
-          .then(Response => Response.json()
+          .then((Response) => Response.json()
           )
           .then(ResponseJson => {
             console.log(ResponseJson)
-            this.setState({
-              dataSource: ResponseJson.data,
-              isLoading: false,
+                  console.log("totalItems")
+                  this.setState({
+                      dataSource: ResponseJson.result,
+                      isLoading: false,
 
-            });
-            console.log(ResponseJson.data)
+                  });
           })
           .catch(error => {
             console.log(error);
           });
       }
-    }
-    )
+    })
+      });
     
   }
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    handleBackButtonClick() {
+        this.props.navigation.navigate("Activity",{});
+        return true;
+    }
 
   
   render() {
@@ -175,11 +191,17 @@ componentWillUnmount() {
                     </Header>
           <View>
             <View style={{ height: '93%' }}>
-              <FlatList
-                data={this.state.dataSource}
-                renderItem={this.renderItem}
-                keyExtractor={(item, index) => index.toString()}
-              />
+                {
+                    (this.state.dataSource && this.state.dataSource.length>0) ?
+                    <FlatList
+                        data={this.state.dataSource}
+                        renderItem={this.renderItem}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                    :
+                        <Text> Chưa đăng ký hoạt động nào </Text>
+                }
+
               <ConfirmDialog
                 style={{borderRadius:20}}
                 title={this.state.activytyName}

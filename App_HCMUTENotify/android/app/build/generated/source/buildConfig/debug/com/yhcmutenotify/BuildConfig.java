@@ -9,7 +9,7 @@ public final class BuildConfig {
   public static final String BUILD_TYPE = "debug";
   public static final String FLAVOR = "";
   public static final int VERSION_CODE = 1;
-  public static final String VERSION_NAME = "1.0";
+  public static final String VERSION_NAME = "0.1";
   // Fields from default config.
-  public static final String API_URL = "http://192.168.1.12:8080";
+  public static final String API_URL = "http://103.89.85.52:8080";
 }

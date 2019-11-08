@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   Keyboard,
   TouchableOpacity,
+    BackHandler,
   KeyboardAvoidingView,
   ToastAndroid,
   Dimensions,
@@ -30,74 +31,92 @@ export default class ChangeProfile extends Component {
     header: null,
     
   };
-  componentDidMount(){
-   
-  
-  }
-  componentWillMount() {
-   
-  }
+
   constructor(props) {
     super(props);
+      this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.state = {
       oldPwd: "",
       newPwd: "",
       newPwd2:"",
       showLoading: false,
+        account:"",
 
     };
   }
-  
-  _handle = () => {
-    if(this.state.oldpwd!=""&&this.state.newpwd!=""&&this.state.newpwd2!=""&&this.state.newpwd==this.state.newpwd2)
-    {
-      this.setState({ showLoading: true });
-    var { navigate } = this.props.navigation;
-    AsyncStorage.getItem('access_token', (err, result) => {
-      if (result != null) {
-    var res = fetch(
-      // `${Config.API_URL}//api/v1/users/update/password?oldPwd=${this.state.oldpwd}&newPwd=${this.state.newpwd}`,
-        `${Config.API_URL}/api/v1/user/changeStudentPassword/5da6a4800e2bc70fb49581da`,
+    componentDidMount(){
 
-          // `/api/v1/user/changeStudentPassword/${AsyncStorage.getItem('id')}`,
-      {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          'Authorization': 'Bearer ' + result,
-        },
-          body: JSON.stringify({
-              oldPwd:this.state.oldPwd,
-              newPwd:this.state.newPwd,
-      })
-      }
-    )
-        .then ((Response) => Response.json()
-        )
-        .then((ResponseJson) => {
-            console.log('resJson',ResponseJson)
-            this.setState({ showLoading: false });
-            if(ResponseJson.status==="METHOD_NOT_ALLOWED") {ToastAndroid.show ("Lỗi không đổi được mật khẩu!",ToastAndroid.LONG)}
-            else {AsyncStorage.clear(), this.props.navigation.navigate("Login", {});}
-        })
-      .catch(err => {
-        console.log("ERR", err),
-          ToastAndroid.show(
-            "Lỗi đổi mật khẩu!",
-            ToastAndroid.LONG
-          );
-      });
-    }})}
-
-    else
-    {
-      ToastAndroid.show(
-        "Điền đầy đủ các trường trên!",
-        ToastAndroid.LONG
-      );
+        // this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        //     this.props.navigation.navigate("ChangeProfile",{})
+        //     //this.goBack(); // works best when the goBack is async
+        //     return true;
+        // });
     }
-  };
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    handleBackButtonClick() {
+        this.props.navigation.navigate("Profile",{});
+        return true;
+    }
+
+    _handle = () => {
+        if (this.state.oldPwd != "" && this.state.newPwd != "" && this.state.newPwd2 != "" && this.state.newPwd == this.state.newPwd2) {
+            AsyncStorage.getItem('Account', (err, result) => {
+                var res = JSON.parse(result);
+                this.setState({'account': res.id});
+            });
+            this.setState({showLoading: true});
+            var {navigate} = this.props.navigation;
+            AsyncStorage.getItem('access_token', (err, result) => {
+                console.log("id account: ")
+                console.log(this.state.account);
+                if (result != null) {
+                    var res = fetch(
+                        `${Config.API_URL}/api/v1/user/changeStudentPassword/${this.state.account}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                                'Authorization': 'Bearer ' + result,
+                            },
+                            body:
+                                JSON.stringify({
+                                    "oldPwd": this.state.oldPwd,
+                                    "newPwd": this.state.newPwd
+                                }),
+                        }
+                    )
+                        .then((Response) => Response.json()
+                        )
+                        .then((ResponseJson) => {
+                            console.log('resJson', ResponseJson)
+                            this.setState({showLoading: false});
+                            if (ResponseJson.status === "METHOD_NOT_ALLOWED") {
+                                ToastAndroid.show("Lỗi không đổi được mật khẩu!", ToastAndroid.LONG)
+                            } else {
+                                AsyncStorage.clear(), this.props.navigation.navigate("Login", {});
+                            }
+                        })
+                        .catch(err => {
+                            console.log("ERR", err),
+                                ToastAndroid.show("Lỗi đổi mật khẩu!", ToastAndroid.LONG);
+                        });
+                }
+            })
+        } else {
+            ToastAndroid.show(
+                "Điền đầy đủ các trường trên!",
+                ToastAndroid.LONG
+            );
+        }
+    };
   render() {
     var { navigate } = this.props.navigation;
     return (

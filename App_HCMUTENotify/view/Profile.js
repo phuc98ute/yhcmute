@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     Image,
-    TouchableOpacity, Dimensions, ScrollView, FlatList, ToastAndroid
+    TouchableOpacity, Dimensions, ScrollView, FlatList, ToastAndroid, BackHandler
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ConfirmDialog, ProgressDialog } from "react-native-simple-dialogs";
@@ -12,6 +12,7 @@ import Config from 'react-native-config';
 import { Avatar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Entypo';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import {Rating} from 'react-native-ratings'
 import Moment from 'moment';
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300;
@@ -24,16 +25,19 @@ const logobar=deviceWidth*0.1;
 export default class Profile extends Component {
 
   constructor() {
-    super()
+    super();
+      this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     this.state={
         fullName:"",
         studentCode:"",
         phone:"00",
         email:"00",
         image:"",
+        studentId:"",
         dataSource: [],
       isLoading: true,
       showLoading:false,
+        account:"",
     }
 }
 
@@ -72,83 +76,57 @@ export default class Profile extends Component {
 
   componentDidMount()
   {
-    this.setState({showLoading:true})
+    //this.setState({"showLoading":true})
     console.log("Da vao DidMount")
-    AsyncStorage.getItem('access_token', (err, result) => {
-      if (result != null) {
-        console.log('Token Profile result '+result)
-        var Response = fetch(`${Config.API_URL}/api/v1/user/current`,
-          {
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + result,
-            },
-  
-          })
-          .then(Response => Response.json()
-          )
-          .then(ResponseJson =>  {console.log(ResponseJson)
-            {
-                if(ResponseJson.student!=null){
-                    this.setState({
-                             fullName:ResponseJson.student.fullName,
-                         studentCode:ResponseJson.student.code,
-                        //  phone:ResponseJson.data.people.phone,
-                        //  email:ResponseJson.data.people.email,
-                        // image:ResponseJson.data.people.image,
-                        showLoading:false,
-                    })
-                }
-                else {
-                    console.log('Student null Object')
-                    this.setState({showLoading:false})
-                }
-            }
+      AsyncStorage.getItem('Account', (err, result) => {
+          var res = JSON.parse(result);
+          this.setState({'account': res});
+          console.log("account")
+          console.log(res)
+          this.setState({"studentId":this.state.account.student.id,"studentCode":this.state.account.student.code,"fullName":this.state.account.student.fullName})
 
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
-    });
+      });
     AsyncStorage.getItem('access_token', (err, result) => {
       console.log('Get data !');
-      console.log(result);
       if (result != null) {
-        console.log(result)
         //var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration`,
-        var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration?aStatus=PIP`,
-          {
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + result,
-            },
-
-          })
-          .then(Response =>{
-              console.log('profile json', Response);
-              Response.json()}
-          )
-          .then(ResponseJson => {
-            console.log(ResponseJson)
-            this.setState({
-              dataSource: ResponseJson.data,
-              isLoading: false,
-
-            });
-            console.log(ResponseJson.data)
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        //var Response = fetch(`${Config.API_URL}/api/v1/people/activities/registration?aStatus=PIP`,
+          var Response = fetch(`${Config.API_URL}/api/v1/activity-detail/joined?id=${this.state.account.student.id}`,
+              {
+                  method: 'GET',
+                  headers: {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Bearer '+result,
+                  },
+              })
+              .then((Response) => Response.json())
+              .then((ResponseJson) => {
+                  console.log(ResponseJson)
+                    this.setState({
+                      "dataSource": ResponseJson,
+                      "showLoading": false,
+                    });
+              })
+              .catch((error) => {
+                  console.log(error)
+              })
       }
     }
     )
   }
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    handleBackButtonClick() {
+        this.props.navigation.navigate("Activity",{});
+        return true;
+    }
   renderItem = ({ item }) => {
     Moment.locale('en');
     return (
@@ -162,7 +140,7 @@ export default class Profile extends Component {
           //   activityContent: item.actContent,
           //   activityId: item.id
           // })
-          this.props.navigation.navigate('RatingComponet',{'actName':item.actName,'activityContent':item.activityContent,'activityId':item.id})
+          this.props.navigation.navigate('RatingComponet',{'actName':item.activity.name,'activityContent':item.activity.activityDescription.content,'activityId':item.activity.id})
         }
       >
         <View style={{ flex: 1, flexDirection: 'row' }} >
@@ -171,11 +149,20 @@ export default class Profile extends Component {
             <Image source={{ uri: item.image }} style={styles.photo} />
             <View style={styles.container_text}>
               <Text style={styles.title}>
-                {item.actName}
+                {item.activity.name}
               </Text>
               <Text style={styles.description_activity}>
                 {Moment(item.startDate).format('MMMM Do, YYYY H:mma')}
               </Text>
+                <Rating
+
+                    type='star'
+                    ratingCount={5}
+                    startingValue={item.activity.rating}
+                    imageSize={20}
+                    isDisabled={true}
+                    readonly={true}
+                />
             </View>
           </View>
         </View>

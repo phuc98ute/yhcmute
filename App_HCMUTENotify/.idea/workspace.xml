@@ -37,6 +37,11 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\res\xml" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -88,6 +93,19 @@
       <workItem from="1571201284670" duration="6615000" />
       <workItem from="1571295066066" duration="4705000" />
       <workItem from="1572629173915" duration="7648000" />
+      <workItem from="1572666030641" duration="4351000" />
+      <workItem from="1572675067814" duration="12195000" />
+      <workItem from="1572748284854" duration="12107000" />
+      <workItem from="1572790134931" duration="9221000" />
+      <workItem from="1572818936901" duration="5473000" />
+      <workItem from="1572848147384" duration="13932000" />
+      <workItem from="1572883442068" duration="4200000" />
+      <workItem from="1572936091564" duration="8620000" />
+      <workItem from="1572945620494" duration="2106000" />
+      <workItem from="1572948963253" duration="878000" />
+      <workItem from="1572951573663" duration="1266000" />
+      <workItem from="1572966956809" duration="4489000" />
+      <workItem from="1573219419594" duration="280000" />
     </task>
     <servers />
   </component>

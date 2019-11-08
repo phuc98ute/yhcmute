@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet,Alert,View,Image,TouchableWithoutFeedback,StatusBar,
-TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler} from 'react-native'
+TextInput,SafeAreaView,Keyboard,TouchableOpacity,KeyboardAvoidingView,ScrollView,Dimensions,BackHandler,ToastAndroid} from 'react-native'
 import ModalDropdown from 'react-native-modal-dropdown';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem } from "native-base";
@@ -19,8 +19,10 @@ export default class signingactivity extends Component{
     //     headerBackTitleVisible:false,
     // };
     constructor(props) {
-        super(props)
+        super(props);
+        this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
         this.state={
+            studentId:'',
             actName: this.props.navigation.state.params.actName,
             actContent:this.props.navigation.state.params.actContent,
             activityImage:this.props.navigation.state.params.activityImage,
@@ -33,41 +35,70 @@ export default class signingactivity extends Component{
         };
     }
     componentWillMount() {
-        //BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-     } 
-     componentWillUnmount() {
-       // BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+
+    handleBackButtonClick() {
+        this.props.navigation.navigate("Activity",{});
+        return true;
     }
     _signActivity=()=>
     {
-        this.setState({dialogVisible:true});
-        const { activityId,actName } = this.state;
-        AsyncStorage.getItem('access_token', (err, result) => {
-            if(result!=null){
-                console.log(result)
-            var Response=fetch(`${Config.API_URL}/api/v1/activities/registration/${activityId}`, 
-            {
-            method: 'POST',
-            headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization':'Bearer '+result,
-            },
-            
-        })
-          .then(Response => Response.json()
-          )
-          .then(ResponseJson => {
-            console.log(ResponseJson.isSuccess);
-            this.setState({isTrue:ResponseJson.isSuccess});
-            { this.state.isTrue=='false' ? this.setState({message:ResponseJson.errors[0].message}) : this.setState({message:"Đã đăng kí thành công, Xin cảm ơn!"}) };
-            
-            })
-          .catch(error => {
-            console.log(error);
-          });
-        }
-    });
+        //this.setState({dialogVisible:true});
+        //const { activityId,actName } = this.state;
+        AsyncStorage.getItem('Account',(err,result)=>{
+            var temmp= JSON.parse(result)
+            console.log(temmp)
+            this.setState({'studentId':temmp.student.id})
+                AsyncStorage.getItem('access_token', (err, result1) => {
+                    if(result1!=null){
+                        console.log(result1)
+                    var Response=fetch(`${Config.API_URL}/api/v1/activity-detail/registerJoiner`,
+                    {
+                    method: 'POST',
+                    headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization':'Bearer '+result1,
+                    },
+                        body:JSON.stringify({
+                            "studentId": this.state.studentId,
+                            "activityId": this.state.activityId
+                        })
+
+                })
+                  .then((Response) => Response.json()
+                  )
+                  .then(ResponseJson => {
+                     console.log(ResponseJson);
+                    // this.setState({isTrue:ResponseJson.isSuccess});
+                    // { this.state.isTrue=='false' ? this.setState({message:ResponseJson.errors[0].message}) : this.setState({message:"Đã đăng kí thành công, Xin cảm ơn!"}) };
+
+                      if(ResponseJson.status == 409) {
+                            ToastAndroid.show("Bạn đã đăng kí hoạt động này!",ToastAndroid.LONG)
+                        } else {
+                            if(ResponseJson.id != null) {
+                                { this.state.isTrue=='false' ? this.setState({message:ResponseJson.activity.name}) : this.setState({message:"Đã đăng kí thành công, Xin cảm ơn!"}) };
+                                this.setState({"dialogVisible":true})
+                            }
+                            else {
+                                ToastAndroid.show("LỖi đăng kí!",ToastAndroid.LONG)
+                            }
+                        }
+
+                    })
+                  .catch(error => {
+                    console.log(error);
+                  });
+                }
+            });
+    })
+        console.log(this.state.activityId)
+
 }
       
     render (){
@@ -101,7 +132,7 @@ export default class signingactivity extends Component{
                     </Header>
                 <View style={{flex:10}}>
                     <View style={styles.cover}>
-                        <Image resizeMode="contain" style={styles.photocover} source={{uri:this.state.activityImage}}></Image>
+                        <Image resizeMode="contain" style={styles.photocover} source={{uri:(this.state.activityImage===null?"https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.0-9/69706279_1929768430502421_5081089526852485120_o.jpg?_nc_cat=110&_nc_oc=AQmX1vcPL_tViFstIDWTPAMp_3euCh0xzzRXVJr0Ll0IO4vupBxtt7aMR-tivNOjcDUVQH03r3IBJ85wwXU5sGZS&_nc_ht=scontent.fsgn5-3.fna&oh=8df76efad51748eb3eba3438235d8c94&oe=5E1EFBA6":this.state.activityImage)}}></Image>
                     </View>
                     <Text style={styles.name}>{this.state.actName}</Text>
                     <View style={{ flex:10 }}>

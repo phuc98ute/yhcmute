@@ -1,4 +1,0 @@
-#Sat Nov 02 00:43:50 ICT 2019
-base.0=C\:\\Users\\PhucVo\\Desktop\\gitdev1.0\\dev1.0\\App_HCMUTENotify\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex

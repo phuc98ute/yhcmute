@@ -7,6 +7,6 @@
     <integer name="react_native_dev_server_port">8081</integer>
     <integer name="react_native_inspector_proxy_port">8081</integer>
     <!-- Values from default config. -->
-    <string name="API_URL" translatable="false">"http://192.168.1.12:8080"</string>
+    <string name="API_URL" translatable="false">"http://103.89.85.52:8080"</string>
 
 </resources>

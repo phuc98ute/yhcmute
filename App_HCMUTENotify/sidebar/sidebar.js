@@ -1,5 +1,6 @@
 import React from "react";
-import { Image,AsyncStorage } from "react-native";
+import { Image } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   Button,
   Text,
@@ -9,8 +10,20 @@ import {
   Content,
   View,
 } from "native-base";
+import firebase from 'react-native-firebase';
 const routes = [{component:"Profile",title:"Tài khoản"}, {component:"Activity",title:"Hoạt động đang diễn ra"}, {component:"SignActivity",title:"Hoạt động đã đăng kí"},{component:"Login",title:"Đăng xuất"}];
+
 export default class SideBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topic:[]
+    };
+  }
+  componentDidMount(){
+
+  }
+
   render() {
     return (
       <Container>
@@ -58,7 +71,34 @@ export default class SideBar extends React.Component {
                 <ListItem
                   button
                   
-                  onPress={() =>{data.component!="Login" ? this.props.navigation.navigate(data.component):AsyncStorage.clear();this.props.navigation.navigate(data.component)} }
+                  onPress={() =>{
+                      console.log("chuyen amn hinh")
+                      if(data.component!="Login") {this.props.navigation.navigate(data.component)}
+                      else {
+                          console.log('Data login')
+                          console.log('Asynsyorage',AsyncStorage)
+                          AsyncStorage.getItem('topic', (err, result) => {
+                              console.log('result',result)
+                                  if (result != null) {
+                                      this.setState({'topic':JSON.parse(result)});
+                                      console.log('result'+result);
+                                      console.log('state'+this.state.topic)
+                                      // this.state.topic.map((item) => {
+                                      //
+                                      // });
+                                      for (let item of this.state.topic) {
+                                          firebase.messaging().unsubscribeFromTopic(item);
+                                      }
+
+                                  }
+                              }
+                          );
+                          AsyncStorage.clear();
+                          this.props.navigation.navigate(data.component);
+                      }
+
+                  }
+                  }
                 >
                   <Text>{data.title}</Text>
                 </ListItem>

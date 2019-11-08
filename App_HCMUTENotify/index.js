@@ -1,6 +1,6 @@
 /** @format */
 
-import {AppRegistry} from 'react-native';
+import {AppRegistry,PermissionsAndroid} from 'react-native';
 import {createStackNavigator,createDrawerNavigator,} from 'react-navigation';
 import {name as appName} from './app.json';
 import Login from './view/login'
@@ -13,6 +13,7 @@ import SideBar from './sidebar/sidebar';
 import signingactivity from './view/signingactivity';
 import changeProfile from './view/ChangeProfile';
 import ratingComponet from './view/ratingComponet';
+import Forgetpass from "./view/Forgetpass";
 import bgMessaging from './bgMessaging';
 import test from'./view/test';
 
@@ -25,7 +26,8 @@ const AppNavigator = createStackNavigator({
         Signup: {screen: Signup},
         signingactivity: {screen: signingactivity},
         ChangeProfile: {screen: changeProfile},
-        RatingComponet: {screen: ratingComponet}
+        RatingComponet: {screen: ratingComponet},
+        ForgetPass : {screen: Forgetpass}
     },
     {
         headerMode: 'none',
@@ -44,12 +46,17 @@ const HomeScreenRouter = createDrawerNavigator(
         Signup: {screen: Signup},
         signingactivity: {screen: signingactivity},
         ChangeProfile: {screen: changeProfile},
-        RatingComponet: {screen: ratingComponet}
-    },
+        RatingComponet: {screen: ratingComponet},
+        ForgetPass : {screen: Forgetpass},
+        SideBar : {screen: SideBar},
+    }
+    ,
     {
         contentComponent: props => <SideBar {...props} />
+        //contentComponent: ({navigation}) =>  {return(<SideBar/>)}
     }
 );
+
 export default HomeScreenRouter;
 AppRegistry.registerComponent(appName, () => HomeScreenRouter);
 AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () => bgMessaging); // <-- Add this line

@@ -1,1 +1,1 @@
-{"mName":"debug","mStoreFile":"C:\\Users\\PhucVo\\Desktop\\gitdev1.0\\dev1.0\\App_HCMUTENotify\\android\\app\\debug.keystore","mStorePassword":"android","mKeyAlias":"androiddebugkey","mKeyPassword":"android","mStoreType":"jks","mV1SigningEnabled":true,"mV2SigningEnabled":true}
+{"mName":"release","mStoreFile":"C:\\Users\\PhucVo\\Desktop\\gitdev1.0\\dev1.0\\App_HCMUTENotify\\android\\app\\my-upload-key.keystore","mStorePassword":"spkt2019","mKeyAlias":"my-key-alias","mKeyPassword":"spkt2019","mStoreType":"jks","mV1SigningEnabled":true,"mV2SigningEnabled":true}

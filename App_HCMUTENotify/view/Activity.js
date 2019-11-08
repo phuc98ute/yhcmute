@@ -26,8 +26,9 @@ export default class Activity extends Component{
         header:null
     };
     constructor() {
-        super()
+        super();
         this.state={
+            token:"",
             dataSource:[],
             dataSource1:[],
             isLoading:false,
@@ -44,135 +45,37 @@ export default class Activity extends Component{
                 page: 0,
                 size: 20,
                 levelCode: "vn.yhcmute.act.level.faculty",
-                facultyId: "5d77d9f0463348c9ae0a3107",
+                facultyId: "5dbd46af1d12841b60ce2837",
             },
             index: 0,
             routes: [
-                {key: 'first', icon: 'backup-restore', title: 'Suggestions'},
-                {key: 'second', icon: 'heart',title: 'Favoris'},
+                {key: 'first', icon: 'backup-restore', title: 'CẤP TRƯỜNG'},
+                {key: 'second', icon: 'heart',title: 'CẤP KHOA'},
 
             ],
         }
     }
+    componentDidMount() {
 
-    _testDangki=()=>{
-        AsyncStorage.getItem('access_token',(err,result)=>{
-            fetch (`${Config.API_URL}/api/v1/activity-detail/registerJoiner`,
-                {
-                    method:'POST',
-                    headers:{
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + result,
-                    },
-                    body: JSON.stringify({
-                        studentId:"5d7a7cb5a2235907388ffd29",
-                        activityId: "5d792b62463348dc59ae6256",
-                    })
-                }
-            )
-                .then ((Response) => Response.json())
-                .then((ResponseJson) => {
-                    console.log("Dang ki thanh cong")
-
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        })
-    }
-
-    //selectComponent = (activePage) => () => this.setState({activePage,showLoading:true})
-    _renderComponent = () => {
-        //let token=AsyncStorage.getItem("access_token");
         AsyncStorage.getItem('access_token', (err, result) => {
-                if (result != null) {
-                    console.log(result)
-                      if(this.state.activePage === 1)
-                      {
-                          fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
-                        {
-                            method:'POST',
-                            headers:{
-                                Accept: 'application/json',
-                                'Content-Type': 'application/json',
-                                'Authorization':'Bearer '+result,
-                            },
-                            body:
-                                JSON.stringify({
-                                    page: 0,
-                                    size: 20,
-                                    levelCode: "vn.yhcmute.act.level.faculty",
-                                    facultyId: "5d77d9f0463348c9ae0a3107",}),
-                        })
-                        .then ((Response) => Response.json())
-                        .then((ResponseJson) => {
-                            console.log("activity", ResponseJson.result)
-                            this.setState({
-                                dataSource: ResponseJson.result,
-                                showLoading: false
-                            })
-                            console.log(this.state.dataSource)
-                            return (
-                                <View>
-                                    <View style={{ height: '88%' }}>
-                                        <FlatList
-                                            data={this.state.dataSource}
-                                            renderItem={this.renderItem}
-                                            keyExtractor={(item, index) => index.toString()}
-                                        />
-                                    </View>
+            this.setState({token:result})
 
-                                </View>
-                            )
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-
-                }
-                      if(this.state.activePage === 2) {
-                          // fetch(`${Config.API_URL}/api/v1/activities/getByStudents/faculty?keyword=${this.state.keyword}&status=PIP&unit=yfit&page=0&size=2147483647`)
-                          //     .then((Response) => Response.json())
-                          //     .then((ResponseJson) => {
-                          //         this.setState({
-                          //             dataSource: ResponseJson.data,
-                          //             showLoading: false
-                          //         })
-                          //     })
-                          //     .catch((error) => {
-                          //         console.log(error)
-                          //     })
-                          return (
-                              <View>
-                                  <View style={{ height: '88%' }}>
-                                      <FlatList
-                                          data={this.state.dataSource}
-                                          renderItem={this.renderItem}
-                                          keyExtractor={(item, index) => index.toString()}
-                                      />
-                                  </View>
-
-                              </View>
-                          )
-                    }
-                }
-            }
-        )
-
+        })
+            .then(()=>{
+                this.loadData();
+            })
 
     }
     renderItem = ({ item }) => {
         const { navigate } = this.props.navigation;
-        const startDate=Moment(item.startDate).format('MMMM Do, YYYY H:mma');
-        console.log(startDate);
-        console.log(item.activityImages);
+        const startDate=Moment(item.activityDescription.startDate).format('MMMM Do, YYYY H:mma');
+
 
         //const startDate=item.startDate;
         return (
             <TouchableOpacity style={{ flex: 1, flexDirection:'column',marginBottom:3  }}
-                //onPress={()=>{this.setState({dialogVisible:true,activytyName:item.actName,activityContent:item.actContent,activityId:item.id,activityImage:item.image});
-                //navigate('signingactivity', { actName:item.actName,actContent:item.actContent,activityImage:item.image,activityId:item.id,activyLevel:item.activityLevel.unit });}}
+                 onPress={()=>{this.setState({dialogVisible:true,activytyName:item.name,activityContent:item.activityDescription.content,activityId:item.id,activityImage:item.activityDescription.coverImage});
+                 navigate('signingactivity', { actName:item.name,actContent:item.activityDescription.content,activityImage:item.activityDescription.coverImage,activityId:item.id,activyLevel:item.activityLevel.name });}}
             >
                 <View style={{ flex: 1, flexDirection: 'row' }} >
                     <View style={styles.container}>
@@ -184,16 +87,20 @@ export default class Activity extends Component{
                             <Text style={styles.description}>
                             - Thời gian :
                             {
-                                (item.activityDescription.startRegisCollaborator==null?" không có thời gian cụ thể":Moment(item.activityDescription.startRegisCollaborator).format('MMMM Do, YYYY H:mma'))
+                                (item.activityDescription.startDate==null?" không có thời gian cụ thể":Moment(item.activityDescription.startRegisCollaborator).format('l'))
                                 //(item.startDate===null?" không có thời gian cụ thể":item.startDate)
                             }
                             </Text>
                             <Text style={styles.description}>
-
                             {
-                                (item.activityDescription.content==null?" toàn trường":item.activityDescription.content)
+                                (item.activityDescription.content==null?" toàn trường":(item.activityDescription.content).substring(0,250)+" . . .")
                             }
-
+                            </Text>
+                            <Text style={styles.description}>
+                                Đơn vị quản lý: Khoa
+                                {
+                                    " "+(item.faculty.vnName)
+                                }
                             </Text>
                         </View>
                     </View>
@@ -201,46 +108,37 @@ export default class Activity extends Component{
             </TouchableOpacity>
         )
     }
-    // renderSeparator= () => {
-    //     return(
-    //         <View>
-    //             style={{height:1,width:'100%',backgroundColor:'black'}}
-    //         </View>
-    //     )
-    // }
     loadData =()=>{
-        console.log('===================================================');
-        console.log('AsyncStorage: ' + AsyncStorage.getItem('access_token'));
-        AsyncStorage.getItem('access_token', (err, result) => {
+
+        this.setState({showLoading:true})
+        var result = this.state.token;
             if (result != null) {
-                console.log('result ' + result);
+
                 //fetch datsSouce
-                console.log("state 0: " + this.state.index)
+
                 fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
                     {
                         method: 'POST',
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer' + result,
+                            'Authorization': 'Bearer '+result,
                         },
                         body:
                             JSON.stringify({
                                 "page": 0,
                                 "size": 20,
                                 "levelCode": "vn.yhcmute.act.level.school",
-                                "facultyId": "5d87ac3a362adf438cbc6b72"
+                                "facultyId": "5dbd46af1d12841b60ce2837"
                             }),
                     })
                     .then((Response) => Response.json())
                     .then((ResponseJson) => {
-                        console.log("activity", ResponseJson)
-                        console.log("result", ResponseJson.result)
                         this.setState({
                             dataSource: ResponseJson.result,
                             showLoading: false
                         })
-                        //console.log(this.state.dataSource)
+
                     })
                     .catch((error) => {
                         console.log(error)
@@ -252,25 +150,23 @@ export default class Activity extends Component{
                         headers: {
                             Accept: 'application/json',
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer' + result,
+                            'Authorization': 'Bearer '+result,
                         },
                         body:
                             JSON.stringify({
                                 "page": 0,
                                 "size": 20,
                                 "levelCode": "vn.yhcmute.act.level.faculty",
-                                "facultyId": "5d87ac3a362adf438cbc6b72"
+                                "facultyId": "5dbd46af1d12841b60ce2837"
                             }),
                     })
                     .then((Response) => Response.json())
                     .then((ResponseJson) => {
-                        console.log("activity", ResponseJson)
-                        console.log("result", ResponseJson.result)
                         this.setState({
                             dataSource1: ResponseJson.result,
                             showLoading: false
                         })
-                        //console.log(this.state.dataSource)
+
                     })
                     .catch((error) => {
                         console.log(error)
@@ -280,28 +176,8 @@ export default class Activity extends Component{
             } else {
                 console.log('loi cmr')
             }
-        })
-    }
-    componentDidMount() {
-       this.loadData();
-        // fetch( `${Config.API_URL}/api/v1/activities/getByStudents/school?keyword=${this.state.keyword}&status=PIP&page=0&size=2147483647`)
-        //     .then((Response) => Response.json())
-        //     .then((ResponseJson) => {
-        //         console.log('reponese ',ResponseJson)
-        //         this.setState({
-        //             dataSource: ResponseJson.data,
-        //             isLoading:false
-        //         })
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
-        //this._renderComponent();
-        //this.props.navigation.dispatch(DrawerActions.closeDrawer());
-        //this.props.navigation.dispatch(DrawerActions.openDrawer());
-            
-    }
 
+    }
     handleClick = ()=>{
         this.setState({dialogVisible:false})
     }
@@ -363,7 +239,7 @@ export default class Activity extends Component{
     };
 
     render() {
-        return (
+        return  (
             this.state.isLoading
             ?
             <View style={{flex:1,justifyContent:"center",alignItems:'center'}}>

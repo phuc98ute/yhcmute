@@ -13,6 +13,7 @@ import {
   DeviceEventEmitter,
     Alert,
 } from "react-native";
+import styles from '../css/styles';
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
@@ -53,7 +54,7 @@ export default class Login extends Component {
         //     ToastAndroid.show("Is connected: "+ state.isConnected,ToastAndroid.LONG);
         // });
 
-        console.log(deviceHeight)
+
     }
   //Automatically log in if the token is still valid
   _autoLogin() {
@@ -113,7 +114,6 @@ export default class Login extends Component {
         * */
         console.log('========================================== TOPIC')
         console.log(topic)
-        //firebase.messaging().subscribeToTopic(topic);
         topic.map(item => (
             firebase.messaging().subscribeToTopic(item)
         ));
@@ -175,15 +175,6 @@ export default class Login extends Component {
     _signIn = () => {
 
   }
-
-
-
-
-
-
-
-
-  
 
   handleClick = () => {
     if (this.state.username != "" && this.state.pwd != "") {
@@ -287,28 +278,24 @@ export default class Login extends Component {
 
     return (
 
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <View style={{ flex: 7, justifyContent: 'flex-end' }}>
-          <View style={{ height: deviceHeight * 0.7 }}>
+          <View style={styles.statusbar}>
             <View style={{ height: '14%' }}>
               <Header style={{ backgroundColor: '#CCCCCC' }}
                 androidStatusBarColor="#CCCCCC">
-                <Body style={{ alignItems: 'center', height: '100%', marginTop: '3%' }}>
+                <Body style={styles.bodyStatus}>
                   <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                    <Title style={{ flex: 8, marginTop: 20, color: '#0000DD', fontWeight: 'bold', fontSize: fontSize }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                    <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
+                    <Image style={styles.logoStatusbar} source={require("../source/logodoan.png")}></Image>
+                    <Title style={styles.titleStatusbar}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
+                    <Image style={styles.logoStatusbar} source={require("../source/logohoi.png")}></Image>
                   </View>
                 </Body>
               </Header>
             </View>
 
             <View
-              style={{
-                height: '20%',
-                alignItems: 'center',
-                justifyContent: 'flex-start'
-              }}
+              style={styles.mainContainer}
             >
               <Image
                 source={require("../source/banner.png")}
@@ -322,17 +309,11 @@ export default class Login extends Component {
             }}>
               <View style={{ flexDirection: "row" }}>
                 <Image
-                  style={{
-                    width: deviceHeight * 0.15,
-                    height: deviceHeight * 0.15,
-                  }}
+                  style={styles.logo}
                   source={require("../source/logodoan.png")}
                 />
                 <Image
-                  style={{
-                    width: deviceHeight * 0.15,
-                    height: deviceHeight * 0.15,
-                  }}
+                  style={styles.logo}
                   source={require("../source/logohoi.png")}
                 />
               </View>
@@ -352,10 +333,7 @@ export default class Login extends Component {
                 color: "#0000DD",
                 fontSize: fontSize + 4,
                 textAlign: "center",
-                // marginBottom: 20,
                 fontWeight: 'bold',
-                // opacity: 0.9
-
               }}>
                 ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI
                 </Text>
@@ -404,35 +382,19 @@ export default class Login extends Component {
             />
             <View style={{ flexDirection: 'row', width: '96%', justifyContent: 'flex-end' }}>
               <TouchableOpacity
-                style={{
-                  borderRadius: 30,
-                  backgroundColor: "#3366CC",
-                  alignItems: "center",
-                  height: deviceHeight * 0.05,
-                  padding: 3,
-                  flex: 1,
-                  marginRight: '1%'
-                }}
+                style={styles.buttonContainer}
                 onPress={this.handleClick}
               >
                 <Text style={styles.buttonText}>Đăng nhập</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{
-                  borderRadius: 30,
-                  backgroundColor: "#3366CC",
-                  alignItems: "center",
-                  height: deviceHeight * 0.05,
-                  padding: 3,
-                  flex: 1,
-                  marginLeft: '1%'
-                }}
+                style={styles.buttonContainer}
                 onPress={() => this.props.navigation.navigate("Signup", {})}
               >
                 <Text style={styles.buttonText}>Đăng kí</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={{ height: deviceHeight * 0.05, alignItems: "center", marginTop: '2%', }}
+            <TouchableOpacity style={styles.buttonForget}
               onPress={this._forgotPwd}
             >
               <Text>Quên mật khẩu ?</Text>
@@ -462,79 +424,4 @@ export default class Login extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: deviceHeight
-  },
-  logoContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: '#FFFFFF',
-    height: deviceHeight * 0.3,
-    marginBottom: 10,
-  },
-  logo: {
 
-    width: deviceHeight * 0.15,
-    height: deviceHeight * 0.15,
-    marginTop: 25,
-  },
-  banner: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 15,
-
-  },
-  title: {
-    color: "#0000DD",
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: "center",
-    marginTop: 30,
-    opacity: 1
-  },
-  inforContainer: {
-    height: deviceHeight * 0.4,
-    backgroundColor: "#FFFFFF"
-  },
-  input: {
-    width: '80%',
-    height: 50,
-    backgroundColor: "rgba(144, 164, 174  ,0.7)",
-    color: "#546E7A",
-    marginBottom: 10,
-    borderRadius: 30,
-    textAlign: 'center',
-
-  },
-  buttonContainer: {
-    flex: 1,
-    borderRadius: 30,
-    backgroundColor: "#3366CC",
-    alignItems: "center",
-    height: 30,
-    padding: 3,
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    fontSize: 18,
-  },
-
-  inner: {
-    padding: 24,
-    flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "#FFFFFF",
-  },
-  header: {
-    fontSize: 36,
-    marginBottom: 48,
-
-  },
-  btnContainer: {
-    backgroundColor: "white",
-  },
-});

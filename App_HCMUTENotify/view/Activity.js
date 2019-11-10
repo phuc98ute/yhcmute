@@ -53,6 +53,7 @@ export default class Activity extends Component{
                 {key: 'second', icon: 'heart',title: 'CẤP KHOA'},
 
             ],
+            pageLoad:0,
         }
     }
     componentDidMount() {
@@ -62,7 +63,9 @@ export default class Activity extends Component{
 
         })
             .then(()=>{
-                this.loadData();
+                this.setState({showLoading:true})
+                this._loadActivitySchool();
+                this._loadActivityFaculity();
             })
 
     }
@@ -108,81 +111,90 @@ export default class Activity extends Component{
             </TouchableOpacity>
         )
     }
-    loadData =()=>{
-
-        this.setState({showLoading:true})
+    _loadActivitySchool =()=> {
         var result = this.state.token;
-            if (result != null) {
+        if (result != null) {
 
-                //fetch datsSouce
+            fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + result,
+                    },
+                    body:
+                        JSON.stringify({
+                            "page": this.state.pageLoad,
+                            "size": 5,
+                            "levelCode": "vn.yhcmute.act.level.school",
+                            "facultyId": "5dbd46af1d12841b60ce2837"
+                        }),
+                })
+                .then((Response) => Response.json())
+                .then((ResponseJson) => {
 
-                fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer '+result,
-                        },
-                        body:
-                            JSON.stringify({
-                                "page": 0,
-                                "size": 20,
-                                "levelCode": "vn.yhcmute.act.level.school",
-                                "facultyId": "5dbd46af1d12841b60ce2837"
-                            }),
-                    })
-                    .then((Response) => Response.json())
-                    .then((ResponseJson) => {
-                        this.setState({
-                            dataSource: ResponseJson.result,
-                            showLoading: false
-                        })
-
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-                //fetch dataSource1
-                fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer '+result,
-                        },
-                        body:
-                            JSON.stringify({
-                                "page": 0,
-                                "size": 20,
-                                "levelCode": "vn.yhcmute.act.level.faculty",
-                                "facultyId": "5dbd46af1d12841b60ce2837"
-                            }),
-                    })
-                    .then((Response) => Response.json())
-                    .then((ResponseJson) => {
-                        this.setState({
-                            dataSource1: ResponseJson.result,
-                            showLoading: false
-                        })
-
-                    })
-                    .catch((error) => {
-                        console.log(error)
+                    this.setState({
+                        dataSource: ResponseJson.result,
+                        showLoading: false
                     })
 
-
-            } else {
-                console.log('loi cmr')
-            }
-
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }
+    _loadActivityFaculity =()=> {
+        var result = this.state.token;
+        if (result != null) {
+
+            //fetch datsSouce
+            fetch(`${Config.API_URL}/api/v1/activity/getActivitiesForStudent`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+result,
+                    },
+                    body:
+                        JSON.stringify({
+                            "page": this.state.pageLoad,
+                            "size": 5,
+                            "levelCode": "vn.yhcmute.act.level.faculty",
+                            "facultyId": "5dbd46af1d12841b60ce2837"
+                        }),
+                })
+                .then((Response) => Response.json())
+                .then((ResponseJson) => {
+                    this.setState({
+                        dataSource1: ResponseJson.result,
+                        showLoading: false
+                    })
+
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+
+        } else {
+            console.log('loi cmr')
+        }
+    }
+
     handleClick = ()=>{
         this.setState({dialogVisible:false})
     }
+    _handleLoadMore=()=>{
+        if (!this.onEndReachedCalledDuringMomentum) {
+            console.warn("loadmore")
+            this.onEndReachedCalledDuringMomentum = true;
+        }
+    }
     _renderScene = ({ route }) => {
-
+        //this.setState({"pageLoad":0})
         switch (route.key) {
             case 'first': {
                 if (this.state.dataSource && this.state.dataSource.length) {
@@ -190,9 +202,13 @@ export default class Activity extends Component{
                         <View>
                             <View style={{height: '100%'}}>
                                 <FlatList
+
                                     data={this.state.dataSource}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
+                                    //onEndReachedThreshold={0}
+                                    //onEndReached={console.warn("loadMore")}
+
                                 />
                             </View>
 
@@ -219,6 +235,8 @@ export default class Activity extends Component{
                                     data={this.state.dataSource1}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
+                                    onEndReached={console.warn("loadMore")}
+                                    //onEndReachedThreshold={0}
                                 />
                             </View>
 
@@ -237,6 +255,11 @@ export default class Activity extends Component{
                 return null;
         }
     };
+
+    _scrollEnd = (evt) => {
+        console.warn("end")
+        this.refs.flatList1.scrollToEnd();
+    }
 
     render() {
         return  (
@@ -274,14 +297,25 @@ export default class Activity extends Component{
                         </Body>
                         
                     </Header>
+                        <FlatList
+
+                            style={{ flex:1}}
+                            ref="flatList1"
+                            data={this.state.dataSource1}
+                            renderItem={this.renderItem}
+                            keyExtractor={(item, index) => index.toString()}
+                            //onEndReached={this._handleLoadMore()}
+                            //onEndReachedThreshold={console.warn("onEndReachedThreshold")}
+
+                        />
 
 
-                    <TabView
-                        navigationState={this.state}
-                        renderScene={this._renderScene}
-                        onIndexChange={index => this.setState({ index })}
-                        initialLayout={{ width: Dimensions.get('window').width }}
-                    />
+                    {/*<TabView*/}
+                    {/*    navigationState={this.state}*/}
+                    {/*    renderScene={this._renderScene}*/}
+                    {/*    onIndexChange={index => this.setState({ index })}*/}
+                    {/*    initialLayout={{ width: Dimensions.get('window').width }}*/}
+                    {/*/>*/}
                     <View style={{height:1, backgroundColor:'black'}}></View>
                     {/*{this._renderComponent()}*/}
                     <ProgressDialog

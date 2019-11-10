@@ -16,28 +16,6 @@ import ratingComponet from './view/ratingComponet';
 import Forgetpass from "./view/Forgetpass";
 import bgMessaging from './bgMessaging';
 import Policy from './view/Policy';
-import test from'./view/test';
-
-
-const AppNavigator = createStackNavigator({
-        Login: {screen: Login},
-        Activity: {screen: Activity},
-        SignActivity: {screen: SignActivity},
-        Profile: {screen: Profile},
-        Signup: {screen: Signup},
-        signingactivity: {screen: signingactivity},
-        ChangeProfile: {screen: changeProfile},
-        RatingComponet: {screen: ratingComponet},
-        ForgetPass : {screen: Forgetpass},
-
-    },
-    {
-        headerMode: 'none',
-        navigationOptions: {
-            headerVisible: false,
-        }
-    }
-);
 
 const HomeScreenRouter = createDrawerNavigator(
     {
@@ -63,3 +41,4 @@ const HomeScreenRouter = createDrawerNavigator(
 export default HomeScreenRouter;
 AppRegistry.registerComponent(appName, () => HomeScreenRouter);
 AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () => bgMessaging); // <-- Add this line
+

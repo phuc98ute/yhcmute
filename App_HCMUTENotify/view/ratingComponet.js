@@ -41,7 +41,14 @@ export default class ratingComponent extends Component {
 
 
     componentDidMount() {
+        AsyncStorage.getItem('Account', (err, result) => {
+            var res = JSON.parse(result);
+            this.setState({'account': res});
+            //console.log("account")
+            //console.log(res)
+           // this.setState({"studentId":this.state.account.student.id,"studentCode":this.state.account.student.code,"fullName":this.state.account.student.fullName,"phone":this.state.account.student.peopleContact.personalPhone,"email":this.state.account.student.peopleContact.email})
 
+        });
     }
     componentWillMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
@@ -68,14 +75,19 @@ export default class ratingComponent extends Component {
             console.log(this.rating)
             if (result != null) {
                 var res = fetch(
-                    `${Config.API_URL}/api/v1/activity/rating?id=${this.state.activityId}&mark=${this.state.rating}`,
+                    `${Config.API_URL}/api/v1/evaluate/rating?id=${this.state.activityId}&mark=${this.state.rating}`,
                     {
-                        method: "PUT",
+                        method: "POST",
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
                             'Authorization': 'Bearer ' + result,
                         },
+                        body: JSON.stringify({
+                            "activityId":this.state.activityId,
+                            "studentId":this.state.account.student.id,
+                            "rate":this.state.rating
+                        })
                     }
                 )
                     .then((Response) => Response.json()
@@ -83,12 +95,13 @@ export default class ratingComponent extends Component {
                     .then((ResponseJson) => {
                         console.log('resJson')
                         console.log(ResponseJson)
-                        // this.setState({showLoading: false});
-                        // if (ResponseJson.status === "METHOD_NOT_ALLOWED") {
-                        //     ToastAndroid.show("Lỗi không đổi được mật khẩu!", ToastAndroid.LONG)
-                        // } else {
-                        //     AsyncStorage.clear(), this.props.navigation.navigate("Login", {});
-                        // }
+                        if(ResponseJson.activityId!=null) {ToastAndroid.show("Đã đánh giá thành công. Xin cảm ơn",ToastAndroid.LONG);this.props.navigation.navigate("Profile"),{}}
+                        else {
+                            if(ResponseJson.status==409) {ToastAndroid.show(ResponseJson.message,ToastAndroid.LONG)}
+                            else {
+                                ToastAndroid.show("Lỗi!",ToastAndroid.LONG);
+                            }
+                        }
                     })
                     .catch(err => {
                         console.log("ERR", err),

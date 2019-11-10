@@ -3,8 +3,9 @@ import {
     StyleSheet,
     View,
     Image,
-    TouchableOpacity, Dimensions, ScrollView, AsyncStorage, FlatList, BackHandler, ToastAndroid
+    TouchableOpacity, Dimensions, ScrollView, FlatList, BackHandler, ToastAndroid
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Header, Title, Left, Right, Button, Body, Content,Text, Card, CardItem, Item } from "native-base";
 import {Rating} from 'react-native-ratings'
 

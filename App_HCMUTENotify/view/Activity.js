@@ -79,7 +79,7 @@ export default class Activity extends Component{
             >
                 <View style={{ flex: 1, flexDirection: 'row' }} >
                     <View style={styles.container}>
-                        <Image style={styles.photo} source={ item.activityImages===null ?  require('../source/noimageBackground.png') : {uri:item.activityImages}} />
+                        <Image style={styles.photo} source={ item.activityDescription.coverImage===null ?  require('../source/noimageBackground.png') : {uri:item.activityDescription.coverImage}} />
                         <View style={styles.container_text}>
                             <Text style={styles.title}>
                                 {item.name}

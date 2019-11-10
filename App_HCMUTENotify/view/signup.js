@@ -20,9 +20,12 @@ import {
 import ModalDropdown from 'react-native-modal-dropdown';
 import Config from 'react-native-config';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
+import { CheckBox } from 'react-native-elements'
+
 
 
 export default class Signup extends Component{
+    checked;
     static navigationOptions={
         title:'Đăng kí thông tin tài khoản',
         headerMode:'screen'
@@ -43,14 +46,18 @@ export default class Signup extends Component{
             username:"",
             password:"",
             code: "",
+            email:"",
+            phone:"",
             firstname: "",
             lastname: "",
             aClassid:"",
             lstKhoa:[],
             listTempLop:[],
+            checked:false,
 
         }
         this.sizeRef = React.createRef();
+        this.sizeRef2 = React.createRef();
       }
 
       componentDidMount(){
@@ -83,7 +90,6 @@ export default class Signup extends Component{
 
         if(this.state.listKhoa[idx].classes!=null)
         {
-            //this.setState({"listTempLop":[]});
             this.state.listKhoa[idx].classes.map(item => (
                 this.state.listTempLop.push(item.name)
             ));
@@ -101,7 +107,7 @@ export default class Signup extends Component{
     }
     _signup = () => {
         // const { fullName,username,password,email,studentCode,shortName,indexKhoa } = this.state;
-        if(this.state.fullName!=''&&this.state.username!=''&&this.state.email!=''&&this.state.studentCode!=''&&this.state.idxKhoa!=''&&this.state.idxLop!=undefined)
+        if(this.state.fullName!=''&&this.state.username!=''&&this.state.email!=''&&this.state.studentCode!=''&&this.state.idxKhoa!=''&&this.state.idxLop!=undefined&&this.checked==false)
         {
             console.log("DU dieu kien")
             console.log(this.state.idxLop)
@@ -120,6 +126,10 @@ export default class Signup extends Component{
                             code: this.state.studentCode,
                             firstName: this.state.firstname,
                             lastName: this.state.lastname,
+                            peopleContact: {
+                                personalPhone:this.state.phone,
+                                email:this.state.email
+                            },
                             aClass: {
                                 id:this.state.listKhoa[this.state.idxKhoa].classes[this.state.idxLop].id,
                               }
@@ -146,7 +156,15 @@ export default class Signup extends Component{
 
         }
         else{
-            ToastAndroid.show("Nhập đầy đủ các trường trên để đăng kí!",ToastAndroid.LONG);
+            console.log(this.checked)
+            if(this.checked==true || this.checked==undefined){
+                ToastAndroid.show("Bạn phải chấp nhận với điều khoản sử dụng của ứng dụng!",ToastAndroid.LONG);
+            }
+            else{
+                ToastAndroid.show("Nhập đầy đủ các trường trên để đăng kí!",ToastAndroid.LONG);
+            }
+
+
         }
 
     };
@@ -233,6 +251,7 @@ export default class Signup extends Component{
                 placeholder="Nhập số điện thoại"
                 onChangeText={phone => this.setState({phone})}
                 placeholderTextColor='rgba(84, 110, 122,0.8)'
+                             onChangeText={phone => this.setState({phone})}
                 underlineColorAndroid={'transparent'}
                 />
                 <ModalDropdown
@@ -258,9 +277,17 @@ export default class Signup extends Component{
                 renderButtonText={(rowData) => this.renderButtonTextLop(rowData)}
                 //renderRow={this.dropdownRenderRow.bind(this)}
                 style={styles.dropDownModal}/>
-                
+                <CheckBox
+                    ref={this.sizeRef2}
+                    center
+                    title='Tôi đồng ý với các điều khoản sử dụng'
+                    // value={this.state.checked}
+                    // onValueChange={() => {this.setState({ checked: !this.state.checked });this.checked=this.state.checked;console.log(this.checked)}}
+                    checked={this.state.checked}
+                    onPress={() => {this.setState({checked: !this.state.checked});this.checked=this.state.checked;console.log(this.checked)}}
+                />
                 <TouchableOpacity style={styles.buttonContainer}
-                onPress={this._signup}>
+                onPress={()=>this._signup()}>
                 <Text style={styles.buttonText}>Đăng kí</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer}

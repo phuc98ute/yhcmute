@@ -83,7 +83,7 @@ export default class Profile extends Component {
           this.setState({'account': res});
           console.log("account")
           console.log(res)
-          this.setState({"studentId":this.state.account.student.id,"studentCode":this.state.account.student.code,"fullName":this.state.account.student.fullName})
+          this.setState({"studentId":this.state.account.student.id,"studentCode":this.state.account.student.code,"fullName":this.state.account.student.fullName,"phone":this.state.account.student.peopleContact.personalPhone,"email":this.state.account.student.peopleContact.email})
 
       });
     AsyncStorage.getItem('access_token', (err, result) => {
@@ -210,7 +210,9 @@ export default class Profile extends Component {
         </Header>
        
         <ScrollView style={{ height: Screen.height *0.75 }}>
-          <View style={styles.header}></View>
+          <View style={styles.header}>
+              <Image style={{flex:1}} source= {{uri:'https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-0/p640x640/72952416_1982887225190541_8372360890338508800_o.jpg?_nc_cat=108&_nc_oc=AQkdQqK9Bs2ogWtrjmvvahG72iQDgd0hL5yIQcqQvqWGZ8YiUnCQI_ypnZ0sHtX8X4Ow0CIPzx_CK3T21mUQt7l4&_nc_ht=scontent.fsgn5-5.fna&oh=c79b9c6f6aebeb31f823360fc76d05dd&oe=5E40AB33'}}/>
+          </View>
           <Image style={styles.avatar} source={ this.state.image==="" ? { uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' } : {uri:"this.state.image"}} />
           {/* <View style={styles.avatar}>*/}
           {/*  <Avatar*/}

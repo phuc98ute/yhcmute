@@ -81,12 +81,17 @@ export default class signingactivity extends Component{
                       if(ResponseJson.status == 409) {
                             ToastAndroid.show("Bạn đã đăng kí hoạt động này!",ToastAndroid.LONG)
                         } else {
+                          console.log("Loi",ResponseJson)
                             if(ResponseJson.id != null) {
                                 { this.state.isTrue=='false' ? this.setState({message:ResponseJson.activity.name}) : this.setState({message:"Đã đăng kí thành công, Xin cảm ơn!"}) };
                                 this.setState({"dialogVisible":true})
                             }
                             else {
-                                ToastAndroid.show("LỖi đăng kí!",ToastAndroid.LONG)
+                                if(ResponseJson.message=="Not Match information"){
+                                    ToastAndroid.show("Đã đủ số lượng cần tuyển! Xin cảm ơn!",ToastAndroid.LONG)
+                                }
+                                else
+                                ToastAndroid.show("Lỗi đăng kí!",ToastAndroid.LONG)
                             }
                         }
 
@@ -132,7 +137,8 @@ export default class signingactivity extends Component{
                     </Header>
                 <View style={{flex:10}}>
                     <View style={styles.cover}>
-                        <Image resizeMode="contain" style={styles.photocover} source={{uri:(this.state.activityImage===null?"https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.0-9/69706279_1929768430502421_5081089526852485120_o.jpg?_nc_cat=110&_nc_oc=AQmX1vcPL_tViFstIDWTPAMp_3euCh0xzzRXVJr0Ll0IO4vupBxtt7aMR-tivNOjcDUVQH03r3IBJ85wwXU5sGZS&_nc_ht=scontent.fsgn5-3.fna&oh=8df76efad51748eb3eba3438235d8c94&oe=5E1EFBA6":this.state.activityImage)}}></Image>
+                        {/*<Image resizeMode="contain" style={styles.photocover} source={{uri:(this.state.activityImage===null?:this.state.activityImage)}}></Image>*/}
+                        <Image resizeMode="contain" style={styles.photocover} source={ this.state.activityImage===null ?  require('../source/noimageBackground.png') : {uri:this.state.activityImage}}></Image>
                     </View>
                     <Text style={styles.name}>{this.state.actName}</Text>
                     <View style={{ flex:10 }}>

@@ -15,6 +15,7 @@ import changeProfile from './view/ChangeProfile';
 import ratingComponet from './view/ratingComponet';
 import Forgetpass from "./view/Forgetpass";
 import bgMessaging from './bgMessaging';
+import Policy from './view/Policy';
 import test from'./view/test';
 
 
@@ -27,7 +28,8 @@ const AppNavigator = createStackNavigator({
         signingactivity: {screen: signingactivity},
         ChangeProfile: {screen: changeProfile},
         RatingComponet: {screen: ratingComponet},
-        ForgetPass : {screen: Forgetpass}
+        ForgetPass : {screen: Forgetpass},
+
     },
     {
         headerMode: 'none',
@@ -49,6 +51,7 @@ const HomeScreenRouter = createDrawerNavigator(
         RatingComponet: {screen: ratingComponet},
         ForgetPass : {screen: Forgetpass},
         SideBar : {screen: SideBar},
+        Policy : {screen : Policy},
     }
     ,
     {

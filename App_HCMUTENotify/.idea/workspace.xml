@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../hcmute_notify_management_backoffice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -38,6 +38,9 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\res\xml" />
     </key>
@@ -106,6 +109,10 @@
       <workItem from="1572951573663" duration="1266000" />
       <workItem from="1572966956809" duration="4489000" />
       <workItem from="1573219419594" duration="280000" />
+      <workItem from="1573220097725" duration="3027000" />
+      <workItem from="1573259059975" duration="13742000" />
+      <workItem from="1573317096805" duration="1246000" />
+      <workItem from="1573348555022" duration="602000" />
     </task>
     <servers />
   </component>

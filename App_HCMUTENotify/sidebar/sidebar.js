@@ -11,7 +11,7 @@ import {
   View,
 } from "native-base";
 import firebase from 'react-native-firebase';
-const routes = [{component:"Profile",title:"Tài khoản"}, {component:"Activity",title:"Hoạt động đang diễn ra"}, {component:"SignActivity",title:"Hoạt động đã đăng kí"},{component:"Login",title:"Đăng xuất"}];
+const routes = [{component:"Profile",title:"Tài khoản"}, {component:"Activity",title:"Hoạt động đang diễn ra"}, {component:"SignActivity",title:"Hoạt động đã đăng kí"},{component:"Policy",title:"Điều khoản sử dụng"},{component:"Login",title:"Đăng xuất"},];
 
 export default class SideBar extends React.Component {
   constructor(props) {

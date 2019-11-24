@@ -5,7 +5,7 @@ const deviceHeight = Dimensions.get('window').height;
 const logoHeight = deviceHeight - 55 - 600;
 const logobar = deviceWidth * 0.1;
 const bottomFlex = logoHeight < 0 ? 0 : logoHeight;
-const fontSize = logoHeight < 0 ? 11 : 13;
+const fontSize = deviceWidth < 400 ? 10 : 13;
 const styles = StyleSheet.create({
     container:{
         flex: 1,

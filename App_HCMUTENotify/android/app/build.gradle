@@ -132,8 +132,8 @@ android {
         applicationId "com.yhcmutenotify"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "0.2"
+        versionCode 4
+        versionName "0.4"
     }
     splits {
         abi {
@@ -196,6 +196,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-gesture-handler')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-firebase')
     implementation fileTree(dir: "libs", include: ["*.jar"])

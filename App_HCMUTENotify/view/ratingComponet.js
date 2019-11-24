@@ -11,6 +11,7 @@ import {Rating} from 'react-native-ratings'
 
 import Icon from 'react-native-vector-icons/Entypo';
 import Config from "react-native-config";
+import Statusbar from "../sidebar/statusbar";
 
 const WATER_IMAGE = require('../source/Hcmute.png')
 
@@ -122,17 +123,7 @@ export default class ratingComponent extends Component {
         var { navigate } = this.props.navigation;
         return (
             <Container >
-               <Header style={{ backgroundColor: '#CCCCCC' }}
-                            androidStatusBarColor="#CCCCCC">
-                            <Body style={{ alignItems: 'center', flex: 1 }}>
-                                <View style={{ flex: 1, flexDirection: 'row' }}>
-                                    <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                                    <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                                    <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
-                                </View>
-    
-                            </Body>
-                        </Header>
+                <Statusbar></Statusbar>
                         <Header style={{ backgroundColor:"#FFFFFF" }}
                                 androidStatusBarColor="#CCCCCC">
                             <Left>

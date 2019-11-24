@@ -5,14 +5,14 @@ INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\
 INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml:1:1-36:12
 INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml:1:1-36:12
 MERGED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml:1:1-36:12
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-reanimated] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-reanimated\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
 MERGED from [:@react-native-community_async-storage] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\@react-native-community\async-storage\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-12:12
 MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
-MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
-MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\621c57a4fc02b8aaabc249a9c725d2cd\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.react:react-native:0.61.4] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\45adefaafdf66d978b53162d42e06325\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:17:1-37:12
 MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-analytics:17.1.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\4e69d149203931114c659c0e83864e80\AndroidManifest.xml:2:1-9:12
@@ -113,8 +113,8 @@ MERGED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\ap
 MERGED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml:7:5-34:19
 MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-21:19
 MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-21:19
-MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\621c57a4fc02b8aaabc249a9c725d2cd\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\621c57a4fc02b8aaabc249a9c725d2cd\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.4] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\45adefaafdf66d978b53162d42e06325\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.4] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\45adefaafdf66d978b53162d42e06325\AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:22:5-35:19
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:22:5-35:19
 MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:7:5-20
@@ -223,6 +223,8 @@ uses-sdk
 INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\android\app\src\main\AndroidManifest.xml
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-reanimated] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-reanimated\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-reanimated] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-reanimated\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-firebase] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-firebase\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
@@ -233,12 +235,10 @@ MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\gitdev1.0
 MERGED from [:@react-native-community_netinfo] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\@react-native-community\netinfo\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-config] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-config\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-gesture-handler] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-gesture-handler\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] C:\Users\PhucVo\Desktop\gitdev1.0\dev1.0\App_HCMUTENotify\node_modules\react-native-vector-icons\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\621c57a4fc02b8aaabc249a9c725d2cd\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.60.5] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\621c57a4fc02b8aaabc249a9c725d2cd\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.4] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\45adefaafdf66d978b53162d42e06325\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.4] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\45adefaafdf66d978b53162d42e06325\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\15a13b1c15b14b58e73c9d21268dc5fc\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-core:16.0.9] C:\Users\PhucVo\.gradle\caches\transforms-2\files-2.1\8cf129b2a372704c375372ca4d9c51d3\AndroidManifest.xml:5:5-44

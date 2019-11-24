@@ -17,6 +17,7 @@ import {
   ScrollView
 } from "react-native";
 import AsyncStorage from '@react-native-community/async-storage';
+import Statusbar from "../sidebar/statusbar";
 // import { Icon } from "react-native-elements";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import jwtDecode from "jwt-decode";
@@ -66,7 +67,7 @@ export default class Activity extends Component {
       >
         <View style={{ flex: 1, flexDirection: 'row' }} >
           <View style={styles.container}>
-            <Image source={ item.activity.activityImages===null ?  require('../source/noimageBackground.png') : {uri:item.activity.activityImages}} style={styles.photo} />
+            <Image source={ item.activity.activityDescription.coverImage===null ?  require('../source/noimageBackground.png') : {uri:item.activity.activityDescription.coverImage}} style={styles.photo} />
             <View style={styles.container_text}>
               <Text style={styles.title}>
                 {item.activity.name}
@@ -150,83 +151,58 @@ export default class Activity extends Component {
           <ActivityIndicator size="large" color="330066" animating />
         </View>
         :
-        <Container >
-          {/* <Header>
-            <Left>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.openDrawer()}>
-                <Icon name="menu" />
-              </Button>
-            </Left>
-            <Body>
-              <Title>Hoạt động đã đăng kí</Title>
-            </Body>
-          </Header> */}
-           <Header style={{ backgroundColor: '#CCCCCC' }}
-                        androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', flex: 1 }}>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
-                            </View>
+          <Container style={{height:deviceHeight}}>
+              <Statusbar></Statusbar>
+              <Header style={{backgroundColor: "#FFFFFF"}}
+                      androidStatusBarColor="#CCCCCC">
+                  <Left>
+                      <Button
+                          transparent
+                          onPress={() => this.props.navigation.openDrawer()}>
+                          <Icon name="menu" size={30} color="black"/>
+                      </Button>
+                  </Left>
+                  <Body>
+                      <Title style={{justifyContent: 'center', color: 'black'}}>Hoạt động đã đăng kí</Title>
+                  </Body>
 
-                        </Body>
-                    </Header>
-                    <Header style={{ backgroundColor:"#FFFFFF" }}
-                            androidStatusBarColor="#CCCCCC">
-                        <Left>
-                            <Button
-                                transparent
-                                onPress={() => this.props.navigation.openDrawer()}>
-                                {/* <Icon name="menu" color="black" /> */}
-                                <Icon name="menu" size={30} color="black" />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title style={{justifyContent: 'center', color: 'black'}}>Hoạt động đã đăng kí</Title>
-                        </Body>
-                        
-                    </Header>
-          <View>
-            <View style={{ height: '93%' }}>
-                {
-                    (this.state.dataSource && this.state.dataSource.length>0) ?
-                    <FlatList
-                        data={this.state.dataSource}
-                        renderItem={this.renderItem}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                    :
-                        <Text> Chưa đăng ký hoạt động nào </Text>
-                }
+              </Header>
+              <View>
+                  <View style={{height: deviceHeight*0.8}}>
+                      {
+                          (this.state.dataSource && this.state.dataSource.length > 0) ?
+                              <FlatList
+                                  data={this.state.dataSource}
+                                  renderItem={this.renderItem}
+                                  keyExtractor={(item, index) => index.toString()}
+                              />
+                              :
+                              <Text> Chưa đăng ký hoạt động nào </Text>
+                      }
 
-              <ConfirmDialog
-                style={{borderRadius:20}}
-                title={this.state.activytyName}
-                // message={this.state.activityContent}
-                visible={this.state.dialogVisible}
-                onTouchOutside={() => this.setState({ dialogVisible: false })}
-                positiveButton={{
-                  title: "OK",
-                  onPress: () => {
-                    this.setState({ dialogVisible: false })
-                  }
-                }}
+                      <ConfirmDialog
+                          style={{borderRadius: 20}}
+                          title={this.state.activytyName}
+                          // message={this.state.activityContent}
+                          visible={this.state.dialogVisible}
+                          onTouchOutside={() => this.setState({dialogVisible: false})}
+                          positiveButton={{
+                              title: "OK",
+                              onPress: () => {
+                                  this.setState({dialogVisible: false})
+                              }
+                          }}
 
-              >
-              <ScrollView style={{height:'80%'}}>
-                <Text>
-                  {this.state.activityContent}
-                </Text>
-              </ScrollView>
-              </ConfirmDialog>
-            </View>
-
-          </View>
-          {/* </Content> */}
-        </Container>
+                      >
+                          <ScrollView style={{height: deviceHeight*0.6}}>
+                              <Text>
+                                  {this.state.activityContent}
+                              </Text>
+                          </ScrollView>
+                      </ConfirmDialog>
+                  </View>
+              </View>
+          </Container>
     );
   }
 }

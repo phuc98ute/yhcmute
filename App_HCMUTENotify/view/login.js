@@ -22,6 +22,7 @@ import { Header, Title, Body } from "native-base";
 import NetInfo from "@react-native-community/netinfo";
 import firebase from 'react-native-firebase';
 import type { Notification, NotificationOpen } from 'react-native-firebase';
+import Statusbar from "../sidebar/statusbar";
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
@@ -277,23 +278,12 @@ export default class Login extends Component {
     var { navigate } = this.props.navigation;
 
     return (
-
       <View style={styles.container}>
+
         <View style={{ flex: 7, justifyContent: 'flex-end' }}>
           <View style={styles.statusbar}>
-            <View style={{ height: '14%' }}>
-              <Header style={{ backgroundColor: '#CCCCCC' }}
-                androidStatusBarColor="#CCCCCC">
-                <Body style={styles.bodyStatus}>
-                  <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Image style={styles.logoStatusbar} source={require("../source/logodoan.png")}></Image>
-                    <Title style={styles.titleStatusbar}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                    <Image style={styles.logoStatusbar} source={require("../source/logohoi.png")}></Image>
-                  </View>
-                </Body>
-              </Header>
-            </View>
 
+              <Statusbar></Statusbar>
             <View
               style={styles.mainContainer}
             >
@@ -391,7 +381,7 @@ export default class Login extends Component {
                 style={styles.buttonContainer}
                 onPress={() => this.props.navigation.navigate("Signup", {})}
               >
-                <Text style={styles.buttonText}>Đăng kí</Text>
+                <Text style={styles.buttonText}>Đăng ký</Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.buttonForget}

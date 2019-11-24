@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import {Rating} from 'react-native-ratings'
 import Moment from 'moment';
+import Statusbar from "../sidebar/statusbar";
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300;
 const RemainingWidth = Screen.width - SideMenuWidth;
@@ -173,17 +174,7 @@ export default class Profile extends Component {
     return (
       
       <View >
-         <Header style={{ backgroundColor: '#CCCCCC' }}
-                        androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', flex: 1 }}>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
-                            </View>
-
-                        </Body>
-                    </Header>
+          <Statusbar></Statusbar>
         <Header style={{ backgroundColor: "#FFFFFF" }}
           androidStatusBarColor="#CCCCCC">
           <Left>
@@ -209,7 +200,7 @@ export default class Profile extends Component {
 
         </Header>
        
-        <ScrollView style={{ height: Screen.height *0.75 }}>
+        <ScrollView style={{ height: deviceHeight *0.8 }}>
           <View style={styles.header}>
               <Image style={{flex:1}} source= {{uri:'https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-0/p640x640/72952416_1982887225190541_8372360890338508800_o.jpg?_nc_cat=108&_nc_oc=AQkdQqK9Bs2ogWtrjmvvahG72iQDgd0hL5yIQcqQvqWGZ8YiUnCQI_ypnZ0sHtX8X4Ow0CIPzx_CK3T21mUQt7l4&_nc_ht=scontent.fsgn5-5.fna&oh=c79b9c6f6aebeb31f823360fc76d05dd&oe=5E40AB33'}}/>
           </View>

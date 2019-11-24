@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { Container, Header, Title, Left, Button, Body, Text, Segment } from "native-base";
 import { TabView, SceneMap } from 'react-native-tab-view';
 import Moment from 'moment';
+import Statusbar from "../sidebar/statusbar";
+import Topmenubar from "../sidebar/topmenubar";
 
 const Screen = Dimensions.get('window')
 const SideMenuWidth = 300
@@ -22,11 +24,16 @@ const deviceHeight = Dimensions.get('window').height;
 const logobar=deviceWidth*0.1;
 
 export default class Activity extends Component{
+    activePage;
+    pageLoad:0;
+    loading:false;
     static navigationOptions={
         header:null
     };
     constructor() {
         super();
+        this.onEndReachedCalledDuringMomentum = true;
+
         this.state={
             token:"",
             dataSource:[],
@@ -53,10 +60,13 @@ export default class Activity extends Component{
                 {key: 'second', icon: 'heart',title: 'CẤP KHOA'},
 
             ],
-            pageLoad:0,
+
+
         }
     }
     componentDidMount() {
+
+        console.warn(deviceWidth)
 
         AsyncStorage.getItem('access_token', (err, result) => {
             this.setState({token:result})
@@ -99,12 +109,23 @@ export default class Activity extends Component{
                                 (item.activityDescription.content==null?" toàn trường":(item.activityDescription.content).substring(0,250)+" . . .")
                             }
                             </Text>
-                            <Text style={styles.description}>
+                            {this.activePage == 1 ?
+                                <Text style={styles.description}>
+                                    Người phụ trách chính:
+                                    {
+                                        " "+(item.activityDescription.mainPerson)
+                                    }
+                                </Text>
+
+                                :
+
+                                <Text style={styles.description}>
                                 Đơn vị quản lý: Khoa
                                 {
-                                    " "+(item.faculty.vnName)
+                                    " " + (item.faculty.vnName)
                                 }
-                            </Text>
+                                </Text>
+                            }
                         </View>
                     </View>
                 </View>
@@ -125,8 +146,8 @@ export default class Activity extends Component{
                     },
                     body:
                         JSON.stringify({
-                            "page": this.state.pageLoad,
-                            "size": 5,
+                            "page": this.pageLoad,
+                            "size": 10,
                             "levelCode": "vn.yhcmute.act.level.school",
                             "facultyId": "5dbd46af1d12841b60ce2837"
                         }),
@@ -134,10 +155,21 @@ export default class Activity extends Component{
                 .then((Response) => Response.json())
                 .then((ResponseJson) => {
 
-                    this.setState({
-                        dataSource: ResponseJson.result,
-                        showLoading: false
-                    })
+                    if(ResponseJson.result!=[]){
+                        if(this.state.dataSource==[]){
+                            this.setState({
+                                dataSource: ResponseJson.result,
+                                showLoading: false
+                            })
+                        }
+                        else {
+                            this.setState({"dataSource":[...this.state.dataSource, ... ResponseJson.result],'showLoading':false});
+
+                        }
+                    }
+                    else{
+                        ToastAndroid.show("Đã cập nhật toàn bộ chương trình!",ToastAndroid.LONG);
+                    }
 
                 })
                 .catch((error) => {
@@ -146,6 +178,7 @@ export default class Activity extends Component{
         }
     }
     _loadActivityFaculity =()=> {
+
         var result = this.state.token;
         if (result != null) {
 
@@ -160,19 +193,30 @@ export default class Activity extends Component{
                     },
                     body:
                         JSON.stringify({
-                            "page": this.state.pageLoad,
-                            "size": 5,
+                            "page": this.pageLoad,
+                            "size": 10,
                             "levelCode": "vn.yhcmute.act.level.faculty",
                             "facultyId": "5dbd46af1d12841b60ce2837"
                         }),
                 })
                 .then((Response) => Response.json())
                 .then((ResponseJson) => {
-                    this.setState({
-                        dataSource1: ResponseJson.result,
-                        showLoading: false
-                    })
 
+                    if(ResponseJson.result!=[]){
+                        if(this.state.dataSource1==[]){
+                            this.setState({
+                                dataSource1: ResponseJson.result,
+                                showLoading: false
+                            })
+                        }
+                        else {
+                            this.setState({"dataSource1":[...this.state.dataSource1, ... ResponseJson.result],'showLoading':false});
+
+                        }
+                    }
+                    else{
+                        ToastAndroid.show("Đã cập nhật toàn bộ chương trình!",ToastAndroid.LONG);
+                    }
                 })
                 .catch((error) => {
                     console.log(error)
@@ -187,17 +231,10 @@ export default class Activity extends Component{
     handleClick = ()=>{
         this.setState({dialogVisible:false})
     }
-    _handleLoadMore=()=>{
-        if (!this.onEndReachedCalledDuringMomentum) {
-            console.warn("loadmore")
-            this.onEndReachedCalledDuringMomentum = true;
-        }
-    }
     _renderScene = ({ route }) => {
-        //this.setState({"pageLoad":0})
         switch (route.key) {
             case 'first': {
-                if (this.state.dataSource && this.state.dataSource.length) {
+                if (this.state.dataSource && this.state.dataSource.length) {this.activePage=1;this.pageLoad=0;
                     return (
                         <View>
                             <View style={{height: '100%'}}>
@@ -206,8 +243,12 @@ export default class Activity extends Component{
                                     data={this.state.dataSource}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
-                                    //onEndReachedThreshold={0}
-                                    //onEndReached={console.warn("loadMore")}
+                                    onEndReached={this.onEndReached.bind(this)}
+                                    onEndReachedThreshold={0.5}
+                                    onMomentumScrollBegin={() => {
+                                        this.onEndReachedCalledDuringMomentum = false;
+                                    }}
+                                    //ListFooterComponent={this.renderFooter.bind(this)}
 
                                 />
                             </View>
@@ -227,7 +268,7 @@ export default class Activity extends Component{
             }
 
             case 'second':
-                if (this.state.dataSource1 && this.state.dataSource1.length) {
+                if (this.state.dataSource1 && this.state.dataSource1.length) {this.activePage=2;this.pageLoad=0;
                     return (
                         <View>
                             <View style={{height: '100%'}}>
@@ -235,8 +276,11 @@ export default class Activity extends Component{
                                     data={this.state.dataSource1}
                                     renderItem={this.renderItem}
                                     keyExtractor={(item, index) => index.toString()}
-                                    onEndReached={console.warn("loadMore")}
-                                    //onEndReachedThreshold={0}
+
+                                    onEndReached={this.onEndReached.bind(this)}
+                                    onEndReachedThreshold={0.5}
+                                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                                    //ListFooterComponent={this.renderFooter.bind(this)}
                                 />
                             </View>
 
@@ -256,10 +300,34 @@ export default class Activity extends Component{
         }
     };
 
-    _scrollEnd = (evt) => {
-        console.warn("end")
-        this.refs.flatList1.scrollToEnd();
+    onEndReached = ({ distanceFromEnd }) => {
+
+        if(!this.onEndReachedCalledDuringMomentum){
+            console.warn(this.pageLoad);
+            this.pageLoad=this.pageLoad+1;
+            console.warn(this.pageLoad);
+            if(this.activePage==1){
+                this._loadActivitySchool()
+            }
+            else
+            {
+                this._loadActivityFaculity()
+            }
+
+
+            this.onEndReachedCalledDuringMomentum = true;
+        }
     }
+    renderFooter = () => {
+        //it will show indicator at the bottom of the list when data is loading otherwise it returns null
+        if (!this.loading) return null;
+        return (
+            <ActivityIndicator
+                style={{ color: '#000' }}
+            />
+        );
+    };
+
 
     render() {
         return  (
@@ -270,52 +338,27 @@ export default class Activity extends Component{
             </View>
             :
                 <Container style={{flex:1}} >
-                    <Header style={{ backgroundColor: '#CCCCCC' }}
-                        androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', flex: 1 }}>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
-                            </View>
-
-                        </Body>
-                    </Header>
+                    <Statusbar></Statusbar>
                     <Header hasSegment style={{ backgroundColor:"#FFFFFF" }}
                             androidStatusBarColor="#CCCCCC">
                         <Left>
                             <Button
                                 transparent
                                 onPress={() => this.props.navigation.openDrawer()}>
-
-                                {/* <Icon name="menu" color="black" /> */}
                                 <Icon name="menu" size={30} color="black" />
                             </Button>
                         </Left>
                         <Body>
                             <Title style={{justifyContent: 'center', color: 'black'}}>Hoạt động đang diễn ra</Title>
                         </Body>
-                        
                     </Header>
-                        <FlatList
 
-                            style={{ flex:1}}
-                            ref="flatList1"
-                            data={this.state.dataSource1}
-                            renderItem={this.renderItem}
-                            keyExtractor={(item, index) => index.toString()}
-                            //onEndReached={this._handleLoadMore()}
-                            //onEndReachedThreshold={console.warn("onEndReachedThreshold")}
-
-                        />
-
-
-                    {/*<TabView*/}
-                    {/*    navigationState={this.state}*/}
-                    {/*    renderScene={this._renderScene}*/}
-                    {/*    onIndexChange={index => this.setState({ index })}*/}
-                    {/*    initialLayout={{ width: Dimensions.get('window').width }}*/}
-                    {/*/>*/}
+                    <TabView
+                        navigationState={this.state}
+                        renderScene={this._renderScene}
+                        onIndexChange={index => this.setState({ index })}
+                        initialLayout={{ width: Dimensions.get('window').width }}
+                    />
                     <View style={{height:1, backgroundColor:'black'}}></View>
                     {/*{this._renderComponent()}*/}
                     <ProgressDialog

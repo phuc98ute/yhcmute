@@ -22,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -114,6 +114,13 @@
       <workItem from="1573317096805" duration="1246000" />
       <workItem from="1573348555022" duration="602000" />
       <workItem from="1573349426326" duration="11036000" />
+      <workItem from="1573371299955" duration="8287000" />
+      <workItem from="1573525469714" duration="55000" />
+      <workItem from="1573866616343" duration="12221000" />
+      <workItem from="1573885023349" duration="4000" />
+      <workItem from="1573925855668" duration="5274000" />
+      <workItem from="1574145623469" duration="21000" />
+      <workItem from="1574437656865" duration="236000" />
     </task>
     <servers />
   </component>

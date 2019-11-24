@@ -21,6 +21,7 @@ import Config from "react-native-config";
 import jwtDecode from "jwt-decode";
 import { Container, Header, Title, Left, Right, Button, Body, Content, Card, CardItem, Segment } from "native-base";
 import Icon from 'react-native-vector-icons/Entypo';
+import Statusbar from "../sidebar/statusbar";
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 const logoHeight = deviceHeight-255-200;
@@ -121,17 +122,7 @@ export default class ChangeProfile extends Component {
     var { navigate } = this.props.navigation;
     return (
      <View style={styles.container}>
-       <Header style={{ backgroundColor: '#CCCCCC' }}
-                        androidStatusBarColor="#CCCCCC">
-                        <Body style={{ alignItems: 'center', flex: 1 }}>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logodoan.png")}></Image>
-                                <Title style={{ flex: 8, marginTop: 20, justifyContent: 'center', color: '#0000DD', fontWeight: 'bold', fontSize: 13 }}>ỨNG DỤNG QUẢN LÝ HOẠT ĐỘNG ĐOÀN - HỘI</Title>
-                                <Image style={{ height: logobar, width: logobar, flex: 1, margin: 10 }} source={require("../source/logohoi.png")}></Image>
-                            </View>
-
-                        </Body>
-                    </Header>
+         <Statusbar></Statusbar>
         <Header style={{ backgroundColor: "#FFFFFF",marginBottom:10 }}
           androidStatusBarColor="#CCCCCC">
           <Left>

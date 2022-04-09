@@ -14,7 +14,7 @@
     "@react-native-community/push-notification-ios": "^1.0.2",
     "firebase": "^5.9.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "native-base": "^2.13.5",
     "prop-types": "^15.7.2",
     "react": "16.6.0-alpha.8af6728",
